@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recta Numérica de Sumas y Restas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e0f2f1);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #34495e;
+      margin-bottom: 40px;
+      font-size: 36px;
+    }
+
+    #number-line {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      height: 80px;
+      margin: 0 auto 40px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      border-top: 5px solid #34495e;
+    }
+
+    .tick {
+      position: absolute;
+      top: -15px;
+      width: 2px;
+      height: 30px;
+      background: #34495e;
+    }
+
+    .label {
+      position: absolute;
+      top: 40px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .label.positive { color: #2ecc71; }
+    .label.negative { color: #e74c3c; }
+    .label.zero { color: #34495e; }
+
+    .dot {
+      position: absolute;
+      top: -20px;
+      width: 18px;
+      height: 18px;
+      background: #e74c3c;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+
+    .arrow {
+      position: absolute;
+      height: 4px;
+      background: #3498db;
+      top: -6px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid #3498db;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      right: 0;
+    }
+
+    .arrow.reverse::after {
+      transform: rotate(180deg);
+      right: auto;
+      left: 0;
+    }
+
+    .controls {
+      background: #ffffff;
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 150px;
+    }
+
+    .control-group label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .controls input,
+    .controls select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .controls button {
+      padding: 15px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      height: fit-content;
+      align-self: flex-end;
+    }
+
+    .controls button:hover {
+      background-color: #2980b9;
+    }
+
+    #resultado {
+      margin-top: 30px;
+      font-size: 26px;
+      color: #16a085;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Recta Numérica de Enteros</h1>
+
+  <div id="number-line"></div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="start">Número de inicio:</label>
+      <input type="number" id="start" value="0">
+    </div>
+
+    <div class="control-group">
+      <label for="operation">Operación:</label>
+      <select id="operation">
+        <option value="add">Sumar</option>
+        <option value="subtract">Restar</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="step">Número a sumar/restar:</label>
+      <input type="number" id="step" value="0">
+    </div>
+
+    <button onclick="draw()">Mostrar en la recta</button>
+  </div>
+
+  <h2 id="resultado"></h2>
+
+  <script>
+    const line = document.getElementById("number-line");
+    const lineWidth = 800;
+
+    const minVal = -10;
+    const maxVal = 10;
+
+    function formatNumber(num) {
+      return num < 0 ? `(${num})` : num;
+    }
+
+    function drawNumberLine() {
+      line.innerHTML = '';
+
+      for (let i = minVal; i <= maxVal; i++) {
+        const pos = ((i - minVal) / (maxVal - minVal)) * lineWidth;
+
+        const tick = document.createElement("div");
+        tick.className = "tick";
+        tick.style.left = `${pos}px`;
+
+        const label = document.createElement("div");
+        label.className = "label";
+
+        if (i > 0) label.classList.add("positive");
+        else if (i < 0) label.classList.add("negative");
+        else label.classList.add("zero");
+
+        label.style.left = `${pos - 8}px`;
+        label.innerText = i;
+
+        line.appendChild(tick);
+        line.appendChild(label);
+      }
+    }
+
+    function draw() {
+      drawNumberLine();
+
+      const start = parseInt(document.getElementById("start").value);
+      const stepValue = parseInt(document.getElementById("step").value);
+      const operation = document.getElementById("operation").value;
+
+      let step;
+      if (operation === "add") {
+        step = stepValue;
+      } else {
+        step = -stepValue;
+      }
+
+      const end = start + step;
+
+      const startPos = ((start - minVal) / (maxVal - minVal)) * lineWidth;
+      const endPos = ((end - minVal) / (maxVal - minVal)) * lineWidth;
+
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      dot.style.left = `${startPos - 9}px`;
+      line.appendChild(dot);
+
+      const arrow = document.createElement("div");
+      arrow.className = "arrow";
+
+      arrow.style.left = `${Math.min(startPos, endPos)}px`;
+      arrow.style.width = `${Math.abs(endPos - startPos)}px`;
+
+      if (endPos < startPos) {
+        arrow.classList.add('reverse');
+      }
+
+      line.appendChild(arrow);
+
+      const operador = (operation === 'add') ? '+' : '-';
+      const formattedStart = formatNumber(start);
+      const formattedStep = formatNumber(stepValue);
+      const formattedEnd = formatNumber(end);
+
+      document.getElementById("resultado").innerHTML =
+        `${formattedStart} ${operador} ${formattedStep} = <span>${formattedEnd}</span>`;
+    }
+
+    drawNumberLine();
+  </script>
+</body>
+</html>
