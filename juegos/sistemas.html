@@ -55,9 +55,10 @@ li .eq{font:italic 18px Georgia,serif;margin-top:4px;overflow-x:auto;white-space
 
 /* Reparación móvil: la página no se desplaza lateralmente. */
 *,*::before,*::after{box-sizing:border-box}
-html,body{width:100%;max-width:100%;overflow-x:clip}
-main{width:100%;max-width:480px;min-width:0}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+main{width:auto;max-width:480px;min-width:0;box-sizing:border-box;overflow-x:hidden}
 header,.board,.ctl,.pend,.res,.small,li{min-width:0;max-width:100%}
+header>*{min-width:0}.meta{overflow-wrap:anywhere}
 .board{grid-template-columns:minmax(0,1fr)}
 .eqr{width:100%;min-width:0;max-width:100%;overflow-x:auto}
 .pend .pe,li .eq{min-width:0;max-width:100%;overflow-x:auto}
