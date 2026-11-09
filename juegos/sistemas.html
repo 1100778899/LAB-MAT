@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sistemas de ecuaciones</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2f0;--card:#fff;--ink:#17231f;--mut:#5d6b66;--line:#d3dcd8;--acc:#1f6f5c;--accink:#fff;--bad:#c23b3b;--board:#1f3a34;--chalk:#f2f1e8;--hi:#f4d35e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101716;--card:#19231f;--ink:#e8efec;--mut:#98a8a2;--line:#2c3b36;--acc:#5cc6a8;--accink:#0b1512;--bad:#ff7d7d;--board:#16302a}}
+:root[data-theme="dark"]{--bg:#101716;--card:#19231f;--ink:#e8efec;--mut:#98a8a2;--line:#2c3b36;--acc:#5cc6a8;--accink:#0b1512;--bad:#ff7d7d;--board:#16302a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:480px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+h1{font:700 20px Georgia,serif;margin:0}
+h2{font:600 15px system-ui;margin:14px 0 8px;color:var(--mut)}
+.meta{color:var(--mut);font-size:14px}
+select{width:100%;margin-bottom:10px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 15px system-ui}
+.board{background:var(--board);color:var(--chalk);border-radius:14px;padding:10px;border:6px solid #8a6a43;display:grid;gap:8px}
+.board.win{color:var(--hi)}
+.eqr{background:transparent;color:inherit;border:2px solid transparent;border-radius:10px;padding:10px 8px;text-align:center;font:italic 28px/1.3 Georgia,serif;overflow-x:auto;white-space:nowrap}
+.eqr[aria-pressed="true"]{border-color:var(--hi)}
+.en{display:block;font:600 12px system-ui;font-style:normal;opacity:.7;letter-spacing:1px}
+.goal{color:var(--mut);font-size:14px;margin:8px 2px 14px}
+.ctl,.pend{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.pend{border:2px solid var(--hi)}
+.pend .pe{font:italic 24px Georgia,serif;text-align:center;margin:10px 0;overflow-x:auto;white-space:nowrap}
+.pend .pt{font-weight:600;font-size:14px}
+.btns{display:grid;gap:8px}
+.btns3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ctl button,.pend button,.small button{padding:11px 6px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:600 15px system-ui}
+.pend button.use{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+button:disabled{opacity:.4}
+.ops2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.ops2 button{font-size:24px!important}
+.ops2 button[aria-pressed="true"],.sgn[aria-pressed="true"]{border-color:var(--acc);background:var(--acc);color:var(--accink)}
+.row{display:flex;gap:8px;align-items:center}
+.sgn{width:54px;font:700 24px system-ui!important}
+input[type=number]{flex:1;min-width:0;font:600 22px system-ui;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.go{width:100%;margin-top:12px;font:700 18px system-ui!important;padding:14px!important;background:var(--acc)!important;color:var(--accink)!important;border-color:var(--acc)!important}
+.err{color:var(--bad);min-height:20px;font-size:14px;margin-top:8px}
+.small{display:flex;gap:8px;margin:12px 0}.small button{flex:1;background:var(--card);font-size:14px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+li .op{font-weight:600;font-size:14px}
+li .eq{font:italic 18px Georgia,serif;margin-top:4px;overflow-x:auto;white-space:nowrap}
+.res{text-align:center;background:var(--card);border:2px solid var(--acc);border-radius:14px;padding:18px;margin-top:14px}
+.res .stars{font-size:32px;letter-spacing:4px}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.72em;line-height:1.15;margin:0 .12em}
+.fr span:first-child{border-bottom:.08em solid currentColor;padding:0 .15em}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Sistemas de ecuaciones</h1><span class="meta" id="meta"></span></header>
+<select id="sel" aria-label="Nivel"></select>
+<div class="board" id="board" aria-live="polite"></div>
+<p class="goal">Meta: dejar la <i>x</i> sola en una ecuación y la <i>y</i> sola en la otra. Toca una ecuación para elegirla.</p>
+<div class="pend" id="pend" hidden>
+ <div class="pt" id="pt"></div><div class="pe" id="pe"></div>
+ <div class="btns"><button class="use" id="r1"></button><button class="use" id="r2"></button><button id="dis">Descartar</button></div>
+</div>
+<div class="ctl" id="ctl">
+ <h2 style="margin-top:0">Sumar o restar ecuaciones</h2>
+ <div class="btns3"><button data-c="0,1,1">Ec 1 + Ec 2</button><button data-c="0,1,-1">Ec 1 − Ec 2</button><button data-c="1,0,-1">Ec 2 − Ec 1</button></div>
+ <h2>Multiplicar o dividir la <span id="selname">Ec 1</span></h2>
+ <div class="ops2"><button data-op="*" aria-pressed="true">×</button><button data-op="/" aria-pressed="false">÷</button></div>
+ <div class="row"><button type="button" class="sgn" id="sg" aria-pressed="false" aria-label="Signo del número: más o menos">+</button><input id="k" type="number" inputmode="numeric" step="1" placeholder="Número" aria-label="Número"></div>
+ <button class="go" id="go">Aplicar</button>
+ <div class="err" id="err" role="alert"></div>
+</div>
+<div class="small"><button id="undo">Deshacer</button><button id="reset">Reiniciar</button><button id="other">Otro ejercicio</button></div>
+<div class="res" id="res" hidden><div class="stars" id="stars"></div><p id="resmsg"></p><button class="go" id="next">Siguiente nivel</button></div>
+<h2>Tus pasos</h2>
+<ol id="hist"></ol>
+</main>
+<script>
+const LV=["1. Sumar para eliminar","2. Restar para eliminar","3. Multiplicar una ecuación","4. Multiplicar las dos ecuaciones","5. Coeficientes más grandes"];
+const $=id=>document.getElementById(id);
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const F=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}};
+const add=(p,q)=>F(p.n*q.d+q.n*p.d,p.d*q.d),mul=(p,q)=>F(p.n*q.n,p.d*q.d),dv=(p,q)=>F(p.n*q.d,p.d*q.n),ng=p=>F(-p.n,p.d);
+const one=p=>p.n===1&&p.d===1;
+const fs=p=>(p.n<0?"−":"")+(p.d===1?Math.abs(p.n):"⟨"+Math.abs(p.n)+"|"+p.d+"⟩");
+const H=t=>t.replace(/⟨(\d+)\|(\d+)⟩/g,'<span class="fr"><span>$1</span><span>$2</span></span>');
+const term=(c,v,first)=>{if(!c.n)return"";const ab=F(Math.abs(c.n),c.d);return(c.n<0?(first?"−":" − "):(first?"":" + "))+(one(ab)?"":fs(ab))+v};
+const estr=e=>{let l=term(e.a,"x",true);l+=term(e.b,"y",!l);return(l||"0")+" = "+fs(e.c)};
+const eh=e=>H(estr(e));
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const R=m=>{let v=0;while(!v)v=ri(-m,m);return v};
+function gen(l){
+ const m=l>3?7:5,x0=R(m),y0=R(m);let a1,b1,a2,b2;
+ for(;;){
+  if(l===0){b1=R(4);b2=-b1;a1=R(4);a2=R(4)}
+  else if(l===1){b1=R(4);b2=b1;a1=R(4);a2=R(4)}
+  else if(l===2){b1=R(3);b2=b1*(Math.random()<.5?-1:1)*ri(2,3);a1=R(4);a2=R(4)}
+  else{const q=l===3?4:6;a1=R(q);b1=R(q);a2=R(q);b2=R(q);if(Math.abs(a1)===Math.abs(a2)||Math.abs(b1)===Math.abs(b2))continue}
+  if(a1*b2-a2*b1!==0)break}
+ if(l<3&&Math.random()<.5){[a1,b1]=[b1,a1];[a2,b2]=[b2,a2]}
+ const M=[[a1,b1,a1*x0+b1*y0],[a2,b2,a2*x0+b2*y0]];
+ return Math.random()<.5?M:M.reverse();
+}
+function parOf(M){let n=0,[p,q]=M.map(r=>r.slice());const sc=(e,k)=>e.map(v=>v*k);
+ const g=gcd(Math.abs(p[1]),Math.abs(q[1])),m1=Math.abs(q[1])/g,m2=Math.abs(p[1])/g;
+ if(m1!==1){p=sc(p,m1);n++}if(m2!==1){q=sc(q,m2);n++}
+ p=p[1]===q[1]?p.map((v,i)=>v-q[i]):p.map((v,i)=>v+q[i]);n++;
+ if(p[0]!==1)n++;
+ if(Math.abs(q[0])!==1)n++;n++;
+ if(q[1]!==1)n++;
+ return n}
+const solved=E=>{const X=e=>one(e.a)&&!e.b.n,Y=e=>!e.a.n&&one(e.b);return(X(E[0])&&Y(E[1]))||(Y(E[0])&&X(E[1]))};
+let lvl=0,E,ini,par,hist,sel=0,pend=null,op="*",neg=false;
+const toE=M=>M.map(r=>({a:F(r[0]),b:F(r[1]),c:F(r[2])}));
+function start(nuevo=true){if(nuevo){const M=gen(lvl);ini=toE(M);par=parOf(M)}E=ini;hist=[];sel=0;pend=null;$("err").textContent="";render()}
+function render(){
+ const w=solved(E);$("sel").value=lvl;
+ $("meta").textContent="Nivel "+(lvl+1)+" de "+LV.length+" · pasos: "+hist.length;
+ $("board").innerHTML=E.map((e,i)=>'<button class="eqr" data-i="'+i+'" aria-pressed="'+(i===sel)+'"><span class="en">EC '+(i+1)+'</span>'+eh(e)+'</button>').join("");
+ $("board").classList.toggle("win",w);$("selname").textContent="Ec "+(sel+1);
+ $("ctl").hidden=w||!!pend;$("pend").hidden=w||!pend;$("res").hidden=!w;
+ if(pend){$("pt").textContent="Ecuación nueva: "+pend.label+". ¿La usas o la descartas?";$("pe").innerHTML=eh(pend.eq);
+  const ok=!!(pend.eq.a.n||pend.eq.b.n);$("r1").textContent="Usarla en lugar de Ec 1";$("r2").textContent="Usarla en lugar de Ec 2";$("r1").disabled=$("r2").disabled=!ok}
+ if(w){const n=hist.length,s=n<=par?3:n<=par+2?2:1;$("stars").textContent="★".repeat(s)+"☆".repeat(3-s);
+  $("resmsg").textContent="¡Resuelto! Solución: "+estr(E[0].a.n?E[0]:E[1]).replace(" = "," = ")+" y "+estr(E[0].a.n?E[1]:E[0])+". Lo hiciste en "+n+" pasos"+(s<3?" (se podía en unos "+par+")":"")+".";
+  $("next").textContent=lvl<LV.length-1?"Siguiente nivel":"Volver al nivel 1"}
+ $("hist").innerHTML=hist.length?hist.map((h,i)=>'<li><div class="op">Paso '+(i+1)+": "+h.t+'</div><div class="eq">'+eh(h.old)+'<br>→ '+eh(h.nu)+'</div></li>').join(""):'<li class="meta">Todavía no hay pasos. Suma, resta, multiplica o divide.</li>'}
+$("board").onclick=e=>{const b=e.target.closest(".eqr");if(b){sel=+b.dataset.i;render()}};
+document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{const[i,j,s]=b.dataset.c.split(",").map(Number);
+ const f=E[j],g=s>0?f:{a:ng(f.a),b:ng(f.b),c:ng(f.c)},e=E[i];
+ pend={eq:{a:add(e.a,g.a),b:add(e.b,g.b),c:add(e.c,g.c)},label:"Ec "+(i+1)+(s>0?" + ":" − ")+"Ec "+(j+1)};render()});
+function use(k){const old=E[k],nu=pend.eq;hist.push({t:pend.label+" ahora es la Ec "+(k+1),old,nu,prev:E});E=E.slice();E[k]=nu;pend=null;render()}
+$("r1").onclick=()=>use(0);$("r2").onclick=()=>use(1);$("dis").onclick=()=>{pend=null;render()};
+document.querySelectorAll("[data-op]").forEach(b=>b.onclick=()=>{op=b.dataset.op;document.querySelectorAll("[data-op]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+const sgn=()=>{$("sg").textContent=neg?"−":"+";$("sg").setAttribute("aria-pressed",neg)};$("sg").onclick=()=>{neg=!neg;sgn()};
+$("go").onclick=()=>{const raw=$("k").value.trim(),k=neg?-Math.abs(Number(raw)):Number(raw);$("err").textContent="";
+ if(raw===""||!Number.isInteger(k))return $("err").textContent="Escribe un número entero.";
+ if(k===0)return $("err").textContent=op==="/"?"No se puede dividir por 0.":"Multiplicar por 0 borra la ecuación. Elige otro número.";
+ const K=F(k),f=op==="*"?x=>mul(x,K):x=>dv(x,K),old=E[sel],nu={a:f(old.a),b:f(old.b),c:f(old.c)};
+ hist.push({t:"Ec "+(sel+1)+" "+(op==="*"?"×":"÷")+" "+(k<0?"("+String(k).replace("-","−")+")":k),old,nu,prev:E});
+ E=E.slice();E[sel]=nu;$("k").value="";neg=false;sgn();render()};
+$("undo").onclick=()=>{if(pend){pend=null;return render()}if(!hist.length)return;E=hist.pop().prev;$("err").textContent="";render()};
+$("reset").onclick=()=>start(false);$("other").onclick=()=>start();
+$("next").onclick=()=>{lvl=(lvl+1)%LV.length;start()};
+$("sel").innerHTML=LV.map((t,i)=>"<option value="+i+">"+t+"</option>").join("");
+$("sel").onchange=()=>{lvl=+$("sel").value;start()};
+start();
+</script>
+</body>
+</html>
