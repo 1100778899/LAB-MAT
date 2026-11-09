@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#103e3d" />
+<title>Laboratorio de operatoria combinada</title>
+<style>
+:root{color-scheme:light;--navy:#143d3d;--green:#08796e;--green-dark:#06594f;--cream:#eff6f3;--paper:#fff;--ink:#18302e;--muted:#627873;--line:#d5e6e0;--soft:#f4faf7;--gold:#e7b65a;--bad:#b34b35;--shadow:0 10px 30px rgba(20,61,61,.07)}
+*{box-sizing:border-box}body{margin:0;font:16px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif;background:radial-gradient(circle at top right,#d7f2e8,transparent 34%),var(--cream);color:var(--ink)}main{max-width:900px;margin:0 auto;padding:18px 14px 56px}.head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}.overline{text-transform:uppercase;letter-spacing:1.4px;color:#187c70;font-weight:800;font-size:11px;margin:0 0 5px}h1{font-size:clamp(23px,4vw,34px);margin:0;line-height:1.12;letter-spacing:-.9px}.subheading{font-size:13px;color:var(--muted);margin:7px 0 0}.mini-badge{border:1px solid var(--line);background:white;padding:8px 10px;border-radius:100px;white-space:nowrap;font-size:12px;font-weight:750;color:#376b62}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.problem{overflow:hidden}.problem-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:16px 19px;background:var(--navy);color:white}.problem-top strong{font-size:13px}.problem-top span{font-size:11px;color:#b8dad3}.math-stage{min-height:146px;display:flex;justify-content:center;align-items:center;overflow-x:auto;padding:24px 14px 14px;scrollbar-width:thin}.equation{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:.10em;font:italic clamp(25px,4.2vw,37px)/1.35 Georgia,'Times New Roman',serif;color:#123e3b}.equation .operator{font-style:normal;margin:0 .14em}.equation .paren{font-style:normal;font-size:1.12em}.equation .neg{white-space:nowrap;font-style:normal}.equation .dec{font-variant-numeric:lining-nums}.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.02;text-align:center;font-size:.78em;font-style:normal;min-width:1.3em;margin:0 .13em}.frac .n{border-bottom:1.7px solid currentColor;padding:0 .16em .09em;width:100%}.frac .d{padding:.10em .16em 0}.problem-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 18px 18px;color:var(--muted);font-size:12px;flex-wrap:wrap}.chip{display:inline-block;border-radius:999px;background:#e6f5f0;color:#116458;padding:5px 9px;font-weight:800}.btn{border:0;border-radius:12px;background:#e8f3ef;color:#15584f;padding:11px 15px;font:750 14px system-ui;min-height:43px;cursor:pointer;touch-action:manipulation}.btn.primary{background:var(--green);color:white;box-shadow:0 3px 0 var(--green-dark)}.btn.primary:active{transform:translateY(2px);box-shadow:0 1px 0 var(--green-dark)}.btn.outline{background:white;border:1px solid #bad6cc}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e7b65a;outline-offset:2px}.btn:disabled{opacity:.5;cursor:not-allowed}.play{margin-top:13px;padding:18px}.section-label{margin:0 0 12px;font-size:15px;font-weight:850}.answerline{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}.answer{font:650 21px system-ui;border:1.7px solid #bedad2;background:#f9fcfb;border-radius:12px;padding:11px 13px;min-width:0;flex:1;width:100%;max-width:100%;color:var(--ink)}.answerline .btn.sign{min-width:50px;width:50px;flex:0 0 50px;font-size:24px;padding:8px 6px;border:1.7px solid #bad6cc;background:#f9fcfb;color:var(--ink)}.answerline .btn.sign[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:white}.answerline .btn.slash{font-family:Georgia,serif;font-size:23px;min-width:48px;padding:8px}.answerline .btn.primary{min-width:106px}.explain{color:var(--muted);font-size:12px;margin-top:9px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.feedback{font-size:13px;font-weight:700;margin-top:11px;padding:10px 12px;border-radius:10px;background:#f3f8f6;color:#456e66;display:none}.feedback.visible{display:block}.feedback.good{background:#e1f6eb;color:#086b47}.feedback.bad{background:#fff0e9;color:#a7472e}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{border:1.5px solid #c7ded5;border-radius:13px;min-height:75px;background:#fbfdfc;color:var(--ink);display:flex;align-items:center;gap:13px;padding:10px 13px;text-align:left;cursor:pointer}.choice.selected{border-color:#08796e;background:#e7f8f1}.choice.correct{border-color:#088858;background:#dff8ea}.choice.wrong{border-color:#c46a50;background:#fff0e8}.choice .letter{flex:none;border-radius:8px;background:#e2f3ed;width:31px;height:31px;display:grid;place-items:center;font:800 13px system-ui;color:#1c675b}.choice .optionmath{font:italic 24px Georgia,serif;flex:1;display:flex;justify-content:center;align-items:center}.choice:disabled{opacity:1;cursor:default}.config{margin-top:15px;padding:18px}.config h2{margin:0 0 5px;font-size:19px;letter-spacing:-.4px}.config .help{margin:0 0 17px;font-size:13px;color:var(--muted)}.config-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;font-weight:800;color:#3a5a54}.field select{background:#f9fcfb;border:1.4px solid #c7dfd6;border-radius:12px;padding:12px 8px;font:650 14px system-ui;color:var(--ink);width:100%}.segmented{display:flex;gap:5px;background:#edf6f2;border-radius:13px;padding:4px;border:1px solid #d3e7df}.segmented button{flex:1;background:transparent;border:0;padding:11px 5px;border-radius:10px;color:#436a60;font:750 13px system-ui;cursor:pointer}.segmented button.active{background:#0a7368;color:white;box-shadow:0 2px 6px #0b554b2b}.config-extra{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-top:14px}.check{display:flex;align-items:center;gap:8px;font-size:13px;color:#355b54;font-weight:650;cursor:pointer}.check input{width:19px;height:19px;accent-color:var(--green)}.level-info{color:var(--muted);font-size:12px;background:#f3f8f5;border-radius:10px;padding:10px;margin-top:13px}.solution{margin-top:14px;padding:18px}.solution[hidden],.play [hidden]{display:none!important}.solution h2{margin:0 0 13px;font-size:18px}.history{display:grid;gap:0}.work-step{padding:13px 0 15px;border-bottom:1px solid #e7eee9}.work-step:last-child{border-bottom:0}.work-step .label{font-size:12px;color:#376e60;font-weight:850;display:block;margin-bottom:5px}.work-step p{font-size:13px;color:#4d6861;margin:0 0 10px}.work-math{overflow-x:auto;display:flex;align-items:center;justify-content:flex-start;padding:5px 0;scrollbar-width:thin}.work-math .equation{font-size:clamp(23px,3.4vw,30px)}.work-step .calc-tip{font-size:12px;color:#63756e;margin-top:8px}.final-result{padding:13px 14px;background:#e3f6ed;color:#075c49;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-weight:850;margin-top:14px}.final-result .equation{color:#075c49;font-size:30px}.footnote{margin:17px 2px 0;color:var(--muted);font-size:12px;line-height:1.55}.progress{font-size:11px;color:var(--muted);margin-top:10px}.notice{font-size:12px;color:var(--muted);padding:10px 12px;margin-top:10px;background:#f4f9f6;border-radius:11px}@media(max-width:610px){main{padding:13px 10px 38px}.head .mini-badge{display:none}.problem-top{padding:13px}.math-stage{min-height:133px}.play,.config,.solution{padding:14px}.answerline .answer{flex:1 1 130px}.answerline .btn.primary{flex:1 1 110px}.config-grid{grid-template-columns:1fr}.choice-grid{gap:8px}.choice{min-height:70px;padding:8px}.choice .optionmath{font-size:21px}.work-math .equation{font-size:23px}}@media(max-width:340px){.equation{font-size:24px}.choice .optionmath{font-size:18px}}
+.score-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 0 13px;font-size:13px;font-weight:700;color:var(--green-dark)}.score-strip span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px}.simce-attempts{margin:7px 0 0;padding:8px 11px;border-radius:10px;background:#e8f5ed;color:#166956;font-size:13px;font-weight:800}.answer:disabled{background:#f0f3f2;color:#667d78}.btn:disabled{opacity:.57;cursor:not-allowed}
+</style>
+</head>
+<body>
+<main>
+ <header class="head"><div><p class="overline">Laboratorio matemático</p><h1>Operatoria combinada</h1><p class="subheading">Practica, comprueba y descubre cómo se resuelve cada operación.</p></div><div class="mini-badge">🧮 5 bloques · 9 niveles</div></header>
+ <div class="score-strip" aria-label="Progreso de la sesión"><span>✅ Aciertos: <strong id="score-correct">0</strong></span><span>📖 Desarrollos vistos: <strong id="score-consulted">0</strong></span></div>
+ <section class="card problem" aria-labelledby="problem-head"><div class="problem-top"><strong id="problem-head">DESAFÍO MATEMÁTICO</strong><span id="marker">Nivel 0</span></div><div class="math-stage" id="problem-math" aria-live="polite"></div><div class="problem-foot"><span class="chip" id="tag">Solo enteros</span><span id="operation-count">1 operación</span></div></section>
+ <section class="card play" aria-labelledby="answer-heading"><h2 class="section-label" id="answer-heading">Tu respuesta</h2>
+  <div id="practice-pane"><div class="answerline"><button type="button" class="btn sign" id="sign" aria-pressed="false" title="Cambiar signo de la respuesta" aria-label="Signo de la respuesta: positivo">+</button><input id="answer" class="answer" type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ej.: 3/4 o 0,75" aria-label="Magnitud de la respuesta, sin signo" /><button type="button" class="btn slash" id="slash" title="Insertar barra de fracción" aria-label="Insertar barra de fracción">/</button><button class="btn primary" id="check" type="button">Comprobar</button></div><p class="explain">Usa el botón +/− para elegir el signo. Acepta enteros, fracciones con / y decimales con coma o punto.</p></div>
+  <div id="simce-pane" hidden><div class="choice-grid" id="choices" role="group" aria-label="Alternativas de respuesta"></div><p class="explain">Selecciona una alternativa. Tienes dos intentos por ejercicio; si consultas el desarrollo, el ejercicio queda cerrado.</p><p class="simce-attempts" id="simce-attempts" aria-live="polite">Intentos disponibles: 2 de 2</p></div>
+  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+  <p class="explain">Al abrir «Ver desarrollo», este ejercicio queda cerrado y podrás continuar con «Otro ejercicio».</p><div class="actions"><button class="btn primary" id="another" type="button">🎲 Otro ejercicio</button><button class="btn outline" id="toggle-solution" type="button" aria-expanded="false">Ver desarrollo</button></div>
+ </section>
+ <section class="card solution" id="solution" hidden><h2>Resolución paso a paso</h2><div class="history" id="history"></div><div class="final-result"><span>Resultado exacto</span><span id="result-math"></span></div></section>
+ <section class="card config" aria-labelledby="config-heading"><h2 id="config-heading">Personaliza tu práctica</h2><p class="help">Puedes cambiar de contenido o dificultad cuando quieras. No hay niveles bloqueados.</p>
+  <div class="config-grid"><div class="field"><label for="block">¿Con qué números quieres trabajar?</label><select id="block"><option value="int">1 · Solo enteros</option><option value="intfrac">2 · Enteros y fracciones</option><option value="frac">3 · Solo fracciones</option><option value="fracdec">4 · Fracciones y decimales</option><option value="all">5 · Enteros, fracciones y decimales</option><option value="random">🎲 Mezclar los cinco bloques</option></select></div><div class="field"><label for="level">Nivel de dificultad</label><select id="level"><option value="0">Nivel 0 · 1 operación</option><option value="1">Nivel 1 · 2 operaciones</option><option value="2">Nivel 2 · 3 operaciones</option><option value="3">Nivel 3 · 4 operaciones</option><option value="4">Nivel 4 · 5 operaciones</option><option value="5">Nivel 5 · 1 paréntesis</option><option value="6">Nivel 6 · Paréntesis en distintas posiciones</option><option value="7">Nivel 7 · 2 paréntesis</option><option value="8">Nivel 8 · Paréntesis anidados</option><option value="random">🎲 Mezclar los nueve niveles</option></select></div></div>
+  <div class="config-extra"><div class="segmented" role="group" aria-label="Modalidad"><button class="active" type="button" id="mode-practice" aria-pressed="true">✏️ Practicar</button><button type="button" id="mode-simce" aria-pressed="false">📝 Tipo SIMCE</button></div><label class="check"><input type="checkbox" id="allow-negatives" checked /> Incluir números negativos</label></div><p class="level-info" id="level-info">Nivel 0: una operación aleatoria: suma, resta, multiplicación o división.</p><div class="notice">Los números y las estructuras se generan al azar. Se evitan divisiones por cero y resultados desproporcionados. La modalidad tipo SIMCE es una simulación didáctica, no un ensayo oficial.</div>
+ </section>
+ <footer class="footnote">Los contadores solo se mantienen mientras el juego permanece abierto. Funciona sin internet. No solicita nombres ni envía respuestas a servidores. Los cálculos se realizan con fracciones exactas, sin redondear el resultado durante el procedimiento.</footer>
+</main>
+<script>
+'use strict';
+(()=>{
+const $=id=>document.getElementById(id);
+const SPECS={
+ 0:{description:'Una operación aleatoria: suma, resta, multiplicación o división.',patterns:['A+B','A-B','A*B','A/B']},
+ 1:{description:'Dos operaciones cualesquiera: +, −, × o ÷, mezcladas o repetidas, sin paréntesis.',patterns:[
+ 'A+B+C','A+B-C','A+B*C','A+B/C',
+ 'A-B+C','A-B-C','A-B*C','A-B/C',
+ 'A*B+C','A*B-C','A*B*C','A*B/C',
+ 'A/B+C','A/B-C','A/B*C','A/B/C']},
+ 2:{description:'Tres operaciones combinadas, sin paréntesis.',patterns:['A+B*C-D','A-B/C+D','A*B+C-D','A/B-C+D','A+B-C*D','A*B/C+D','A-B*C/D','A+B/C*D']},
+ 3:{description:'Cuatro operaciones combinadas, sin paréntesis.',patterns:['A+B*C-D/E','A/B+C*D-E','A*B-C/D+E','A-B+C*D/E','A+B*C/D-E','A*B/C+D-E','A-B/C*D+E','A+B-C*D/E']},
+ 4:{description:'Cinco operaciones combinadas, sin paréntesis.',patterns:['A+B*C-D/E+F','A/B-C*D+E/F','A-B+C*D/E-F','A*B/C+D-E*F','A+B/C*D-E+F','A*B-C/D+E-F','A-B*C+D/E*F','A/B+C-D*E+F']},
+ 5:{description:'Tres o cuatro operaciones, con un paréntesis.',patterns:['(A+B)*C-D','(A-B)/C+D','A+(B-C)*D','A*(B+C)-D','A-B/(C+D)','A+(B*C-D)/E','(A+B*C)/D-E','A*B-(C+D)/E']},
+ 6:{description:'Cuatro o cinco operaciones, con un paréntesis en distintas posiciones.',patterns:['(A+B)*C-D/E+F','A*(B-C)+D/E-F','A/B+(C-D)*E-F','A-B*(C+D)/E+F','A*B/C-(D+E)*F','A+B*(C-D)/E-F','(A+B/C)*D-E+F','A-(B*C+D)/E+F']},
+ 7:{description:'Cuatro o cinco operaciones, con dos paréntesis independientes.',patterns:['(A+B)*(C-D)+E','(A-B)/(C+D)+E','A+(B-C)/(D+E)','(A*B+C)-(D/E-F)','(A+B)*C-(D/E+F)','A*(B+C)-(D-E)/F','(A-B)*(C+D/E)-F','(A+B)/(C-D)*E-F']},
+ 8:{description:'Cuatro o cinco operaciones, con paréntesis anidados.',patterns:['A-[B*(C+D)]-E','A/[B+(C-D)]*E','A-[B+(C*D-E)]','A+[B/(C-D)+E]*F','[A-(B+C)*D]/E+F','A*[B-(C+D/E)]-F','[A+B*(C-D)]/E-F','A-[B/(C+D)-E]*F']}
+};
+const BLOCKS={int:{title:'Solo enteros',required:['int'],types:['int']},intfrac:{title:'Enteros y fracciones',required:['int','frac'],types:['int','frac']},frac:{title:'Solo fracciones',required:['frac'],types:['frac']},fracdec:{title:'Fracciones y decimales',required:['frac','dec'],types:['frac','dec']},all:{title:'Enteros, fracciones y decimales',required:['int','frac','dec'],types:['int','frac','dec']}};
+const LEVEL_LIMITS=[24,24,36,48,90,60,100,130,160];
+const rand=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[rand(0,a.length-1)];
+const shuffle=a=>{const out=[...a];for(let i=out.length-1;i>0;i--){const j=rand(0,i);[out[j],out[i]]=[out[i],out[j]]}return out};
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){const c=a%b;a=b;b=c}return a||1};
+function R(n,d=1){if(d===0||!Number.isSafeInteger(n)||!Number.isSafeInteger(d))throw Error('fracción inválida');if(d<0){n=-n;d=-d}const k=gcd(n,d);return {n:n/k,d:d/k}}
+const add=(a,b)=>R(a.n*b.d+b.n*a.d,a.d*b.d);
+const sub=(a,b)=>R(a.n*b.d-b.n*a.d,a.d*b.d);
+const mul=(a,b)=>R(a.n*b.n,a.d*b.d);
+const div=(a,b)=>{if(!b.n)throw Error('división por cero');return R(a.n*b.d,a.d*b.n)};
+const calc={'+':add,'-':sub,'*':mul,'/':div};
+const abs=a=>R(Math.abs(a.n),a.d);
+const equal=(a,b)=>a.n===b.n&&a.d===b.d;
+const displayNum=x=>String(x).replace('-', '−');
+function numberOf(kind,level,negatives){let value, display;if(kind==='int'){const max=level<=2?8:9;const n=rand(1,max);value=R(n);display=String(n)}else if(kind==='frac'){const choices=level<=3?[[1,2],[1,3],[2,3],[1,4],[3,4],[2,5],[3,5],[5,4],[3,2]]:[[1,2],[1,3],[2,3],[1,4],[3,4],[2,5],[3,5],[4,5],[5,4],[3,2],[5,6],[5,3],[1,6],[4,3]];const [n,d]=pick(choices);value=R(n,d);display=null}else{const choices=level<=3?['0,2','0,4','0,5','0,6','0,75','1,2','1,5','2,5']:['0,2','0,25','0,4','0,5','0,6','0,75','0,8','1,2','1,25','1,5','1,75','2,4','2,5'];display=pick(choices);value=decimalR(display)}if(negatives&&Math.random()<(level<=2?.12:level<=4?.21:.29)){value=R(-value.n,value.d);if(display!==null)display='−'+display}return {type:'val',v:value,kind,display};}
+function decimalR(s){s=s.replace(',','.').replace('−','-');if(!/^[+-]?(?:\d+)(?:\.\d{1,6})?$/.test(s))throw Error('decimal inválido');const neg=s[0]==='-'?-1:1;const plain=s.replace(/^[-+]/,'');const parts=plain.split('.');const d=10**(parts[1]?.length||0);return R(neg*Number(parts.join('')),d)}
+function parseInput(s){s=String(s).trim().replace(/\s/g,'').replace(/−/g,'-').replace(/,/g,'.');if(!s)return null;const p=s.split('/');if(p.length>2)return null;try{const left=decimalR(p[0]);return p.length===2?div(left,decimalR(p[1])):left}catch(_){return null}}
+function parsePattern(pattern,assigned){const src=pattern.replaceAll('[','(').replaceAll(']',')');const tokens=[...src].map((v,i)=>({v,i}));let at=0;
+ function primary(){const t=tokens[at++];if(!t)throw Error('plantilla incompleta');if(/[A-F]/.test(t.v))return {...assigned[t.v],id:t.i,pos:t.i};if(t.v==='('){const child=expr(0);if(tokens[at++]?.v!==')')throw Error('paréntesis sin cerrar');return {type:'group',child,id:100+t.i,pos:t.i,style:pattern[t.i]==='['?'square':'round'}}throw Error('token inválido '+t.v)}
+ function expr(min){let lhs=primary();while(at<tokens.length){const op=tokens[at]?.v,p={'+':1,'-':1,'*':2,'/':2}[op];if(!p||p<min)break;const pos=tokens[at].i;at++;const rhs=expr(p+1);lhs={type:'op',op,lhs,rhs,id:200+pos,pos}}return lhs}
+ const tree=expr(0);if(at!==tokens.length)throw Error('plantilla con token extra');return tree}
+function evaluate(node){if(node.type==='val')return node.v;if(node.type==='group')return evaluate(node.child);return calc[node.op](evaluate(node.lhs),evaluate(node.rhs))}
+function treeSize(node){if(node.type==='val')return 0;if(node.type==='group')return treeSize(node.child);return 1+treeSize(node.lhs)+treeSize(node.rhs)}
+function validateTree(node,level){const all=[];function walk(n){if(n.type==='val'){all.push(n.v);return n.v}if(n.type==='group')return walk(n.child);const a=walk(n.lhs),b=walk(n.rhs);const r=calc[n.op](a,b);all.push(r);return r}const final=walk(node);const maxd=LEVEL_LIMITS[level];if(!all.every(r=>r.d<=maxd*4&&Math.abs(r.n/r.d)<=55&&Math.abs(r.n)<=650))return null;if(final.d>maxd||Math.abs(final.n)>300||Math.abs(final.n/final.d)>30||final.n===0&&Math.random()<.55)return null;return final}
+function construct(blockKey,level){
+ const spec=SPECS[level],block=BLOCKS[blockKey];
+ // Se elige primero la estructura: así las combinaciones con división
+ // tienen oportunidades similares a las demás, sin eliminar las difíciles.
+ for(let patternAttempt=0;patternAttempt<4;patternAttempt++){
+  const template=pick(spec.patterns),letters=[...new Set(template.match(/[A-F]/g))];
+  for(let tries=0;tries<650;tries++){
+   // En Nivel 0 hay solo dos números: en el bloque mixto se eligen
+   // dos clases distintas de las tres disponibles, sin inventar un tercer operando.
+   const necessary=letters.length<block.required.length
+    ?shuffle(block.required).slice(0,letters.length):block.required;
+   const types=shuffle([...necessary,...Array.from({length:letters.length-necessary.length},()=>pick(block.types))]);
+   const assigned={};
+   for(let i=0;i<letters.length;i++)assigned[letters[i]]=numberOf(types[i],level,$('allow-negatives').checked);
+   try{const tree=parsePattern(template,assigned);const answer=validateTree(tree,level);
+    if(answer)return{tree,answer,template,block:blockKey,level,ops:treeSize(tree)};
+   }catch(_){}
+  }
+ }
+ throw Error('No se pudo crear un ejercicio razonable');
+}
+function valueOf(node){if(node.type==='val')return node.v;if(node.type==='group')return valueOf(node.child);return null}
+function ready(tree){const items=[];function walk(node,depth){if(node.type==='val')return;if(node.type==='group'){walk(node.child,depth+1);return}const a=valueOf(node.lhs),b=valueOf(node.rhs);if(a&&b)items.push({id:node.id,pos:node.pos,op:node.op,a,b,depth});walk(node.lhs,depth);walk(node.rhs,depth)}walk(tree,0);items.sort((x,y)=>y.depth-x.depth||((y.op==='*'||y.op==='/')?1:0)-((x.op==='*'||x.op==='/')?1:0)||x.pos-y.pos);return items[0]}
+function replaceOne(node,id,newVal){if(node.type==='val')return node;if(node.type==='group')return {...node,child:replaceOne(node.child,id,newVal)};if(node.id===id)return {type:'val',v:newVal,display:null,kind:'result',id:node.id,pos:node.pos};return{...node,lhs:replaceOne(node.lhs,id,newVal),rhs:replaceOne(node.rhs,id,newVal)}}
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function fracHTML(r){if(r.d===1)return displayNum(r.n);const n=Math.abs(r.n);return(r.n<0?'−':'')+'<span class="frac"><span class="n">'+n+'</span><span class="d">'+r.d+'</span></span>'}
+function literalHTML(node){if(node.kind==='dec')return '<span class="dec">'+escapeHTML(node.display)+'</span>';if(node.kind==='int')return escapeHTML(node.display).replaceAll('-','−');return fracHTML(node.v)}
+// Conserva explícitamente los signos originales de los operandos.
+// 3 + (−2) y 5 − (−3) NO se simplifican antes de que el estudiante resuelva.
+function treeHTML(node, parenthesizeNegative=false){
+ if(node.type==='val'){
+  const value=literalHTML(node);
+  return parenthesizeNegative&&node.v.n<0
+   ? '<span class="paren">(</span>'+value+'<span class="paren">)</span>'
+   : value;
+ }
+ if(node.type==='group'){
+  if(valueOf(node))return treeHTML(node.child,parenthesizeNegative);
+  return '<span class="paren">'+(node.style==='square'?'[':'(')+'</span>'+
+   treeHTML(node.child)+'<span class="paren">'+(node.style==='square'?']':')')+'</span>';
+ }
+ const left=treeHTML(node.lhs,true);
+ const right=treeHTML(node.rhs,true);
+ const sign={'+':'+','-':'−','*':'·','/':'÷'}[node.op];
+ return left+'<span class="operator">'+sign+'</span>'+right;
+}
+function mathHTML(tree){return'<div class="equation">'+treeHTML(tree)+'</div>'}
+function wordOp(op){return{'+':'suma','-':'resta','*':'multiplicación','/':'división'}[op]}
+function instruction(item){
+ const action=wordOp(item.op);
+ if(item.depth>=2)return 'Resuelve primero la '+action+' dentro del paréntesis más interno.';
+ if(item.depth>0)return 'Resuelve la '+action+' dentro del paréntesis.';
+ if(item.op==='*'||item.op==='/')return 'Aplica la jerarquía de operaciones: resuelve la '+action+' antes de continuar con las sumas y restas.';
+ return 'Resuelve la '+action+' de izquierda a derecha, respetando la jerarquía de operaciones.';
+}
+// Solo en el desarrollo (nunca en el enunciado) mostramos la aplicación
+// de la regla de signos como una transformación específica y explicada.
+function rewriteSignedOperation(node,id){
+ if(node.type==='val')return node;
+ if(node.type==='group')return {...node,child:rewriteSignedOperation(node.child,id)};
+ if(node.id===id){
+  const b=valueOf(node.rhs);
+  if(!b||b.n>=0||(node.op!=='+'&&node.op!=='-'))return node;
+  return {...node,op:node.op==='+'?'-':'+',rhs:{type:'val',v:abs(b),kind:'result',display:null,id:node.rhs.id,pos:node.rhs.pos}};
+ }
+ return {...node,lhs:rewriteSignedOperation(node.lhs,id),rhs:rewriteSignedOperation(node.rhs,id)};
+}
+function rationalText(r){return r.d===1?displayNum(r.n):displayNum(r.n)+'/'+r.d}
+function makeSteps(tree){
+ const steps=[{original:true,tree,label:'Expresión original',instruction:'Observa los signos, los paréntesis y la jerarquía de operaciones antes de comenzar.'}];
+ let current=tree;
+ let count=0;
+ for(let iterations=0;iterations<12;iterations++){
+  const item=ready(current);
+  if(!item)break;
+  const rhsNegative=item.b.n<0;
+  if(rhsNegative&&(item.op==='+'||item.op==='-')){
+   current=rewriteSignedOperation(current,item.id);
+   count++;
+   const plus=item.op==='+';
+   steps.push({tree:current,label:'Paso '+count,
+    instruction:plus?'Aplicar la regla de signos: sumar un número negativo equivale a restar su valor absoluto.':'Aplicar la regla de signos: restar un número negativo equivale a sumar su valor absoluto.'});
+   continue;
+  }
+  const res=calc[item.op](item.a,item.b);
+  current=replaceOne(current,item.id,res);
+  count++;
+  steps.push({tree:current,label:'Paso '+count,instruction:instruction(item),
+   mini:'Cálculo: '+rationalText(item.a)+' '+({'+':'+','-':'−','*':'×','/':'÷'}[item.op])+' '+(item.b.n<0?'('+rationalText(item.b)+')':rationalText(item.b))+' = '+rationalText(res)});
+ }
+ if(ready(current))throw Error('Pasos incompletos');
+ return steps;
+}
+function asRationalOption(r){return '<div class="equation">'+fracHTML(r)+'</div>'}
+function optionsFor(result,tree){const variants=[R(-result.n,result.d),add(result,R(1)),sub(result,R(1)),mul(result,R(2)),div(result,R(2)),add(result,R(1,2)),sub(result,R(1,2)),add(result,R(2)),sub(result,R(2)),R(result.d,result.n||1)];const other=shuffle(variants.filter(x=>!equal(x,result))).filter((x,i,a)=>a.findIndex(y=>equal(x,y))===i&&x.d<=600&&Math.abs(x.n/x.d)<100);for(let k=1;other.length<3&&k<30;k++){const v=add(result,R(k,rand(1,3)));if(!equal(v,result)&&!other.some(x=>equal(x,v)))other.push(v)}return shuffle([result,...other.slice(0,3)])}
+let state={mode:'practice',task:null,tries:0,selected:null,wrongChoices:[],answered:false,show:false,locked:false,negativeAnswer:false};
+// Los contadores corresponden a la sesión actual; no recopilan datos personales.
+const scores={correct:0,consulted:0};
+function updateScore(){
+ $('score-correct').textContent=String(scores.correct);
+ $('score-consulted').textContent=String(scores.consulted);
+}
+function syncResponseState(){
+ const disabled=state.locked||state.answered;
+ for(const id of ['answer','sign','slash','check'])$(id).disabled=disabled;
+ $('choices').querySelectorAll('button').forEach(b=>{b.disabled=disabled||state.wrongChoices.includes(Number(b.dataset.i))});
+ const note=$('simce-attempts');
+ if(note)note.textContent=state.show?'Ejercicio cerrado · Desarrollo consultado':state.answered?'Ejercicio resuelto ✅':state.locked?'Sin intentos restantes · Consulta el desarrollo o genera otro ejercicio.':'Intentos disponibles: '+(2-state.tries)+' de 2';
+}
+
+function renderSign(){const b=$('sign');b.textContent=state.negativeAnswer?'−':'+';b.setAttribute('aria-pressed',String(state.negativeAnswer));b.setAttribute('aria-label','Signo de la respuesta: '+(state.negativeAnswer?'negativo':'positivo'));b.title=state.negativeAnswer?'Respuesta negativa. Pulsa para cambiar a positiva.':'Respuesta positiva. Pulsa para cambiar a negativa.'}
+function cleanMagnitude(){const a=$('answer');const start=a.selectionStart??a.value.length;const left=a.value.slice(0,start).replace(/[^0-9.,/]/g,'');const cleaned=a.value.replace(/[^0-9.,/]/g,'');if(cleaned!==a.value){a.value=cleaned;try{a.setSelectionRange(left.length,left.length)}catch(_){}}}
+
+function applyExercise(){const b=$('block').value==='random'?pick(Object.keys(BLOCKS)):$('block').value;const l=$('level').value==='random'?rand(0,8):Number($('level').value);state.task=construct(b,l);state.tries=0;state.selected=null;state.wrongChoices=[];state.answered=false;state.show=false;state.locked=false;state.options=optionsFor(state.task.answer,state.task.tree);$('problem-math').innerHTML=mathHTML(state.task.tree);$('marker').textContent='Nivel '+l+' · '+(state.mode==='simce'?'Tipo SIMCE':'Práctica');$('tag').textContent=BLOCKS[b].title;$('operation-count').textContent=state.task.ops+(state.task.ops===1?' operación':' operaciones');$('answer').value='';state.negativeAnswer=false;renderSign();$('solution').hidden=true;$('toggle-solution').textContent='Ver desarrollo';$('toggle-solution').disabled=false;$('toggle-solution').setAttribute('aria-expanded','false');$('feedback').className='feedback';$('feedback').textContent='';renderChoices();syncResponseState();}
+function renderChoices(){const keys=['A','B','C','D'];$('choices').innerHTML=state.options.map((v,i)=>'<button type="button" class="choice'+(state.wrongChoices.includes(i)?' wrong':state.selected===i?' selected':'')+'" data-i="'+i+'" aria-label="Alternativa '+keys[i]+(state.wrongChoices.includes(i)?', intento incorrecto':'')+'"><span class="letter">'+keys[i]+'</span><span class="optionmath">'+fracHTML(v)+'</span></button>').join('');$('choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>chooseAnswer(Number(b.dataset.i))));syncResponseState()}
+function showMessage(message,kind='bad'){$('feedback').textContent=message;$('feedback').className='feedback visible '+kind}
+function checkAnswer(){
+ if(state.locked||state.answered)return;
+ cleanMagnitude();let val=parseInput($('answer').value);
+ if(val&&state.negativeAnswer)val=R(-val.n,val.d);
+ if(!val){showMessage('Escribe un número, una fracción como 3/4, o un decimal como 0,75.');return}
+ state.tries++;
+ if(equal(val,state.task.answer)){
+  state.answered=true;scores.correct++;updateScore();
+  showMessage('¡Correcto! ✅ Acierto acumulado. Puedes generar otro ejercicio o consultar el desarrollo.','good');
+  syncResponseState();
+ }else showMessage('Todavía no coincide. Revisa la jerarquía de las operaciones e inténtalo otra vez, o consulta el desarrollo.','bad');
+}
+function chooseAnswer(i){
+ // Dos intentos como máximo; no se permite volver a pulsar una alternativa descartada.
+ if(state.locked||state.answered||state.tries>=2||state.wrongChoices.includes(i))return;
+ state.selected=i;
+ state.tries++;
+ if(equal(state.options[i],state.task.answer)){
+  state.answered=true;
+  scores.correct++;
+  updateScore();
+  renderChoices();
+  showMessage(state.tries===1?'¡Correcto al primer intento! ✅ Acierto acumulado.':'¡Correcto en el segundo intento! ✅ Acierto acumulado.','good');
+ }else{
+  state.wrongChoices.push(i);
+  if(state.tries>=2){
+   state.locked=true;
+   showMessage('Agotaste los dos intentos. Puedes consultar «Ver desarrollo» o generar otro ejercicio.','bad');
+  }else{
+   showMessage('No coincide. Te queda un intento; piensa cuál de las otras alternativas elegir.','bad');
+  }
+  renderChoices();
+ }
+}
+function showSolution(){
+ if(state.show)return; // Revelar es irreversible para el ejercicio actual.
+ state.show=true;state.locked=true;scores.consulted++;updateScore();
+ $('solution').hidden=false;
+ $('toggle-solution').textContent='Desarrollo mostrado';
+ $('toggle-solution').disabled=true;
+ $('toggle-solution').setAttribute('aria-expanded','true');
+ syncResponseState();
+ const {tree,answer}=state.task,steps=makeSteps(tree);
+ $('history').innerHTML=steps.map(s=>'<div class="work-step"><span class="label">'+s.label+'</span><p>'+escapeHTML(s.instruction)+'</p><div class="work-math">'+mathHTML(s.tree)+'</div>'+(s.mini?'<div class="calc-tip">'+escapeHTML(s.mini)+'</div>':'')+'</div>').join('');
+ $('result-math').innerHTML='<div class="equation">'+fracHTML(answer)+'</div>';
+ showMessage(state.answered?'Desarrollo consultado. Ejercicio terminado: genera otro para continuar.':'📖 Desarrollo consultado. Este ejercicio queda cerrado; pulsa «Otro ejercicio» para responder uno nuevo.',state.answered?'good':'bad');
+}
+function toggleMode(mode){state.mode=mode;const practice=mode==='practice';$('mode-practice').classList.toggle('active',practice);$('mode-simce').classList.toggle('active',!practice);$('mode-practice').setAttribute('aria-pressed',String(practice));$('mode-simce').setAttribute('aria-pressed',String(!practice));$('practice-pane').hidden=!practice;$('simce-pane').hidden=practice;applyExercise()}
+function configChanged(){const level=$('level').value;$('level-info').textContent=(level==='random'?'Modo aleatorio: se selecciona libremente uno de los nueve niveles (0 a 8) por ejercicio.':'Nivel '+level+': '+SPECS[Number(level)].description)+(level==='0'&&$('block').value==='all'?' En este nivel, cada ejercicio combina dos de los tres tipos de números.':'');applyExercise()}
+$('another').addEventListener('click',applyExercise);$('check').addEventListener('click',checkAnswer);$('answer').addEventListener('keydown',e=>{if(e.key==='Enter'){checkAnswer();return}if(e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1)return;if(!/[0-9.,/]/.test(e.key))e.preventDefault()});$('answer').addEventListener('input',cleanMagnitude);$('answer').addEventListener('paste',()=>requestAnimationFrame(cleanMagnitude));$('sign').addEventListener('click',()=>{if(state.locked||state.answered)return;state.negativeAnswer=!state.negativeAnswer;renderSign()});$('slash').addEventListener('click',()=>{if(state.locked||state.answered)return;const x=$('answer');const pos=x.selectionStart??x.value.length,end=x.selectionEnd??pos;x.value=x.value.slice(0,pos)+'/'+x.value.slice(end);x.focus();x.setSelectionRange(pos+1,pos+1)});$('toggle-solution').addEventListener('click',showSolution);$('block').addEventListener('change',configChanged);$('level').addEventListener('change',configChanged);$('allow-negatives').addEventListener('change',applyExercise);$('mode-practice').addEventListener('click',()=>toggleMode('practice'));$('mode-simce').addEventListener('click',()=>toggleMode('simce'));$('practice-pane').hidden=false;$('simce-pane').hidden=true;applyExercise();updateScore();
+// Expose a small diagnostic surface for local test automation, not for data collection.
+window.__operatoriaTest={construct,makeSteps,evaluate,parseInput,equals:equal,patterns:SPECS,mathHTML,parsePattern,renderHTML:treeHTML,R};
+})();
+</script>
+</body>
+</html>
