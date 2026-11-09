@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Despeja la x · 36 niveles</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2f0;--card:#fff;--ink:#17231f;--mut:#5d6b66;--line:#d3dcd8;--acc:#1f6f5c;--accink:#fff;--bad:#c23b3b;--board:#1f3a34;--chalk:#f2f1e8;--hi:#f4d35e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101716;--card:#19231f;--ink:#e8efec;--mut:#98a8a2;--line:#2c3b36;--acc:#5cc6a8;--accink:#0b1512;--bad:#ff7d7d;--board:#16302a}}
+:root[data-theme="dark"]{--bg:#101716;--card:#19231f;--ink:#e8efec;--mut:#98a8a2;--line:#2c3b36;--acc:#5cc6a8;--accink:#0b1512;--bad:#ff7d7d;--board:#16302a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:480px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+h1{font:700 20px Georgia,serif;margin:0}
+.meta{color:var(--mut);font-size:14px}
+.board{background:var(--board);color:var(--chalk);border-radius:14px;padding:28px 12px;text-align:center;font:italic 34px/1.2 Georgia,"Times New Roman",serif;border:6px solid #8a6a43;overflow-x:auto;white-space:nowrap}
+.board.win{color:var(--hi)}
+.goal{color:var(--mut);font-size:14px;margin:8px 2px 14px}
+.ctl{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.ops{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.ops button{font:600 24px system-ui;padding:10px 0;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.ops button[aria-pressed="true"]{border-color:var(--acc);background:var(--acc);color:var(--accink)}
+.row{display:flex;gap:8px;align-items:center}
+input[type=number]{flex:1;min-width:0;font:600 22px system-ui;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+label.x{display:flex;gap:6px;align-items:center;font:italic 600 20px Georgia,serif}
+label.x input{width:22px;height:22px}
+.go{width:100%;margin-top:12px;font:700 18px system-ui;padding:14px;border-radius:10px;border:0;background:var(--acc);color:var(--accink)}
+.err{color:var(--bad);min-height:20px;font-size:14px;margin-top:8px}
+.small{display:flex;gap:8px;margin:12px 0}
+.small button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px system-ui}
+button:focus-visible,input:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+h2{font:600 15px system-ui;margin:16px 0 8px;color:var(--mut)}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+li .op{font-weight:600;font-size:14px}
+li .eq{font:italic 18px Georgia,serif;margin-top:4px;overflow-x:auto;white-space:nowrap}
+.res{text-align:center;background:var(--card);border:2px solid var(--acc);border-radius:14px;padding:18px;margin-top:14px}
+.res .stars{font-size:32px;letter-spacing:4px}
+[hidden]{display:none!important}
+.sgn{font:700 24px system-ui;width:54px;padding:10px 0;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.sgn[aria-pressed="true"]{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.w2{grid-column:span 2;font-size:18px!important}
+.last{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;margin-bottom:10px;text-align:center;overflow-x:auto;white-space:nowrap;font:italic 21px Georgia,serif}
+.last-title{color:var(--mut);font:700 11px system-ui;letter-spacing:1px;margin-bottom:8px}
+.last-expanded{color:var(--acc);margin-top:8px;font-size:19px}
+/* MathML nativo: fracciones verticales y radicales con barra superior, sin internet */
+math{font-family:"Cambria Math","STIX Two Math","Latin Modern Math","Noto Sans Math",serif;vertical-align:middle;white-space:nowrap}
+.board math{font-size:1em;line-height:1.35}
+.last math{font-size:1em;line-height:1.5}
+.last-expanded math{font-size:1em}
+.eq math{font-size:1.08em;line-height:1.55}
+.math-step{margin-top:7px}
+#xs math{font-size:.85em}
+.board,.last,.eq{scrollbar-width:thin}
+@media(max-width:380px){.board{font-size:29px;padding:24px 8px}.last{font-size:19px}.last-expanded{font-size:18px}}
+.current-caption{text-align:center;color:var(--mut);font-size:11px;font-weight:700;letter-spacing:1px;margin:7px 0 0}
+select{width:100%;margin-bottom:10px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 15px system-ui}
+.stars-total{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);padding:9px 7px;border-radius:11px;margin:0 0 12px;color:var(--ink);font-size:13px;font-weight:700}.stars-total span{color:var(--mut);font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Despeja la <i>x</i></h1><span class="meta" id="meta"></span></header>
+<div class="stars-total" aria-label="Estrellas obtenidas en esta sesión">⭐ Estrellas acumuladas: <strong id="total-stars">0</strong> <span>· Desafíos completados: <strong id="total-wins">0</strong></span></div>
+<select id="sel" aria-label="Nivel"></select>
+<div class="last" id="last" hidden><div class="last-title">ÚLTIMA TRANSFORMACIÓN</div><div id="last-before"></div><div id="last-expanded" class="last-expanded"></div></div>
+ <div class="board" id="board" aria-live="polite"></div>
+ <p class="current-caption">SITUACIÓN ACTUAL</p>
+<p class="goal">Meta: dejar la <i>x</i> sola en un lado. Lo que hagas, se aplica a los dos lados. Con potencias: deja la potencia sola y usa «raíz n» (o «elevar a» si hay raíz). Si sale ±, hay dos soluciones.</p>
+<div class="ctl" id="ctl">
+ <div class="ops" role="group" aria-label="Operación">
+  <button data-op="+" aria-pressed="true">+</button><button data-op="-" aria-pressed="false">−</button><button data-op="*" aria-pressed="false">×</button><button data-op="/" aria-pressed="false">÷</button><button class="w2" data-op="^" aria-pressed="false">elevar a</button><button class="w2" data-op="r" aria-pressed="false">raíz n</button>
+ </div>
+ <div class="row"><button type="button" class="sgn" id="sg" aria-pressed="false" aria-label="Signo del número: más o menos">+</button><input id="k" type="number" inputmode="numeric" step="1" placeholder="Número" aria-label="Número"><label class="x" id="xl"><input type="checkbox" id="xt" aria-label="Usar el término con x"> <span id="xs">x</span></label></div>
+ <button class="go" id="go">Aplicar a ambos lados</button>
+ <div class="err" id="err" role="alert"></div>
+</div>
+<div class="small"><button id="undo">Deshacer</button><button id="reset">Reiniciar</button><button id="other">Otro ejercicio</button></div>
+<div class="res" id="res" hidden>
+ <div class="stars" id="stars"></div>
+ <p id="resmsg"></p><p style="font-size:13px;color:var(--mut)">Las estrellas se acumulan una vez por desafío, aunque uses Deshacer o Reiniciar.</p>
+ <button class="go" id="next">Siguiente nivel</button>
+</div>
+<h2>Tus pasos</h2>
+<ol id="hist"></ol>
+</main>
+<script>
+// 36 niveles oficiales. Ordenados por el mayor exponente o índice de raíz (1 a 8).
+const S=[[1,1,0],[2,1,0],[3,1,0],[4,1,0],[5,1,0],[6,2,0],[7,2,0],[8,2,0],[9,2,0],[10,2,0],[11,2,0],[12,2,0],[6,2,1],[7,2,1],[8,2,1],[10,2,1],[11,2,1],[12,2,1],[7,3,0],[12,3,0],[12,3,1],[8,4,0],[6,5,0],[7,5,0],[11,5,0],[6,5,1],[6,6,0],[8,6,0],[12,6,0],[7,6,1],[6,7,0],[7,7,0],[6,7,1],[6,8,0],[11,8,0],[8,8,1]];
+const D=["x + a = b","ax = b","ax + b = c","ax + b = cx","ax + b = cx + d","xᴺ = a","a·xᴺ = b","a·xᴺ + c = b","a·xᴺ + c = b·xᴺ","a·xᴺ + c = b·xᴺ + d","a(x+b)ᴺ = c","a(x+b)ᴺ + c = d"];
+const PAR=[1,1,2,3,3,1,2,3,4,4,3,4],SUP=["","","²","³","⁴","⁵","⁶","⁷","⁸"],RAD=["","","√","∛","∜","⁵√","⁶√","⁷√","⁸√"];
+const $=id=>document.getElementById(id);
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const F=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}};
+const add=(p,q)=>F(p.n*q.d+q.n*p.d,p.d*q.d),mul=(p,q)=>F(p.n*q.n,p.d*q.d),dv=(p,q)=>F(p.n*q.d,p.d*q.n);
+const fs=p=>(p.n<0?"−":"")+(p.d===1?Math.abs(p.n):Math.abs(p.n)+"/"+p.d);
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sg=()=>Math.random()<.5?-1:1;
+const nz=()=>{let x=0;while(!x)x=ri(-9,9);return x};
+const Z=F(0);
+function gen(f,N,rad){
+ const g=f===11?7:f===12?8:f,lin=f<=5,s=f>=11?sg()*ri(1,5):0;
+ const base=N>=7?ri(2,3):N>=5?ri(2,4):ri(1,6);
+ const v=lin?nz():rad?ri(1,4):(N%2?sg():1)*Math.pow(base,N);
+ const la=g===1?sg():g===6?1:sg()*ri(2,9);
+ let ra=0,lb=[1,3,5,8,10].includes(g)?nz():0;
+ if([4,5,9,10].includes(g)){do ra=nz();while(ra===la)}
+ if(g===4||g===9)lb=(ra-la)*v;
+ return{s,e:lin?F(1):rad?F(1,N):F(N),la:F(la),lb:F(lb),lp:Z,ra:F(ra),rb:F(la*v+lb-ra*v),rp:Z};
+}
+function pstr(q){const bs=q.s?"(x"+(q.s<0?"−":"+")+Math.abs(q.s)+")":"x",E=q.e;
+ if(E.n===1&&E.d===1)return bs;
+ if(E.d===1)return bs+(SUP[E.n]||"^"+E.n);
+ if(E.n===1&&RAD[E.d])return RAD[E.d]+bs;
+ return bs+"^("+E.n+"/"+E.d+")"}
+function side(a,b,p,q){let t="";
+ if(a.n){const P=pstr(q);t=a.n===a.d?P:a.n===-a.d?"−"+P:(a.d===1?fs(a):"("+fs(a)+")")+P}
+ if(b.n)t+=t?(b.n<0?" − ":" + ")+fs(F(Math.abs(b.n),b.d)):fs(b);
+ if(p.n)t+=(t?" ± ":"±")+fs(p);
+ return t||"0"}
+const show=q=>side(q.la,q.lb,q.lp,q)+" = "+side(q.ra,q.rb,q.rp,q);
+const showMember=(a,b,p,q)=>side(a,b,p,q);
+// Renderizador matemático local (MathML). No necesita bibliotecas ni conexión a internet.
+const M=(body,label="")=>'<math xmlns="http://www.w3.org/1998/Math/MathML"'+(label?' aria-label="'+label.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')+'"':'')+'><mrow>'+body+'</mrow></math>';
+const mo=s=>'<mo>'+s+'</mo>', mn=n=>'<mn>'+String(n)+'</mn>';
+const mf=(p)=>p.d===1?mn(Math.abs(p.n)):'<mfrac>'+mn(Math.abs(p.n))+mn(p.d)+'</mfrac>';
+const mSigned=p=>(p.n<0?mo('−'):'')+mf(p);
+const mParens=s=>mo('(')+s+mo(')');
+function mBase(q){
+ const x='<mi>x</mi>';
+ return q.s?mParens(x+mo(q.s<0?'−':'+')+mn(Math.abs(q.s))):x;
+}
+function mPower(q){
+ const e=q.e,base=mBase(q);
+ if(e.n===e.d)return base;
+ if(e.n===1 && e.d>1){return e.d===2?'<msqrt>'+base+'</msqrt>':'<mroot><mrow>'+base+'</mrow>'+mn(e.d)+'</mroot>'}
+ const expo=e.d===1?mn(e.n):'<mfrac>'+mn(Math.abs(e.n))+mn(e.d)+'</mfrac>';
+ return '<msup><mrow>'+base+'</mrow>'+expo+'</msup>';
+}
+function mSide(a,b,p,q){
+ const out=[];
+ if(a.n){
+   if(a.n<0)out.push(mo('−'));
+   if(Math.abs(a.n)!==a.d)out.push(mf(a));
+   out.push(mPower(q));
+ }
+ if(b.n){
+   if(out.length)out.push(mo(b.n<0?'−':'+'));
+   else if(b.n<0)out.push(mo('−'));
+   out.push(mf(b));
+ }
+ if(p.n){
+   out.push(mo('±'));
+   out.push(mf(p));
+ }
+ return out.length?out.join(''):mn(0);
+}
+const mEqBody=q=>mSide(q.la,q.lb,q.lp,q)+mo('=')+mSide(q.ra,q.rb,q.rp,q);
+const mEq=q=>M(mEqBody(q),show(q));
+function mIntermediate(q,o,k,ux){
+ const left=mSide(q.la,q.lb,q.lp,q), right=mSide(q.ra,q.rb,q.rp,q);
+ const term=(k<0?mParens(mo('−')+mn(Math.abs(k))):mn(k))+(ux?mPower(q):'');
+ if(o==='+'||o==='-'){
+   const ch=mo(o==='+'?'+':'−');
+   return M(left+ch+term+mo('=')+right+ch+term,expanded(q,o,k,ux));
+ }
+ if(o==='*')return M(mParens(left)+mo('×')+term+mo('=')+mParens(right)+mo('×')+term,expanded(q,o,k,ux));
+ if(o==='/')return M('<mfrac><mrow>'+left+'</mrow><mrow>'+term+'</mrow></mfrac>'+mo('=')+'<mfrac><mrow>'+right+'</mrow><mrow>'+term+'</mrow></mfrac>',expanded(q,o,k,ux));
+ if(o==='^')return M('<msup><mrow>'+mParens(left)+'</mrow>'+mn(k)+'</msup>'+mo('=')+'<msup><mrow>'+mParens(right)+'</mrow>'+mn(k)+'</msup>',expanded(q,o,k,ux));
+ const root=content=>k===2?'<msqrt>'+content+'</msqrt>':'<mroot><mrow>'+content+'</mrow>'+mn(k)+'</mroot>';
+ return M(root(left)+mo('=')+root(right),expanded(q,o,k,ux));
+}
+
+function expanded(q,o,k,ux){
+ const left=showMember(q.la,q.lb,q.lp,q),right=showMember(q.ra,q.rb,q.rp,q);
+ const sub= k<0?"("+k+")":String(k),term=sub+(ux?"x":"");
+ if(o==="+"||o==="-"){const ch=o==="+"?" + ":" − ";return left+ch+term+" = "+right+ch+term}
+ if(o==="*")return "("+left+") × "+sub+" = ("+right+") × "+sub;
+ if(o==="/")return "("+left+") ÷ "+sub+" = ("+right+") ÷ "+sub;
+ if(o==="^")return "("+left+")^"+k+" = ("+right+")^"+k;
+ return "raíz "+k+" de ("+left+") = raíz "+k+" de ("+right+")";
+}
+const one=a=>a.n===1&&a.d===1,al=(a,b,p,o)=>one(a)&&!b.n&&!p.n&&!o.n;
+// Se considera resuelta tambien la forma x = ±a, que expresa ambas soluciones reales.
+const won=q=>!q.s&&one(q.e)&&((one(q.la)&&!q.lb.n&&!q.lp.n&&!q.ra.n)||(one(q.ra)&&!q.rb.n&&!q.rp.n&&!q.la.n));
+const swp=q=>{[q.la,q.ra]=[q.ra,q.la];[q.lb,q.rb]=[q.rb,q.lb];[q.lp,q.rp]=[q.rp,q.lp]};
+const norm=q=>{if(q.s&&one(q.e)){const s=F(q.s);q.lb=add(q.lb,mul(q.la,s));q.rb=add(q.rb,mul(q.ra,s));q.s=0}return q};
+const pw=(c,k)=>{const n=Math.pow(c.n,k),d=Math.pow(c.d,k);return Math.abs(n)>1e9||d>1e9?null:F(n,d)};
+const rt=(c,k)=>{const n=Math.abs(c.n),r1=Math.round(Math.pow(n,1/k)),r2=Math.round(Math.pow(c.d,1/k));
+ if(Math.pow(r1,k)!==n||Math.pow(r2,k)!==c.d)return null;return F((c.n<0?-1:1)*r1,r2)};
+function step(o,k,ux){
+ const q={...eq},K=F(k),A=F(Math.abs(k));
+ if(o==="+"||o==="-"){const d=o==="+"?K:F(-k);
+  if(ux){q.la=add(q.la,d);q.ra=add(q.ra,d)}else{q.lb=add(q.lb,d);q.rb=add(q.rb,d)}return q}
+ if(o==="*"||o==="/"){const f=o==="*"?x=>mul(x,K):x=>dv(x,K),h=o==="*"?x=>mul(x,A):x=>dv(x,A);
+  ["la","lb","ra","rb"].forEach(t=>q[t]=f(q[t]));q.lp=h(q.lp);q.rp=h(q.rp);return q}
+ let sw=false;
+ if(al(q.la,q.lb,q.lp,q.ra)){}else if(al(q.ra,q.rb,q.rp,q.la)){sw=true;swp(q)}
+ else return "Primero deja la potencia (o la raíz) sola en un lado, y solo un número en el otro.";
+ // El símbolo ± representa un conjunto de dos ramas, no un número ordinario.
+ if(q.rp.n){
+  if(o!=="r"||k%2===0||q.e.d!==1||q.e.n%k!==0||q.rb.n!==0)return "Con ±, usa una raíz impar compatible con la potencia; otras transformaciones requieren analizar las ramas por separado.";
+  const newR=rt(q.rp,k);if(!newR)return "La raíz no es exacta.";
+  q.rp=newR;q.e=dv(q.e,K);if(sw)swp(q);return norm(q);
+ }
+ if(o==="^"){const c=pw(q.rb,k);if(!c)return "El número se hace demasiado grande.";q.rb=c;q.e=mul(q.e,K)}
+ else{const c=q.rb;if(q.e.d!==1||q.e.n%k!==0)return "Para simplificar esta raíz, el índice debe dividir al exponente entero de la incógnita.";if(k%2===0&&c.n<0)return "No existe raíz de índice par de un número negativo: no hay solución real.";
+  const r=rt(c,k);if(!r)return "Ese número no tiene raíz "+k+" exacta.";
+  if(k%2===0){
+    // Si el exponente restante es par, (x^m) >= 0 y no procede introducir ±.
+    // Si queda un exponente impar, se necesitan las dos ramas reales.
+    const remaining=dv(q.e,K);
+    if(remaining.d===1&&remaining.n%2===0){q.rb=r;q.rp=Z}
+    else{q.rb=Z;q.rp=r}
+   }else q.rb=r;q.e=dv(q.e,K)}
+ if(sw)swp(q);return norm(q)}
+let lvl=0,eq,ini,hist,op="+",neg=false;
+let starsTotal=0,winsTotal=0,awardForCurrent=false;
+function renderTotal(){
+ $('total-stars').textContent=String(starsTotal);
+ $('total-wins').textContent=String(winsTotal);
+}
+
+function start(nuevo=true){if(nuevo){ini=gen(...S[lvl]);awardForCurrent=false}eq=ini;hist=[];render()}
+function render(){
+ const w=won(eq);$("sel").value=lvl;$("xs").innerHTML=M(mPower(eq),pstr(eq));
+ $("last").hidden=!hist.length;
+ if(hist.length){const h=hist[hist.length-1];$("last-before").innerHTML=mEq(h.prev);$("last-expanded").innerHTML=mIntermediate(h.prev,h.o,h.k,h.ux);}
+ $("meta").textContent="Nivel "+(lvl+1)+" de "+S.length+" · pasos: "+hist.length;
+ $("board").innerHTML=mEq(eq);$("board").classList.toggle("win",w);$("ctl").hidden=w;$("res").hidden=!w;
+ if(w){const par=PAR[S[lvl][0]-1]+(S[lvl][0]===1&&ini.la.n<0?1:0),n=hist.length,s=n<=par?3:n<=par+1?2:1;
+  if(!awardForCurrent){starsTotal+=s;winsTotal++;awardForCurrent=true}
+  renderTotal();
+  $("stars").textContent="★".repeat(s)+"☆".repeat(3-s);
+  $("resmsg").textContent=(s===3?"¡Perfecto! ":"¡Lo lograste! ")+"Lo resolviste en "+n+(n===1?" paso":" pasos")+(s<3?" (se podía en "+par+")":"")+".";
+  $("next").textContent=lvl<S.length-1?"Siguiente nivel":"Volver al nivel 1"}
+ $("hist").innerHTML=hist.length?hist.map((h,i)=>'<li><div class="op">Paso '+(i+1)+": "+h.t+'</div><div class="eq">'+mEq(h.prev)+'<div class="math-step">'+mIntermediate(h.prev,h.o,h.k,h.ux)+'</div><div class="math-step">→ '+mEq(h.after)+'</div></div></li>').join(""):'<li class="meta">Todavía no hay pasos. Empieza eligiendo una operación.</li>'}
+document.querySelectorAll(".ops button").forEach(b=>b.onclick=()=>{op=b.dataset.op;
+ document.querySelectorAll(".ops button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+ const m=op!=="+"&&op!=="-";$("xt").disabled=m;if(m)$("xt").checked=false;$("xl").style.opacity=m?.4:1;
+ $("k").placeholder=op==="^"?"Exponente":op==="r"?"Índice (2 = cuadrada)":"Número"});
+const sgn=()=>{$("sg").textContent=neg?"−":"+";$("sg").setAttribute("aria-pressed",neg)};$("sg").onclick=()=>{neg=!neg;sgn()};
+$("go").onclick=()=>{const raw=$("k").value.trim(),k=neg?-Math.abs(Number(raw)):Number(raw),pr=op==="^"||op==="r",ux=(op==="+"||op==="-")&&$("xt").checked;$("err").textContent="";
+ const E=m=>{$("err").textContent=m};
+ if(raw===""||!Number.isInteger(k))return E("Escribe un número entero.");
+ if(pr&&k<2)return E("Escribe un número entero desde 2.");
+ if((op==="*"||op==="/")&&k===0)return E(op==="/"?"No se puede dividir por 0.":"Multiplicar por 0 borra la ecuación. Elige otro número.");
+ const q=step(op,k,ux);if(typeof q==="string")return E(q);
+ const t=op==="^"?"Elevar a "+k+" en ambos lados":op==="r"?(k===2?"Raíz cuadrada":"Raíz de índice "+k)+" en ambos lados":{"+":"+","-":"−","*":"×","/":"÷"}[op]+" "+(k<0?"("+String(k).replace("-","−")+")":k)+(ux?" ("+pstr(eq)+")":"")+" a ambos lados";
+ hist.push({t,a:show(eq),intermediate:expanded(eq,op,k,ux),b:show(q),prev:eq,after:q,o:op,k,ux});eq=q;$("k").value="";neg=false;sgn();render()};
+$("undo").onclick=()=>{if(!hist.length)return;eq=hist.pop().prev;$("err").textContent="";render()};
+$("reset").onclick=()=>start(false);
+$("other").onclick=()=>start();
+$("next").onclick=()=>{lvl=(lvl+1)%S.length;start()};
+$("sel").innerHTML=S.map((x,i)=>"<option value="+i+">"+(i+1)+". "+D[x[0]-1].replace(/ᴺ/g,SUP[x[1]])+(x[2]?" (con raíz)":"")+"</option>").join("");
+$("sel").onchange=()=>{lvl=+$("sel").value;start()};
+start();renderTotal();
+</script>
+</body>
+</html>
