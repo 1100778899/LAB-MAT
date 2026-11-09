@@ -51,6 +51,19 @@ li .eq{font:italic 18px Georgia,serif;margin-top:4px;overflow-x:auto;white-space
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.72em;line-height:1.15;margin:0 .12em}
 .fr span:first-child{border-bottom:.08em solid currentColor;padding:0 .15em}
 [hidden]{display:none!important}
+
+
+/* Reparación móvil: la página no se desplaza lateralmente. */
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:clip}
+main{width:100%;max-width:480px;min-width:0}
+header,.board,.ctl,.pend,.res,.small,li{min-width:0;max-width:100%}
+.board{grid-template-columns:minmax(0,1fr)}
+.eqr{width:100%;min-width:0;max-width:100%;overflow-x:auto}
+.pend .pe,li .eq{min-width:0;max-width:100%;overflow-x:auto}
+.btns3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.btns3 button,.small button{min-width:0;overflow-wrap:anywhere}
+.small button{padding-inline:4px}
 </style>
 </head>
 <body>
