@@ -103,7 +103,7 @@ main{width:auto;max-width:1170px;min-width:0;box-sizing:border-box;overflow-x:hi
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
-const names={3:'triangular',4:'cuadrangular',5:'pentagonal',6:'hexagonal'};
+const names={3:'triangular',4:'cuadrangular',5:'pentagonal',6:'hexagonal',7:'heptagonal',8:'octagonal'};
 let task=null, revealed=false, lastN=null;
 let angle=0.55,tilt=31*Math.PI/180,drag=null;
 const round2=x=>Math.round((x+Number.EPSILON)*100)/100;
@@ -141,7 +141,7 @@ function renderSolid(){
   if(toward>1e-7)visible.push({i,j,toward});
  }
  visible.sort((a,b)=>a.toward-b.toward);
- const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8'];
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
  for(const f of visible){
   el(svg,'polygon',{points:ptstr([bottom[f.i],bottom[f.j],top[f.j],top[f.i]]),fill:wallColors[f.i],stroke:'#286e92','stroke-width':2.6,'stroke-linejoin':'round'});
  }
@@ -192,7 +192,7 @@ function renderNet(){
  const sc=Math.min(485/(maxX-minX+35),282/(maxY-minY+35));
  const tx=265-(minX+maxX)*sc/2,ty=165-(minY+maxY)*sc/2;
  const g=el(svg,'g',{transform:`translate(${tx} ${ty}) scale(${sc})`});
- const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8'];
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
  // Todas las caras laterales son rectángulos l × h, sin excepciones.
  for(let i=0;i<n;i++){
   const x=i*W;
@@ -280,7 +280,7 @@ solid.addEventListener('keydown',ev=>{
 });
 $('reset-view').addEventListener('click',()=>{initialView();renderSolid()});
 
-function choose(){let opts=[3,4,5,6].filter(n=>n!==lastN);let n=opts[Math.floor(Math.random()*opts.length)];lastN=n;const sides=[4,6,8,10,12],l=sides[Math.floor(Math.random()*sides.length)],h=4+Math.floor(Math.random()*9),ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);task={n,l,h,ap,P,Ab,Al,At,V};revealed=false;$('flip-volume').classList.remove('revealed');$('flip-area').classList.remove('revealed');$('reveal').textContent='🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed','false');$('input-volume').value='';$('input-area').value='';$('status').textContent='Resuelve en tu cuaderno y después muestra los resultados y sus tres pasos.';$('name').textContent='Prisma '+names[n]+' regular';$('details').textContent=n+' lados por base · '+(n+2)+' caras · '+(3*n)+' aristas';$('side').textContent=fmt(l)+' cm';$('ap').textContent=fmt1(ap)+' cm';$('height').textContent=fmt(h)+' cm';initialView();renderSolid();renderNet();renderSolution()}
+function choose(){let opts=[3,4,5,6,7,8].filter(n=>n!==lastN);let n=opts[Math.floor(Math.random()*opts.length)];lastN=n;const sides=[4,6,8,10,12],l=sides[Math.floor(Math.random()*sides.length)],h=4+Math.floor(Math.random()*9),ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);task={n,l,h,ap,P,Ab,Al,At,V};revealed=false;$('flip-volume').classList.remove('revealed');$('flip-area').classList.remove('revealed');$('reveal').textContent='🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed','false');$('input-volume').value='';$('input-area').value='';$('status').textContent='Resuelve en tu cuaderno y después muestra los resultados y sus tres pasos.';$('name').textContent='Prisma '+names[n]+' regular';$('details').textContent=n+' lados por base · '+(n+2)+' caras · '+(3*n)+' aristas';$('side').textContent=fmt(l)+' cm';$('ap').textContent=fmt1(ap)+' cm';$('height').textContent=fmt(h)+' cm';initialView();renderSolid();renderNet();renderSolution()}
 $('reveal').addEventListener('click',()=>{revealed=!revealed;if(revealed)renderSolution();for(const name of ['volume','area'])$('flip-'+name).classList.toggle('revealed',revealed);$('reveal').textContent=revealed?'↩ Ocultar resultados':'🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed',String(revealed));$('status').textContent=revealed?'Compara tu desarrollo con cada reemplazo. Puedes ocultarlo y volver a intentarlo.':'Resuelve nuevamente, o genera otro prisma.'});$('new').addEventListener('click',()=>choose());choose();
 })();
 </script>
