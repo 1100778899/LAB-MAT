@@ -70,8 +70,8 @@
 }
 @media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
 
-/* Ajuste de escala de LAB-MAT: equivalente a zoom 80 % en computador; móvil sin cambios. */
-@media screen and (min-width: 900px){main{zoom:.8}}
+/* LAB-MAT: escala equivalente al 80 % en celular, sin alterar escritorio. */
+@media screen and (max-width: 700px){main{zoom:.8;width:125%;max-width:none;box-sizing:border-box;margin:0}}
 </style>
 </head>
 <body>
