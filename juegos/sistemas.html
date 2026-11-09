@@ -52,8 +52,8 @@ li .eq{font:italic 18px Georgia,serif;margin-top:4px;overflow-x:auto;white-space
 .fr span:first-child{border-bottom:.08em solid currentColor;padding:0 .15em}
 [hidden]{display:none!important}
 
-/* Ajuste de escala de LAB-MAT: equivalente a zoom 80 % en computador; móvil sin cambios. */
-@media screen and (min-width: 900px){main{zoom:.8}}
+/* LAB-MAT: escala equivalente al 80 % en celular, sin alterar escritorio. */
+@media screen and (max-width: 700px){main{zoom:.8;width:125%;max-width:none;box-sizing:border-box;margin:0}}
 </style>
 </head>
 <body>
