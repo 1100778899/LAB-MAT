@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>LAB-MAT · Prismas y redes · Evaluación</title>
+<style>
+/* Se conserva la distribución, medidas visuales y paleta del juego original
+   1100778899/LAB-MAT/juegos/prismas.html (consultado el 09-11-2026,
+   SHA del archivo 5bb60cb2aff4bad5c453e7602d9eec441a3674ac). */
+:root{color-scheme:light;--bg:#edf2f2;--ink:#162b34;--sub:#526874;--line:#cbdada;--paper:#fff;--navy:#153a45;--teal:#087b74;--teal2:#d6f3ed;--gold:#f1b353;--blue:#398bc3;--shadow:0 8px 32px #122e3514}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 0,#d8f4ed 0%,transparent 36%),var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif}main{max-width:1170px;margin:auto;padding:21px 16px 46px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:16px}h1{margin:2px 0 4px;font-size:clamp(25px,3.6vw,36px);letter-spacing:-.9px}p{margin:0}.eyebrow{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#07756b}.intro{color:var(--sub);font-size:14px;max-width:700px}.btn{border:0;cursor:pointer;font-weight:800;font-size:14px;min-height:44px;padding:12px 18px;border-radius:12px;touch-action:manipulation}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f2b94b;outline-offset:3px}.btn-primary{background:var(--teal);color:white;box-shadow:0 4px 0 #075e59}.btn-primary:active{transform:translateY(2px);box-shadow:0 2px 0 #075e59}.btn-neutral{background:#fff;border:1px solid var(--line);color:var(--ink)}.challenge{background:var(--navy);color:#effff9;border-radius:16px;padding:13px 18px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.challenge strong{font-size:17px}.challenge small{color:#bce1db;font-size:12px}.icons{font-size:18px}.columns,.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.figure{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}.figure header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px 0}.figure h2{margin:0;font-size:19px}.hint{font-size:12px;color:var(--sub)}.figure svg{width:100%;height:clamp(205px,31vw,315px);display:block;overflow:visible}.figure .shape-caption{font-size:12px;color:var(--sub);text-align:center;padding:0 12px 14px;min-height:34px}.svg-text{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round;font-size:17px;font-weight:800;fill:#124a50}.svg-annot{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;font-weight:800;fill:#173944;paint-order:stroke;stroke:#faffff;stroke-width:5px;stroke-linejoin:round}.measure-line{stroke:#f8ae45;stroke-width:3.8;stroke-linecap:round;fill:none}.ap-line{stroke:#9e63c2;stroke-width:3;stroke-dasharray:6 5;fill:none}.data{background:white;border:1px solid var(--line);border-radius:16px;margin:14px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.data .cell{text-align:center;padding:8px;background:#f3f8f7;border-radius:11px}.data small{display:block;color:var(--sub);font-size:12px}.data strong{font-variant-numeric:tabular-nums;font-size:clamp(17px,2.8vw,24px)}.data .code{font-family:Georgia,serif;font-style:italic;color:var(--teal)}.note{font-size:12px;color:var(--sub);margin:0 2px 14px}.work-grid{align-items:stretch}.work-label{margin:0 0 9px;font-size:18px;color:var(--ink)}.flip-wrap{perspective:1400px;min-width:0}.flip-inner{height:340px;transition:transform .72s cubic-bezier(.19,.75,.19,1);transform-style:preserve-3d;position:relative}.flip-wrap.revealed .flip-inner{transform:rotateY(180deg)}.face{backface-visibility:hidden;-webkit-backface-visibility:hidden;position:absolute;inset:0;background:white;border:1px solid var(--line);border-radius:17px;padding:17px 18px;box-shadow:var(--shadow);overflow:auto}.face.back{transform:rotateY(180deg);border:2px solid #5dbda8;background:linear-gradient(150deg,#f6fffc,#fff 80%)}.face .ttl{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:11px}.math{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.6;color:var(--ink)}.math small{font:12px system-ui;color:var(--sub)}.math-line{display:block;margin:7px 0;line-height:1.7}.math-line sub,.steps sub{font-size:.66em;line-height:0;vertical-align:sub}.frac{display:inline-flex;vertical-align:middle;align-items:center;flex-direction:column;line-height:1.1;text-align:center;font-family:Georgia,serif;margin:0 3px}.frac .num{border-bottom:1.5px solid currentColor;padding:0 4px 3px;white-space:nowrap}.frac .den{padding-top:3px}.formula-list{display:grid;gap:5px}.form-label{font-size:13px;margin-top:14px;display:block;color:var(--sub);font-weight:700}.answer-row{display:flex;align-items:center;gap:7px;margin-top:7px}.answer{width:100%;max-width:220px;min-width:0;padding:10px 12px;font:700 18px system-ui;border:1.5px solid #bad0d1;border-radius:10px;background:#f7faf9;color:var(--ink)}.unit{font-size:14px;font-weight:800;color:var(--sub)}.answer-tip{font-size:12px;color:var(--sub);margin-top:10px}.steps{counter-reset:step;display:grid;gap:10px}.step{display:flex;gap:10px;align-items:start;font-size:16px;line-height:1.45;font-family:Georgia,serif}.step:before{counter-increment:step;content:counter(step);font:800 12px system-ui;color:#0a685e;background:#dcf6ef;padding:5px 9px;border-radius:8px;flex:none}.step .m{flex:1;overflow-wrap:anywhere}.step b{color:#045e57}.result{font-weight:800;font-size:20px;color:#06675e;padding:10px 12px;border-radius:10px;background:#e0f7ef;margin-top:13px}.feedback{font-size:12px;font-weight:700;margin-top:8px}.feedback.good{color:#04774b}.feedback.bad{color:#ae432e}.feedback.none{color:var(--sub)}.actions{display:flex;flex-direction:column;gap:9px;align-items:center;margin:18px auto 2px}.actions .btn{min-width:min(100%,360px);font-size:16px}.actions small{text-align:center;color:var(--sub);font-size:12px;max-width:650px}.legend{margin-top:17px;display:flex;gap:17px;flex-wrap:wrap;color:var(--sub);font-size:12px}.legend i{display:inline-block;width:13px;height:4px;vertical-align:middle;margin-right:5px;border-radius:4px}.foot{color:var(--sub);font-size:12px;margin-top:13px}
+@media(max-width:700px){main{padding:15px 11px 35px}.columns,.work-grid{grid-template-columns:1fr}.figure svg{height:280px}.flip-inner{height:335px}.figure h2{font-size:18px}.top .btn{width:100%}.face{padding:15px}.work-grid{gap:14px}.work-label{margin-top:2px}.data{margin:12px 0}.data .cell{padding:8px 4px}.note{margin-bottom:14px}}
+@media(max-width:380px){.figure svg{height:235px}.math{font-size:18px}.step{font-size:15px}.flip-inner{height:345px}}
+@media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+@media print{body{background:white}.btn,.actions{display:none}.flip-inner{transform:none!important}.face{position:relative}.face.front{display:none}.face.back{transform:none;border:1px solid #aaa}.flip-inner{height:auto}.work-grid{grid-template-columns:1fr 1fr}}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "volume area";gap:14px;align-items:stretch}
+.prism-figure{grid-area:prism}.net-figure{grid-area:net}.data-wrap{grid-area:data;min-width:0}.volume-work{grid-area:volume;min-width:0}.area-work{grid-area:area;min-width:0}.lab-grid .figure{display:flex;flex-direction:column;min-width:0}.lab-grid .figure svg{width:100%;height:clamp(205px,27vw,315px);flex-shrink:0}#solid{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}#solid.dragging{cursor:grabbing}#solid:focus{outline:none}#solid:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}.reset-view{align-self:center;min-height:35px;margin:0 auto 13px;padding:5px 12px;font:700 12px system-ui;border:1px solid var(--line);border-radius:9px;color:var(--teal);background:var(--paper);cursor:pointer}.reset-view:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.lab-grid .data{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.data-title{font-size:16px;line-height:1.2;margin:0 0 7px;color:var(--ink)}.lab-grid .note{margin:7px 2px 0}.lab-grid .work-label{font-size:20px;margin:0 0 10px}.lab-grid .flip-inner{height:400px}.lab-grid .face{overflow:auto}
+@media(max-width:700px){main{padding:12px 10px 28px}.lab-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}.lab-grid .figure svg{height:195px}.figure header{padding:11px 9px 0;display:block}.figure h2{font-size:17px}.figure .hint{display:block;font-size:10px;margin-top:2px}.lab-grid .figure .shape-caption{font-size:10px;line-height:1.3;min-height:39px;padding:0 6px 6px}.reset-view{font-size:11px;padding:4px 6px;margin-bottom:8px}.lab-grid .data{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:7px}.lab-grid .data .cell{padding:7px 3px}.data small{font-size:10px;line-height:1.25}.data strong{font-size:17px}.data-title{font-size:15px}.lab-grid .note{font-size:10px;margin:5px 2px 0}.lab-grid .work-label{font-size:17px;margin:1px 0 7px}.lab-grid .flip-inner{height:355px}.lab-grid .face{padding:10px 9px;border-radius:12px}.face .ttl{font-size:10px;line-height:1.3;letter-spacing:.3px;margin-bottom:10px}.math{font-size:15px;line-height:1.4}.math-line{line-height:1.5;margin:8px 0}.math small{font-size:11px;line-height:1.3;display:block}.form-label{font-size:12px;margin-top:11px}.answer-row{gap:3px}.answer{font-size:15px;padding:8px 5px;min-width:0}.unit{font-size:12px}.answer-tip{font-size:11px;line-height:1.4}.steps{gap:7px}.step{gap:4px;font-size:13px;line-height:1.4}.step:before{font-size:10px;padding:3px 5px}.step .m{overflow-wrap:anywhere}.result{font-size:15px;padding:8px 5px;overflow-wrap:anywhere}.feedback{font-size:11px}.frac{margin:0 1px}.frac .num{padding:0 2px 2px}.frac .den{padding-top:2px}}
+@media(max-width:360px){.lab-grid{gap:7px}.lab-grid .flip-inner{height:415px}.math{font-size:14px}.step{font-size:12px}.lab-grid .figure svg{height:175px}.lab-grid .data .cell{padding:5px 2px}}
+.calc-chain{display:flex;flex-direction:column;gap:3px;align-items:flex-start}.calc-line{width:100%;line-height:1.5;overflow-wrap:normal;word-break:normal}.calc-line.final{color:#075f55;font-weight:700}.lab-grid .flip-inner{height:478px}.lab-grid .steps{gap:12px}.lab-grid .step{padding:0 0 10px;border-bottom:1px solid #dce9e5}.lab-grid .step:last-child{border:0;padding-bottom:0}
+@media(max-width:700px){.lab-grid .flip-inner{height:465px}.lab-grid .steps{gap:12px}.lab-grid .step{font-size:12.3px;gap:4px;padding-bottom:10px}.calc-line{line-height:1.5;letter-spacing:-.12px}.lab-grid .face.back{padding:10px 8px}.result{margin-top:12px}}
+@media(max-width:360px){.lab-grid .flip-inner{height:520px}.lab-grid .step{font-size:11.5px}}
+@media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+html,body{width:100%;max-width:100%;overflow-x:hidden}main{width:auto;max-width:1170px;min-width:0;box-sizing:border-box;overflow-x:hidden}.lab-grid,.lab-grid > *, .figure,.flip-wrap,.data-wrap,.volume-work,.area-work{min-width:0;max-width:100%}.lab-grid{width:100%}.lab-grid .data{width:100%;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr))}.lab-grid .data .cell{min-width:0;overflow-wrap:anywhere}.lab-grid .figure svg{max-width:100%}.flip-inner,.face{max-width:100%;min-width:0}
+/* Solo elementos nuevos de la modalidad de evaluación. */
+[hidden]{display:none!important}.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}.panel h2{margin:0 0 10px;font-size:20px}.field-label{display:block;font-size:13px;font-weight:800;color:#315460;margin:0 0 5px}.field{width:100%;min-height:44px;border:1.5px solid #bdd2d1;border-radius:10px;padding:10px;font:inherit;background:white;color:var(--ink)}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:9px 0}.name-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin:10px 0 16px}.subtle{font-size:12px;color:var(--sub)}.alert{font-size:13px;border:1px solid #e4c788;background:#fff8e9;border-radius:11px;padding:10px;margin-top:12px}.danger{color:#962f21}.menu{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.menu .btn{font-size:13px}.toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}.toolbar label{min-width:0}.progress-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}.progress-person{border:1px solid #d4e1df;border-radius:12px;padding:10px;background:#f8fbfa}.progress-person.active{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}.progress-person b{font-size:13px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;margin-top:6px}.check{padding:5px 6px;border-radius:7px;background:#edf2f2}.check.done{color:#046347;background:#e0f7ef;font-weight:800}.check.pending{color:#77502a;background:#fff6e8}.bar{height:7px;background:#d8e8e3;border-radius:20px;overflow:hidden;margin-top:7px}.bar>span{display:block;background:#0b8f7c;height:100%}.count{font-size:13px;font-weight:800}.eval-status{background:#e9f8f4;border:1px solid #bfe6db;padding:10px;border-radius:12px;font-size:13px;margin:0 0 13px}.response-feedback{background:#f3f8f7;border:1px solid #d7e7e3;border-radius:11px;padding:11px;margin:12px 0;font-size:13px}.response-feedback p+p{margin-top:7px}.response-feedback .success{font-weight:800;color:#086a50}.response-feedback .warning{color:#a34e20}.submission{margin-top:11px;width:100%}.action-line{display:flex;gap:9px;flex-wrap:wrap;align-items:center;justify-content:center;margin:15px 0}.action-line .btn{flex:1 1 180px}.btn:disabled{cursor:not-allowed;opacity:.53;box-shadow:none}.tabulation{margin:10px 0}.tabulation h3{margin:0 0 7px;font-size:15px}.tabulation small{color:var(--sub)}dialog{border:1px solid #bdd5cf;border-radius:17px;max-width:min(92vw,440px);width:100%;color:var(--ink);padding:20px;box-shadow:0 25px 80px #0d282b55}dialog::backdrop{background:#0d252ab0}dialog h2{margin:0 0 9px;font-size:20px}dialog p{font-size:14px}dialog .menu{justify-content:flex-end;margin-top:17px}.finished h2{font-size:24px}.finish-meta{display:flex;gap:6px 15px;flex-wrap:wrap;font-weight:800;font-size:13px;margin:10px 0}.evidence{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:9px}.evidence-card{background:#fff;border:1px solid #cbddda;border-radius:11px;padding:9px}.evidence-card h3{font-size:14px;margin:0 0 7px}.evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}.evidence-item{padding:6px;background:#f1f7f6;border-radius:7px;min-width:0;overflow-wrap:anywhere}.evidence-item b{display:block;font-size:11px;color:#075e55}.evidence-item span{display:block;font-size:10.5px;line-height:1.35}.finish-instructions{background:#e7f8f2;border-radius:11px;padding:13px;margin:15px 0;font-weight:800}.storage-note{font-size:12px;color:#526874;margin-top:10px}.session-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:space-between;margin-top:12px}.session-actions>*{flex:1 1 160px}.persistent-banner{font-size:12px;color:#226459;background:#e5f6f0;padding:7px 10px;border-radius:8px}
+@media(max-width:700px){.panel{padding:11px;border-radius:12px}.panel h2{font-size:17px}.field-row{gap:8px}.toolbar{gap:7px}.field{font-size:14px;padding:8px;min-height:42px}.progress-grid{grid-template-columns:1fr 1fr;gap:6px}.progress-person{padding:7px}.progress-person b{font-size:11px}.checks{font-size:10px;gap:3px}.check{padding:4px}.menu .btn{flex:1 1 auto}.top .btn{width:auto}.evidence{grid-template-columns:1fr}.evidence-card{padding:8px}.finished h2{font-size:21px}.finish-instructions{font-size:13px}.response-feedback{padding:9px}.name-grid{grid-template-columns:1fr}}
+@media(max-width:340px){.progress-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr 1fr}}
+@media print{#setup,#evaluation,#confirm-dialog,.session-actions,#continue-screen{display:none!important}#finished{display:block!important}.evidence{grid-template-columns:repeat(2,1fr)}.evidence-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div><div class="eyebrow">LAB-MAT · Matemática · Laboratorio de geometría</div><h1>Prismas y sus redes</h1><p class="intro">Modalidad de evaluación · Área total y volumen de prismas regulares</p></div></header>
+<div id="storage-alert" class="alert danger" role="alert" hidden>⚠️ Este navegador no permite guardar el progreso con localStorage. No uses esta sesión para una evaluación real. Abre el archivo en Chrome o desde una página web con almacenamiento habilitado.</div>
+<section id="continue-screen" class="panel" hidden><h2>Evaluación guardada</h2><p id="saved-overview"></p><div class="session-actions"><button id="continue-btn" class="btn btn-primary" type="button">Continuar evaluación</button><button id="discard-btn" class="btn btn-neutral" type="button">Reiniciar evaluación</button></div><p class="storage-note">El avance está guardado solo en este navegador y dispositivo. No se envía a ningún servidor.</p></section>
+<section id="setup" class="panel" hidden><h2>Identificación de participantes</h2><form id="setup-form" autocomplete="off"><div class="field-row"><label><span class="field-label">Curso</span><input id="course" class="field" type="text" placeholder="Ej.: 8°A" maxlength="70" required></label><label><span class="field-label">Cantidad de participantes</span><select id="total-participants" class="field" aria-label="Cantidad de participantes"></select></label></div><div id="participant-names" class="name-grid"></div><p class="subtle">Cada estudiante debe completar correctamente un área total y un volumen en cada grupo. Los desarrollos consultados son compartidos por el equipo.</p><div class="action-line"><button id="start-btn" class="btn btn-primary" type="submit">Comenzar evaluación</button></div></form><p class="storage-note">📱 El avance queda en este navegador y dispositivo. Si cambias de teléfono, navegador, ruta del archivo o borras los datos del sitio, podrías perderlo. No se envían datos personales a servidores externos.</p></section>
+<section id="evaluation" hidden>
+ <section class="panel"><div class="menu" style="justify-content:space-between"><div><h2 style="margin-bottom:3px">Evaluación en curso · <span id="course-display"></span></h2><p id="all-names" class="subtle"></p></div><button id="reset-btn" class="btn btn-neutral danger" type="button">Reiniciar evaluación</button></div><div class="toolbar" style="margin-top:12px"><label><span class="field-label">Participante de este ejercicio</span><select id="active-person" class="field"></select></label><label><span class="field-label">Grupo de dificultad</span><select id="active-group" class="field"><option value="A">Grupo A · 3, 4 y 5 lados</option><option value="B">Grupo B · 6, 7 y 8 lados</option></select></label></div><p id="assignment-msg" class="subtle" style="margin-top:8px"></p></section>
+ <section class="panel"><div class="menu" style="justify-content:space-between"><span id="consultation-count" class="count"></span><span id="total-progress" class="count"></span></div><div id="progress-grid" class="progress-grid" style="margin-top:10px"></div></section>
+ <div id="task-area">
+ <section class="challenge" aria-live="polite"><div><strong id="name">Prisma regular</strong><br><small id="details"></small></div><span class="icons">▱ ▥ ◇</span></section>
+ <p class="eval-status" id="task-context" aria-live="polite"></p>
+ <div class="lab-grid">
+  <section class="figure prism-figure"><header><h2>Prisma</h2><span class="hint">↔ Arrastra para girar</span></header><svg id="solid" role="img" tabindex="0" viewBox="0 0 500 330" aria-label="Prisma giratorio. Arrastra con el dedo o ratón, o usa las flechas del teclado."></svg><div class="shape-caption">Gira el prisma sin cambiar sus medidas.</div><button class="reset-view" id="reset-view" type="button">⟲ Vista inicial</button></section>
+  <section class="figure net-figure"><header><h2>Red plana</h2><span class="hint">Desarrollo plano</span></header><svg id="net" role="img" viewBox="0 0 530 330" aria-label="Red plana con bases regulares y caras rectangulares."></svg><div class="shape-caption">Dos bases iguales y una cara rectangular por cada lado de la base.</div></section>
+  <section class="data-wrap"><h2 class="data-title">Datos del prisma</h2><section class="data" aria-label="Medidas del prisma"><div class="cell"><small>Lado de la base (<span class="code">l</span>)</small><strong id="side">—</strong></div><div class="cell"><small>Apotema (<span class="code">a</span>)</small><strong id="ap">—</strong></div><div class="cell"><small>Altura (<span class="code">h</span>)</small><strong id="height">—</strong></div></section><p class="note">Bases regulares. La apotema se aproxima a una décima (0,1 cm) y todos los cálculos usan el valor mostrado.</p></section>
+  <section class="volume-work"><h2 class="work-label">Volumen <span id="volume-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = A<sub>b</sub> · h</div><div class="math-line">A<sub>b</sub> = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span></div><div class="math-line">P = n · l</div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"><span class="unit">cm³</span></div><p class="answer-tip">Desarrolla primero tu cálculo en el cuaderno.</p><p id="inline-volume" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Volumen</div><div class="steps" id="steps-volume"></div><div class="result" id="result-volume"></div></div></div></div></section>
+  <section class="area-work"><h2 class="work-label">Área total <span id="area-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-area"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line" style="font-weight:700;font-size:1.12em">A<sub>T</sub> = P · a + P · h</div><div class="math-line" style="font-weight:700">P = n · l</div><div class="math-line"><small>n: número de lados de la base</small></div><div class="math-line"><small>l: medida del lado de la base</small></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"><span class="unit">cm²</span></div><p class="answer-tip">Recuerda las dos bases y todas las caras laterales.</p><p id="inline-area" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Área total</div><div class="steps" id="steps-area"></div><div class="result" id="result-area"></div></div></div></div></section>
+ </div>
+ <div id="response-feedback" class="response-feedback" role="status" aria-live="polite" hidden></div>
+ <div class="actions"><button id="submit-answers" class="btn btn-primary" type="button">✓ Revisar respuestas escritas</button><button id="consult-btn" class="btn btn-neutral" type="button">📖 Consultar desarrollo completo</button><button id="new" class="btn btn-neutral" type="button">🎲 Otro prisma</button><small id="status" aria-live="polite">Ingresa solo los cálculos pendientes. Puedes completar área y volumen por separado.</small></div>
+ <div class="legend"><span><i style="background:#f2ac42"></i> Lado y altura</span><span><i style="background:#d62839"></i> Perímetro (P) de la otra base</span><span><i style="background:#9d5dbc"></i> Apotema</span><span><i style="background:#398bc3"></i> Caras laterales</span></div>
+ </div>
+ <p class="foot">Este archivo funciona sin internet; el guardado es local y no se envían respuestas ni datos personales a servidores.</p>
+ </section>
+<section id="finished" class="panel finished" hidden><h2>✅ Actividad finalizada</h2><div id="final-data"></div><div class="finish-instructions">¡Actividad finalizada! Tomen una captura de esta pantalla y muéstrenla al profesor junto con los desarrollos matemáticos realizados en sus cuadernos.</div><p class="storage-note">Esta pantalla permanece guardada en el mismo navegador y dispositivo. En teléfonos, puedes utilizar la función de captura de pantalla con desplazamiento.</p><div class="session-actions"><button id="final-reset" class="btn btn-neutral danger" type="button">Reiniciar evaluación</button></div></section>
+<dialog id="confirm-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title">Confirmar acción</h2><p id="dialog-message"></p><div class="menu"><button class="btn btn-neutral" id="dialog-cancel" type="button">Cancelar</button><button class="btn btn-primary" id="dialog-ok" type="button">Confirmar</button></div></dialog>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
+const KEY='LABMAT_PRISMAS_EVALUACION_V1';
+const names={3:'triangular',4:'cuadrangular',5:'pentagonal',6:'hexagonal',7:'heptagonal',8:'octagonal'};
+const groups={A:[3,4,5],B:[6,7,8]};
+const round2=x=>Math.round((x+Number.EPSILON)*100)/100;
+const round1=x=>Math.round((x+Number.EPSILON)*10)/10;
+const fmt=x=>new Intl.NumberFormat('es-CL',{maximumFractionDigits:2,minimumFractionDigits:0}).format(round2(x));
+const fmt1=x=>new Intl.NumberFormat('es-CL',{minimumFractionDigits:1,maximumFractionDigits:1}).format(round1(x));
+const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const emptyCredits=()=>({A:{area:null,volume:null},B:{area:null,volume:null}});
+let session=null,task=null,lastN=null,angle=0.55,tilt=31*Math.PI/180,drag=null,confirmation=null;
+let storageOK=false;
+try{const x='__labmat_storage_probe__';localStorage.setItem(x,'ok');storageOK=localStorage.getItem(x)==='ok';localStorage.removeItem(x)}catch(_){storageOK=false}
+$('storage-alert').hidden=storageOK;
+function save(){if(!session||!storageOK)return;session.view={angle,tilt};try{localStorage.setItem(KEY,JSON.stringify(session))}catch(_){storageOK=false;$('storage-alert').hidden=false}}
+function readSaved(){if(!storageOK)return null;try{
+ const s=JSON.parse(localStorage.getItem(KEY)||'null');
+ if(!s||s.version!==1||!['active','finished'].includes(s.status)||!Array.isArray(s.people)||!s.people.length||!s.people.every(p=>p&&p.credits&&p.credits.A&&p.credits.B)||typeof s.course!=='string')return null;
+ if(s.status==='active'&&(!s.task||!groups[s.task.group]?.includes(s.task.n)))return null;
+ if(!Array.isArray(s.history))s.history=[];
+ if(!Number.isInteger(s.consultations))s.consultations=0;
+ return s;
+ }catch(_){return null}}
+function showSection(id){for(const name of ['continue-screen','setup','evaluation','finished'])$(name).hidden=name!==id}
+function confirmAction(title,message,okLabel,callback){confirmation=callback;$('dialog-title').textContent=title;$('dialog-message').textContent=message;$('dialog-ok').textContent=okLabel;$('confirm-dialog').showModal()}
+function closeDialog(proceed){$('confirm-dialog').close();const cb=confirmation;confirmation=null;if(proceed&&cb)cb();else if(session?.status==='active')syncContextSelectors()}
+$('dialog-cancel').addEventListener('click',()=>closeDialog(false));
+$('dialog-ok').addEventListener('click',()=>closeDialog(true));
+$('confirm-dialog').addEventListener('cancel',e=>{e.preventDefault();closeDialog(false)});
+const REPLACE_TEXT='¿Quieres generar otro prisma? Si estás desarrollando este ejercicio, perderás las respuestas que todavía no hayas enviado. Los resultados correctos anteriores se conservarán';
+const RESTART_TEXT='¿Estás seguro de que quieres reiniciar? Se perderán los participantes, los resultados correctos y los desarrollos consultados de esta evaluación';
+function askRestart(){confirmAction('Reiniciar evaluación',RESTART_TEXT,'Confirmar',()=>{
+ try{if(storageOK)localStorage.removeItem(KEY)}catch(_){}
+ session=null;task=null;angle=.55;tilt=.54;renderSetup();window.scrollTo(0,0);
+})}
+$('reset-btn').addEventListener('click',askRestart);
+$('final-reset').addEventListener('click',askRestart);
+$('discard-btn').addEventListener('click',askRestart);
+function getPerson(){return session.people.find(p=>p.id===session.activePerson)||session.people[0]}
+function groupComplete(person,group){return !!(person.credits[group].area&&person.credits[group].volume)}
+function fullyDone(){return session.people.every(p=>groupComplete(p,'A')&&groupComplete(p,'B'))}
+function pendingCount(person){return ['A','B'].flatMap(g=>['area','volume'].map(k=>person.credits[g][k])).filter(Boolean).length}
+function totalDone(){return session.people.reduce((sum,p)=>sum+pendingCount(p),0)}
+function maxConsults(){return Math.max(3,session.people.length)}
+function makeTask(n,l,h){const ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);return {n,l,h,ap,P,Ab,Al,At,V}}
+function generateTask(){let p=getPerson();
+ if(pendingCount(p)===4){const next=session.people.find(x=>pendingCount(x)<4);if(next){session.activePerson=next.id;p=next}else{session.status='finished';save();renderFinished();return}}
+ const g=session.group;
+ if(groupComplete(p,g))session.group=groupComplete(p,'A')?'B':'A';
+ const choices=groups[session.group].filter(n=>n!==lastN);
+ const n=choices[Math.floor(Math.random()*choices.length)],sideOptions=[4,6,8,10,12];
+ const l=sideOptions[Math.floor(Math.random()*sideOptions.length)],h=4+Math.floor(Math.random()*9);
+ lastN=n;
+ const newTask=makeTask(n,l,h);
+ session.task={...newTask,id:(session.counter||0)+1,group:session.group,personId:session.activePerson,consulted:false,attempted:{area:false,volume:false},credited:{area:false,volume:false}};
+ session.counter=session.task.id;session.inputs={area:'',volume:''};session.feedback={area:'',volume:''};
+ task=session.task;initialView();save();renderEvaluation();
+}
+function chooseContext(personId,group){if(!session||session.status!=='active')return;
+ const p=session.people.find(x=>x.id===personId);if(!p)return;
+ if(groupComplete(p,group))group=groupComplete(p,'A')?'B':'A';
+ const nextGroup=group;
+ confirmAction('Cambiar ejercicio',REPLACE_TEXT,'Sí, generar otro',()=>{
+ session.activePerson=personId;session.group=nextGroup;generateTask();
+ });
+}
+function requestNew(){if(!session||session.status!=='active')return;
+ confirmAction('Otro prisma',REPLACE_TEXT,'Sí, generar otro',()=>generateTask());
+}
+$('new').addEventListener('click',requestNew);
+$('active-person').addEventListener('change',e=>{if(e.target.value!==session.activePerson)chooseContext(e.target.value,session.group)});
+$('active-group').addEventListener('change',e=>{if(e.target.value!==session.group)chooseContext(session.activePerson,e.target.value)});
+function syncContextSelectors(){const p=getPerson();$('active-person').innerHTML=session.people.map(x=>`<option value="${escapeHtml(x.id)}">${escapeHtml(x.name)}${pendingCount(x)===4?' ✓':''}</option>`).join('');$('active-person').value=session.activePerson;
+ for(const o of $('active-group').options)o.disabled=groupComplete(p,o.value);
+ $('active-group').value=session.group;
+}
+function renderProgress(){
+ $('course-display').textContent=session.course;
+ $('all-names').textContent=session.people.map(p=>p.name).join(' · ');
+ $('consultation-count').textContent=`📖 Desarrollos consultados: ${session.consultations} / ${maxConsults()} · disponibles: ${maxConsults()-session.consultations}`;
+ $('total-progress').textContent=`✓ ${totalDone()} / ${session.people.length*4} cálculos correctos`;
+ $('progress-grid').innerHTML=session.people.map(p=>`<div class="progress-person ${p.id===session.activePerson?'active':''}"><b>${escapeHtml(p.name)} · ${pendingCount(p)}/4</b><div class="bar"><span style="width:${pendingCount(p)*25}%"></span></div><div class="checks">${['A','B'].flatMap(g=>['area','volume'].map(k=>`<span class="check ${p.credits[g][k]?'done':'pending'}">${p.credits[g][k]?'✓':'○'} ${g} · ${k==='area'?'Área':'Vol.'}</span>`)).join('')}</div></div>`).join('');
+}
+function renderEvaluation(){if(!session||session.status!=='active')return;
+ showSection('evaluation');task=session.task;
+ syncContextSelectors();renderProgress();
+ const p=getPerson();$('assignment-msg').textContent=`Ejercicio asignado a ${p.name}. Cambiar de participante o grupo generará un prisma nuevo con confirmación.`;
+ $('task-context').textContent=`${p.name} · Grupo ${session.group} · ${names[task.n]} · ${task.consulted?'Desarrollo consultado: este prisma no sirve para completar cálculos.':'Escribe tus respuestas pendientes y revisa por separado.'}`;
+ $('name').textContent='Prisma '+names[task.n]+' regular';
+ $('details').textContent=task.n+' lados por base · '+(task.n+2)+' caras · '+(3*task.n)+' aristas';
+ $('side').textContent=fmt(task.l)+' cm';$('ap').textContent=fmt1(task.ap)+' cm';$('height').textContent=fmt(task.h)+' cm';
+ $('flip-volume').classList.toggle('revealed',task.consulted);$('flip-area').classList.toggle('revealed',task.consulted);
+ $('volume-needed').textContent=p.credits[session.group].volume?'✓ Correcto':task.attempted.volume?'· Intentado':'· Pendiente';
+ $('area-needed').textContent=p.credits[session.group].area?'✓ Correcto':task.attempted.area?'· Intentado':'· Pendiente';
+ for(const kind of ['area','volume']){
+  const input=$('input-'+kind),used=!!p.credits[session.group][kind];
+  input.value=session.inputs?.[kind]||'';
+  input.disabled=task.consulted||used||!!task.attempted[kind];
+  input.setAttribute('aria-label',(kind==='area'?'Área total':'Volumen')+' para '+p.name);
+  const feedback=$('inline-'+kind);feedback.textContent=session.feedback?.[kind]|| (used?'✓ Cálculo correcto registrado anteriormente.':'');feedback.className='feedback '+(used?'good':task.attempted[kind]?'bad':'none');
+ }
+ $('submit-answers').disabled=task.consulted||['area','volume'].every(k=>p.credits[session.group][k]||task.attempted[k]);
+ $('consult-btn').disabled=task.consulted||session.consultations>=maxConsults()||!!task.credited.area||!!task.credited.volume;
+ $('consult-btn').textContent=task.consulted?'📖 Desarrollo consultado':`📖 Consultar desarrollo completo (${maxConsults()-session.consultations} disponibles)`;
+ $('status').textContent=task.consulted?'Este prisma es solo un ejemplo de estudio. Genera otro para seguir evaluando.':session.consultations>=maxConsults()?'Se agotaron los desarrollos disponibles. Puedes seguir intentando ejercicios sin límite.':task.credited.area||task.credited.volume?'Si ya completaste correctamente un cálculo, se conservará. Puedes resolver el otro cálculo o generar otro prisma.':'Puedes completar correctamente área total y volumen por separado; no se descuentan puntos por errores.';
+ $('response-feedback').hidden=true;renderSolid();renderNet();
+ if(task.consulted)renderSolution();else{for(const kind of ['area','volume']){$('steps-'+kind).replaceChildren();$('result-'+kind).replaceChildren()}}
+ if(session.feedback?.area||session.feedback?.volume){
+  $('response-feedback').hidden=false;
+  $('response-feedback').innerHTML=['area','volume'].filter(k=>session.feedback[k]).map(k=>`<p>${escapeHtml(session.feedback[k])}</p>`).join('');
+ }
+}
+function numericAnswer(s){s=s.trim().replace(/\s/g,'');if(!s)return null;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if(/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)){s=s.replace(/\./g,'')}if(!/^[-+]?(?:\d+\.?\d*|\.\d+)$/.test(s))return NaN;return Number(s)}
+function submitAnswers(){if(!session||session.status!=='active'||task.consulted)return;
+ const p=getPerson(),g=session.group;
+ if(task.personId!==p.id||task.group!==g)return;
+ let any=false;
+ for(const kind of ['area','volume']){
+  if(p.credits[g][kind]||task.attempted[kind])continue;
+  const raw=(session.inputs?.[kind]||'').trim();if(!raw)continue;
+  const value=numericAnswer(raw);if(!Number.isFinite(value)){session.feedback[kind]=`${kind==='area'?'Área total':'Volumen'}: escribe un número válido (puedes utilizar coma o punto decimal).`;continue}
+  any=true;task.attempted[kind]=true;
+  const expected=kind==='area'?task.At:task.V;
+  if(Math.abs(value-expected)<=.011){
+   const record={taskId:task.id,group:g,kind,n:task.n,l:task.l,h:task.h,ap:task.ap,P:task.P,Ab:task.Ab,At:task.At,V:task.V,value:expected,at:new Date().toISOString()};
+   p.credits[g][kind]=record;task.credited[kind]=true;session.history.push({...record,personId:p.id});
+   session.feedback[kind]=`✓ ${kind==='area'?'Área total':'Volumen'} correcto para ${p.name} (${fmt(expected)} ${kind==='area'?'cm²':'cm³'}).`;
+  }else{
+   session.feedback[kind]=`${kind==='area'?'Área total':'Volumen'} pendiente. Revisa el desarrollo realizado en tu cuaderno y consulta con tu profesor para identificar en qué te equivocaste. Puedes intentarlo nuevamente con otro prisma`;
+  }
+ }
+ if(!any&&!['area','volume'].some(k=>session.feedback[k])){
+  $('response-feedback').hidden=false;$('response-feedback').textContent='Escribe al menos un resultado pendiente antes de revisarlo.';return;
+ }
+ if(fullyDone()){
+  session.status='finished';save();renderFinished();window.scrollTo(0,0);return;
+ }
+ save();renderEvaluation();
+}
+$('submit-answers').addEventListener('click',submitAnswers);
+for(const kind of ['area','volume'])$('input-'+kind).addEventListener('input',e=>{
+ if(!session||session.status!=='active'||task.consulted||e.target.disabled)return;
+ session.inputs[kind]=e.target.value;save();
+});
+function consultDevelopment(){if(!session||session.status!=='active'||task.consulted)return;
+ if(task.credited.area||task.credited.volume){$('response-feedback').hidden=false;$('response-feedback').textContent='Ya registraste una respuesta correcta en este prisma. Para consultar un ejemplo, genera otro prisma sin resultados correctos registrados.';return}
+ if(session.consultations>=maxConsults())return;
+ confirmAction('Consultar desarrollo',`Se descontará una consulta de las ${maxConsults()-session.consultations} disponibles y este prisma no podrá usarse para completar ningún cálculo evaluativo. ¿Consultar ahora?`,'Sí, consultar',()=>{
+  if(task.consulted||session.consultations>=maxConsults())return;
+  task.consulted=true;session.consultations++;save();renderEvaluation();
+ });
+}
+$('consult-btn').addEventListener('click',consultDevelopment);
+function renderFinished(){if(!session||session.status!=='finished')return;
+ showSection('finished');
+ const header=`<div class="finish-meta"><span>Curso: ${escapeHtml(session.course)}</span><span>Participantes: ${session.people.length}</span><span>Desarrollos consultados: ${session.consultations} / ${maxConsults()}</span><span>Resultados correctos: ${totalDone()} / ${session.people.length*4}</span></div>`;
+ const items=session.people.map(p=>`<article class="evidence-card"><h3>✓ ${escapeHtml(p.name)} · 4/4</h3><div class="evidence-grid">${['A','B'].flatMap(g=>['area','volume'].map(k=>{
+  const r=p.credits[g][k];if(!r)return `<div class="evidence-item"><b>${g} · ${k==='area'?'Área':'Volumen'}</b><span>Pendiente</span></div>`;
+  return `<div class="evidence-item"><b>✓ ${g} · ${k==='area'?'Área total':'Volumen'}</b><span>Prisma ${names[r.n]}</span><span>l=${fmt(r.l)}, a=${fmt1(r.ap)}, h=${fmt(r.h)} cm</span><span><strong>${fmt(r.value)} ${k==='area'?'cm²':'cm³'}</strong></span></div>`
+ })).join('')}</div></article>`).join('');
+ $('final-data').innerHTML=header+`<div class="evidence">${items}</div>`;
+}
+function renderSetup(){showSection('setup');$('course').value='';$('total-participants').value='1';renderNameFields();}
+function renderNameFields(){const target=$('participant-names'),saved=Array.from(target.querySelectorAll('input')).map(x=>x.value),count=+$('total-participants').value;target.innerHTML=Array.from({length:count},(_,i)=>`<label><span class="field-label">Nombre del participante ${i+1}</span><input class="field" name="student" type="text" maxlength="90" placeholder="Nombre y apellido" required value="${escapeHtml(saved[i]||'')}"></label>`).join('')}
+for(let i=1;i<=12;i++){const o=document.createElement('option');o.value=String(i);o.textContent=String(i);$('total-participants').appendChild(o)}
+$('total-participants').addEventListener('change',renderNameFields);
+$('setup-form').addEventListener('submit',e=>{e.preventDefault();const course=$('course').value.trim(),people=[...$('participant-names').querySelectorAll('input')].map((node,i)=>({id:'p'+(i+1),name:node.value.trim(),credits:emptyCredits()}));if(!course||people.some(x=>!x.name)){alert('Completa el curso y todos los nombres.');return}
+ session={version:1,status:'active',course,people,activePerson:people[0].id,group:'A',consultations:0,history:[],counter:0,task:null,inputs:{area:'',volume:''},feedback:{area:'',volume:''},view:null};
+ generateTask();window.scrollTo(0,0);
+});
+$('continue-btn').addEventListener('click',()=>{if(!session)return;if(session.status==='finished')renderFinished();else{task=session.task;lastN=task.n;angle=session.view?.angle??.55;tilt=session.view?.tilt??.54;renderEvaluation()}window.scrollTo(0,0)});
+function init(){const found=readSaved();if(found){session=found;task=session.task;lastN=task?.n??null;angle=session.view?.angle??.55;tilt=session.view?.tilt??.54;
+ $('saved-overview').textContent=`Curso: ${session.course} · ${session.people.map(x=>x.name).join(', ')} · ${totalDone()} de ${session.people.length*4} cálculos correctos · ${session.consultations} desarrollos consultados.${session.status==='finished'?' Actividad finalizada.':''}`;
+ $('continue-btn').textContent=session.status==='finished'?'Ver actividad finalizada':'Continuar evaluación';showSection('continue-screen');
+ }else renderSetup();
+}
+window.addEventListener('pagehide',save);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save()});
+/* Renderizado 3D y red plana portados del juego original sin cambiar su escala ni disposición. */
+function el(parent,tag,attrs={},value){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(value!==undefined)e.textContent=String(value);parent.appendChild(e);return e}
+function resetSVG(s){s.replaceChildren()}
+function ptstr(pts){return pts.map(p=>p.map(v=>v.toFixed(2)).join(',')).join(' ')}
+function avg(pts){return [pts.reduce((a,b)=>a+b[0],0)/pts.length,pts.reduce((a,b)=>a+b[1],0)/pts.length]}
+function line(parent,a,b,cls,other={}){return el(parent,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:cls,...other})}
+function dot(parent,p,color='#9e63c2'){el(parent,'circle',{cx:p[0],cy:p[1],r:4.5,fill:color,stroke:'#fff','stroke-width':1.5})}
+function annotate(parent,at,label,cls='svg-annot',anchor='middle'){el(parent,'text',{x:at[0],y:at[1],class:cls,'text-anchor':anchor},label)}
+function renderSolid(){
+ const {n,l,h}=task,svg=$('solid');resetSVG(svg);
+ const radius=l/(2*Math.sin(Math.PI/n));
+ const vertices=Array.from({length:n},(_,i)=>{
+  const t=-Math.PI/2+2*Math.PI*i/n;return [radius*Math.cos(t),radius*Math.sin(t)];
+ });
+ const scale=Math.min(220/radius,138/Math.hypot(radius,h/2));
+ const C=Math.cos(angle),S=Math.sin(angle),E=Math.sin(tilt),Q=Math.cos(tilt);
+ function project(x,y,z){return [250+scale*(C*x-S*y),165+scale*((S*x+C*y)*E-(z-h/2)*Q)];}
+ const bottom=vertices.map(v=>project(v[0],v[1],0));
+ const top=vertices.map(v=>project(v[0],v[1],h));
+ const visible=[];
+ for(let i=0;i<n;i++){
+  const j=(i+1)%n,mx=(vertices[i][0]+vertices[j][0])/2,my=(vertices[i][1]+vertices[j][1])/2;
+  const toward=S*mx+C*my;
+  if(toward>1e-7)visible.push({i,j,toward});
+ }
+ visible.sort((a,b)=>a.toward-b.toward);
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
+ for(const f of visible)el(svg,'polygon',{points:ptstr([bottom[f.i],bottom[f.j],top[f.j],top[f.i]]),fill:wallColors[f.i],stroke:'#286e92','stroke-width':2.6,'stroke-linejoin':'round'});
+ el(svg,'polygon',{points:ptstr(top),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.8,'stroke-linejoin':'round'});
+ const perimeter=el(svg,'g',{'pointer-events':'none','aria-label':'Perímetro visible de la base inferior (rojo)'});
+ for(const f of visible)line(perimeter,bottom[f.i],bottom[f.j],'',{'stroke':'#d62839','stroke-width':3.8,'stroke-linecap':'round'});
+ const edge=visible.reduce((best,f)=>!best||f.toward>best.toward?f:best,null)||{i:0,j:1};
+ const mid=[(top[edge.i][0]+top[edge.j][0])/2,(top[edge.i][1]+top[edge.j][1])/2];
+ const center=project(0,0,h);
+ line(svg,top[edge.i],top[edge.j],'measure-line');
+ dot(svg,top[edge.i],'#f6aa34');dot(svg,top[edge.j],'#f6aa34');
+ const lPos=[mid[0],mid[1]+(mid[1]<center[1]?-11:18)];
+ annotate(svg,lPos,'l','svg-text');
+ line(svg,center,mid,'ap-line');dot(svg,center);
+ annotate(svg,[(center[0]+mid[0])/2+11,(center[1]+mid[1])/2-8],'a','svg-annot','start');
+ const sideX=top[edge.j][0]>top[edge.i][0]?edge.j:edge.i;
+ line(svg,bottom[sideX],top[sideX],'measure-line');
+ annotate(svg,[top[sideX][0]+(top[sideX][0]>250?13:-13),(top[sideX][1]+bottom[sideX][1])/2+5],'h','svg-text',top[sideX][0]>250?'start':'end');
+}
+function polyOnEdge(x,y,w,up){
+ const pts=[[x,y],[x+w,y]];let px=x+w,py=y;
+ const turn=(up?-1:1)*2*Math.PI/task.n;
+ for(let i=1;i<task.n-1;i++){px+=w*Math.cos(turn*i);py+=w*Math.sin(turn*i);pts.push([px,py]);}
+ return pts;
+}
+function renderNet(){
+ const {n,l,h}=task,svg=$('net');resetSVG(svg);
+ const W=74,H=W*h/l,attached=Math.floor((n-1)/2),xA=attached*W;
+ const upper=polyOnEdge(xA,0,W,true),lower=polyOnEdge(xA,H,W,false);
+ const pts=[[0,0],[n*W,H],...upper,...lower],xx=pts.map(q=>q[0]),yy=pts.map(q=>q[1]);
+ const minX=Math.min(...xx),maxX=Math.max(...xx),minY=Math.min(...yy),maxY=Math.max(...yy);
+ const sc=Math.min(485/(maxX-minX+35),282/(maxY-minY+35));
+ const tx=265-(minX+maxX)*sc/2,ty=165-(minY+maxY)*sc/2;
+ const g=el(svg,'g',{transform:`translate(${tx} ${ty}) scale(${sc})`});
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
+ for(let i=0;i<n;i++){const x=i*W;el(g,'polygon',{points:ptstr([[x,0],[x+W,0],[x+W,H],[x,H]]),fill:wallColors[i],stroke:'#286e92','stroke-width':2.4,'stroke-linejoin':'round'});}
+ el(g,'polygon',{points:ptstr(upper),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.7,'stroke-linejoin':'round'});
+ el(g,'polygon',{points:ptstr(lower),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.7,'stroke-linejoin':'round'});
+ const folds=el(g,'g',{'pointer-events':'none'});
+ for(let i=1;i<n;i++)line(folds,[i*W,0],[i*W,H],'',{stroke:'#fff','stroke-width':1.7,'stroke-dasharray':'5 4'});
+ line(folds,[xA,0],[xA+W,0],'',{stroke:'#fff','stroke-width':2,'stroke-dasharray':'5 4'});
+ line(folds,[xA,H],[xA+W,H],'',{stroke:'#fff','stroke-width':2,'stroke-dasharray':'5 4'});
+ const mid=[xA+W/2,0],center=avg(upper);
+ line(g,[xA,0],[xA+W,0],'measure-line');line(g,center,mid,'ap-line');dot(g,center);
+ annotate(g,[mid[0]-W*.3,mid[1]+16],'l','svg-annot');
+ annotate(g,[(center[0]+mid[0])/2+W*.14,(center[1]+mid[1])/2],'a','svg-annot','start');
+ const x=0;line(g,[x,0],[x,H],'measure-line');
+ annotate(g,[x-8,H/2+5],'h','svg-annot','end');
+ const yP=H-2.2;
+ const perimetroRed=el(g,'g',{'pointer-events':'none','aria-label':'Perímetro rojo desarrollado sobre los bordes inferiores de las caras laterales'});
+ for(let i=0;i<n;i++)line(perimetroRed,[i*W,yP],[(i+1)*W,yP],'',{'stroke':'#d62839','stroke-width':3.8,'stroke-linecap':'butt'});
+}
+function step(lines){return '<div class="step"><div class="m calc-chain">'+lines.map((line,i)=>'<div class="calc-line'+(i===lines.length-1?' final':'')+'">'+line+'</div>').join('')+'</div></div>'}
+function frac(numerator,denominator){return '<span class="frac"><span class="num">'+numerator+'</span><span class="den">'+denominator+'</span></span>'}
+function renderSolution(){const {n,l,h,ap,P,Ab,Al,At,V}=task;
+ $('steps-volume').innerHTML=[
+  step(['P = n · l','P = '+n+' · '+fmt(l),'P = <b>'+fmt(P)+' cm</b>']),
+  step(['A<sub>b</sub> = '+frac('P · a','2'),'A<sub>b</sub> = '+frac(fmt(P)+' · '+fmt1(ap),'2'),'A<sub>b</sub> = <b>'+fmt(Ab)+' cm²</b>']),
+  step(['V = A<sub>b</sub> · h','V = '+fmt(Ab)+' · '+fmt(h),'V = <b>'+fmt(V)+' cm³</b>'])
+ ].join('');
+ $('result-volume').innerHTML='V = '+fmt(V)+' cm³';
+ $('steps-area').innerHTML=[
+  step(['P = n · l','P = '+n+' · '+fmt(l),'P = <b>'+fmt(P)+' cm</b>']),
+  step(['A<sub>T</sub> = P · a + P · h','A<sub>T</sub> = '+fmt(P)+' · '+fmt1(ap)+' + '+fmt(P)+' · '+fmt(h),'A<sub>T</sub> = '+fmt(P*ap)+' + '+fmt(Al)]),
+  step(['A<sub>T</sub> = <b>'+fmt(At)+' cm²</b>'])
+ ].join('');
+ $('result-area').innerHTML='A<sub>T</sub> = '+fmt(At)+' cm²';
+}
+const solid=$('solid');
+function initialView(){angle=(task?.n===3?38:task?.n===4?28:24)*Math.PI/180;tilt=31*Math.PI/180;}
+solid.addEventListener('pointerdown',ev=>{if(ev.pointerType==='mouse'&&ev.button!==0)return;drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY};try{solid.setPointerCapture(ev.pointerId)}catch(_){}solid.classList.add('dragging')});
+solid.addEventListener('pointermove',ev=>{if(!drag||ev.pointerId!==drag.id)return;const dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;drag.x=ev.clientX;drag.y=ev.clientY;angle+=dx*.014;tilt=Math.max(.30,Math.min(1.00,tilt+dy*.008));if(task)renderSolid();save()});
+function release(ev){if(!drag||drag.id!==ev.pointerId)return;drag=null;solid.classList.remove('dragging')}
+solid.addEventListener('pointerup',release);solid.addEventListener('pointercancel',release);
+solid.addEventListener('lostpointercapture',()=>{drag=null;solid.classList.remove('dragging')});
+solid.addEventListener('keydown',ev=>{const amount=Math.PI/18;if(ev.key==='ArrowLeft')angle-=amount;else if(ev.key==='ArrowRight')angle+=amount;else if(ev.key==='ArrowUp')tilt=Math.min(1.00,tilt+.10);else if(ev.key==='ArrowDown')tilt=Math.max(.30,tilt-.10);else if(ev.key==='Home')initialView();else return;ev.preventDefault();if(task)renderSolid();save()});
+$('reset-view').addEventListener('click',()=>{initialView();renderSolid();save()});
+init();
+})();
+</script>
+</body>
+</html>
