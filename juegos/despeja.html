@@ -75,8 +75,9 @@ header>*{min-width:0}.meta{overflow-wrap:anywhere}
 <body>
 <main>
 <header><h1>Despeja la <i>x</i></h1><span class="meta" id="meta"></span></header>
-<div class="stars-total" aria-label="Estrellas obtenidas en esta sesión">⭐ Estrellas acumuladas: <strong id="total-stars">0</strong> <span>· Desafíos completados: <strong id="total-wins">0</strong></span></div>
+<div class="stars-total" aria-label="Estrellas acumuladas y guardadas en este navegador">⭐ Estrellas acumuladas: <strong id="total-stars">0</strong> <span>· Desafíos completados: <strong id="total-wins">0</strong></span></div>
 <select id="sel" aria-label="Nivel"></select>
+<p class="meta" id="difficulty" style="margin:-3px 2px 12px;font-size:12px">Dificultad del nivel</p>
 <div class="last" id="last" hidden><div class="last-title">ÚLTIMA TRANSFORMACIÓN</div><div id="last-before"></div><div id="last-expanded" class="last-expanded"></div></div>
  <div class="board" id="board" aria-live="polite"></div>
  <p class="current-caption">SITUACIÓN ACTUAL</p>
@@ -92,7 +93,7 @@ header>*{min-width:0}.meta{overflow-wrap:anywhere}
 <div class="small"><button id="undo">Deshacer</button><button id="reset">Reiniciar</button><button id="other">Otro ejercicio</button></div>
 <div class="res" id="res" hidden>
  <div class="stars" id="stars"></div>
- <p id="resmsg"></p><p style="font-size:13px;color:var(--mut)">Las estrellas se acumulan una vez por desafío, aunque uses Deshacer o Reiniciar.</p>
+ <p id="resmsg"></p><p style="font-size:13px;color:var(--mut)">Las estrellas dependen de la dificultad del nivel y quedan guardadas en este navegador. La cantidad de pasos no las reduce.</p>
  <button class="go" id="next">Siguiente nivel</button>
 </div>
 <h2>Tus pasos</h2>
@@ -102,7 +103,7 @@ header>*{min-width:0}.meta{overflow-wrap:anywhere}
 // 36 niveles oficiales. Ordenados por el mayor exponente o índice de raíz (1 a 8).
 const S=[[1,1,0],[2,1,0],[3,1,0],[4,1,0],[5,1,0],[6,2,0],[7,2,0],[8,2,0],[9,2,0],[10,2,0],[11,2,0],[12,2,0],[6,2,1],[7,2,1],[8,2,1],[10,2,1],[11,2,1],[12,2,1],[7,3,0],[12,3,0],[12,3,1],[8,4,0],[6,5,0],[7,5,0],[11,5,0],[6,5,1],[6,6,0],[8,6,0],[12,6,0],[7,6,1],[6,7,0],[7,7,0],[6,7,1],[6,8,0],[11,8,0],[8,8,1]];
 const D=["x + a = b","ax = b","ax + b = c","ax + b = cx","ax + b = cx + d","xᴺ = a","a·xᴺ = b","a·xᴺ + c = b","a·xᴺ + c = b·xᴺ","a·xᴺ + c = b·xᴺ + d","a(x+b)ᴺ = c","a(x+b)ᴺ + c = d"];
-const PAR=[1,1,2,3,3,1,2,3,4,4,3,4],SUP=["","","²","³","⁴","⁵","⁶","⁷","⁸"],RAD=["","","√","∛","∜","⁵√","⁶√","⁷√","⁸√"];
+const SUP=["","","²","³","⁴","⁵","⁶","⁷","⁸"],RAD=["","","√","∛","∜","⁵√","⁶√","⁷√","⁸√"];
 const $=id=>document.getElementById(id);
 const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
 const F=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}};
@@ -229,6 +230,25 @@ function step(o,k,ux){
  if(sw)swp(q);return norm(q)}
 let lvl=0,eq,ini,hist,op="+",neg=false;
 let starsTotal=0,winsTotal=0,awardForCurrent=false;
+const SAVE_KEY="labmat.despeja.progreso.v1";
+const difficultyStars=()=>S[lvl][1]===1?1:S[lvl][1]===2?2:3;
+const difficultyLabel=()=>["","básico","intermedio","avanzado"][difficultyStars()];
+// El navegador guarda tanto las estrellas como el desafío activo y sus transformaciones.
+function saveProgress(){
+ try{localStorage.setItem(SAVE_KEY,JSON.stringify({v:1,lvl,ini,eq,hist,starsTotal,winsTotal,awardForCurrent}))}catch(e){}
+}
+function restoreProgress(){
+ try{
+  const raw=localStorage.getItem(SAVE_KEY);if(!raw)return false;
+  const saved=JSON.parse(raw);
+  const validEq=q=>q&&Number.isInteger(q.s)&&q.e&&["e","la","lb","lp","ra","rb","rp"].every(k=>q[k]&&Number.isFinite(q[k].n)&&Number.isFinite(q[k].d)&&q[k].d>0);
+  const validCount=v=>Number.isSafeInteger(v)&&v>=0&&v<=100000000;
+  if(saved.v!==1||!Number.isInteger(saved.lvl)||saved.lvl<0||saved.lvl>=S.length||!validEq(saved.ini)||!validEq(saved.eq)||!Array.isArray(saved.hist)||!validCount(saved.starsTotal)||!validCount(saved.winsTotal))return false;
+  if(saved.hist.some(h=>!h||!validEq(h.prev)||!validEq(h.after)))return false;
+  lvl=saved.lvl;ini=saved.ini;eq=saved.eq;hist=saved.hist;starsTotal=saved.starsTotal;winsTotal=saved.winsTotal;awardForCurrent=Boolean(saved.awardForCurrent);
+  return true;
+ }catch(e){return false}
+}
 function renderTotal(){
  $('total-stars').textContent=String(starsTotal);
  $('total-wins').textContent=String(winsTotal);
@@ -241,13 +261,14 @@ function render(){
  if(hist.length){const h=hist[hist.length-1];$("last-before").innerHTML=mEq(h.prev);$("last-expanded").innerHTML=mIntermediate(h.prev,h.o,h.k,h.ux);}
  $("meta").textContent="Nivel "+(lvl+1)+" de "+S.length+" · pasos: "+hist.length;
  $("board").innerHTML=mEq(eq);$("board").classList.toggle("win",w);$("ctl").hidden=w;$("res").hidden=!w;
- if(w){const par=PAR[S[lvl][0]-1]+(S[lvl][0]===1&&ini.la.n<0?1:0),n=hist.length,s=n<=par?3:n<=par+1?2:1;
+ $("difficulty").textContent="Dificultad: "+difficultyLabel()+" · "+("★".repeat(difficultyStars())+"☆".repeat(3-difficultyStars()))+" · estrellas por desafío completado";
+ if(w){const s=difficultyStars();
   if(!awardForCurrent){starsTotal+=s;winsTotal++;awardForCurrent=true}
   renderTotal();
   $("stars").textContent="★".repeat(s)+"☆".repeat(3-s);
-  $("resmsg").textContent=(s===3?"¡Perfecto! ":"¡Lo lograste! ")+"Lo resolviste en "+n+(n===1?" paso":" pasos")+(s<3?" (se podía en "+par+")":"")+".";
+  $("resmsg").textContent="¡Desafío completado! Ganaste "+s+(s===1?" estrella":" estrellas")+" por la dificultad de este nivel. Los pasos que usaste no disminuyen tu puntaje.";
   $("next").textContent=lvl<S.length-1?"Siguiente nivel":"Volver al nivel 1"}
- $("hist").innerHTML=hist.length?hist.map((h,i)=>'<li><div class="op">Paso '+(i+1)+": "+h.t+'</div><div class="eq">'+mEq(h.prev)+'<div class="math-step">'+mIntermediate(h.prev,h.o,h.k,h.ux)+'</div><div class="math-step">→ '+mEq(h.after)+'</div></div></li>').join(""):'<li class="meta">Todavía no hay pasos. Empieza eligiendo una operación.</li>'}
+ $("hist").innerHTML=hist.length?hist.map((h,i)=>'<li><div class="op">Paso '+(i+1)+": "+h.t+'</div><div class="eq">'+mEq(h.prev)+'<div class="math-step">'+mIntermediate(h.prev,h.o,h.k,h.ux)+'</div><div class="math-step">→ '+mEq(h.after)+'</div></div></li>').join(""):'<li class="meta">Todavía no hay pasos. Empieza eligiendo una operación.</li>';saveProgress()}
 document.querySelectorAll(".ops button").forEach(b=>b.onclick=()=>{op=b.dataset.op;
  document.querySelectorAll(".ops button").forEach(x=>x.setAttribute("aria-pressed",x===b));
  const m=op!=="+"&&op!=="-";$("xt").disabled=m;if(m)$("xt").checked=false;$("xl").style.opacity=m?.4:1;
@@ -267,7 +288,7 @@ $("other").onclick=()=>start();
 $("next").onclick=()=>{lvl=(lvl+1)%S.length;start()};
 $("sel").innerHTML=S.map((x,i)=>"<option value="+i+">"+(i+1)+". "+D[x[0]-1].replace(/ᴺ/g,SUP[x[1]])+(x[2]?" (con raíz)":"")+"</option>").join("");
 $("sel").onchange=()=>{lvl=+$("sel").value;start()};
-start();renderTotal();
+if(restoreProgress())render();else start();renderTotal();
 </script>
 </body>
 </html>
