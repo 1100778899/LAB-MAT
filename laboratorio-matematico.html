@@ -8,6 +8,18 @@ main{max-width:1060px;margin:auto;padding:22px 18px 52px}.eyebrow{color:var(--te
 h2{font-size:20px;letter-spacing:-.35px;margin:0 0 6px}.sub{color:var(--muted);font-size:14px;margin:0 0 19px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:19px;padding:22px;box-shadow:0 8px 25px #18392d0b;display:flex;flex-direction:column;min-height:238px}.icon{width:54px;height:54px;border-radius:14px;background:#e7f5ef;display:grid;place-items:center;font-size:28px;margin-bottom:13px}.card h3{font-size:20px;letter-spacing:-.4px;margin:0 0 7px}.card p{color:var(--muted);font-size:14px;line-height:1.48;margin:0 0 13px}.card .meta{color:#166d5b;font-size:12px;font-weight:780;margin-top:auto;margin-bottom:15px}.open{width:100%;min-height:44px;border:0;border-radius:11px;background:var(--teal);color:white;font-weight:800;font-size:15px}.open:hover{background:#105848}.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:23px}
 #player{display:none;min-height:100dvh;background:#eef5f1}#gamebar{height:64px;display:flex;align-items:center;gap:13px;padding:8px 16px;position:sticky;top:0;z-index:5;background:var(--navy);color:white;box-shadow:0 4px 14px #08211924}#back{font-size:14px;font-weight:750;color:white;background:#245246;border:1px solid #4a8a78;border-radius:10px;min-height:42px;padding:9px 13px}#gametitle{font-weight:800;font-size:clamp(15px,2.3vw,19px)}.game-frame{display:none;width:100%;height:calc(100dvh - 64px);border:0;background:#eef2f0}.game-frame.active{display:block}body.playing{background:#eef2f0}body.playing main{display:none}body.playing #player{display:block}
 @media(max-width:650px){main{padding:13px 12px 36px}.top{padding:25px 20px}.cards{grid-template-columns:1fr;gap:11px}.card{min-height:unset;padding:17px;display:grid;grid-template-columns:53px 1fr;column-gap:13px;align-items:start}.card .icon{grid-row:1/4;grid-column:1;margin:0}.card h3,.card p,.card .meta,.card button{grid-column:2}.card h3{font-size:18px}.card p{font-size:13px;margin-bottom:7px}.card .meta{margin:0 0 11px}.card button{width:100%}#gamebar{height:58px;padding:7px 10px;gap:10px}#back{padding:8px 10px;min-height:39px} .game-frame{height:calc(100dvh - 58px)}}
+
+/* Selector de modalidades de Prismas; no altera el interior de los juegos. */
+#prismas-mode-picker{max-width:940px;margin:0 auto;padding:28px 18px 48px}
+#prismas-mode-picker h2{font-size:clamp(23px,4vw,32px);margin:3px 0 8px}
+.mode-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.mode-choice{border:1px solid var(--border);border-radius:17px;background:white;color:var(--ink);padding:21px 17px;min-height:170px;text-align:left;display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 25px #18392d0b;transition:border-color .15s,transform .15s}
+.mode-choice:hover{border-color:var(--teal);transform:translateY(-2px)}
+.mode-choice strong{font-size:19px}
+.mode-choice span{font-size:13px;line-height:1.5;color:var(--muted)}
+.mode-choice em{font-size:12px;color:var(--teal);font-style:normal;font-weight:800;margin-top:auto}
+#prismas-mode-picker[hidden]{display:none!important}
+@media(max-width:650px){#prismas-mode-picker{padding:20px 12px 32px}.mode-choices{grid-template-columns:1fr;gap:10px;margin-top:16px}.mode-choice{min-height:112px;padding:16px;gap:5px}.mode-choice strong{font-size:18px}}
 </style></head><body>
 <main id="home">
 <section class="top"><div class="eyebrow" style="color:#90dfc4">Exploración matemática</div><h1>Laboratorio Matemático</h1><p>Elige un juego, experimenta y revisa tus procedimientos. Puedes cambiar de actividad cuando quieras.</p><span class="pill">4 juegos · Acceso libre · Sin internet</span></section>
@@ -15,14 +27,54 @@ h2{font-size:20px;letter-spacing:-.35px;margin:0 0 6px}.sub{color:var(--muted);f
 <div class="cards" id="cards"></div>
 <p class="foot">Este laboratorio funciona en el dispositivo. No envía nombres ni resultados a un servidor.</p>
 </main>
-<section id="player" aria-label="Juego seleccionado"><div id="gamebar"><button type="button" id="back">← Juegos</button><span id="gametitle"></span></div><div id="frames"></div></section>
+<section id="player" aria-label="Juego seleccionado"><div id="gamebar"><button type="button" id="back">← Juegos</button><span id="gametitle"></span></div><section id="prismas-mode-picker" aria-label="Modalidades de Prismas y redes" hidden>
+<div class="eyebrow">Geometría · Prismas y redes</div><h2>¿Cómo quieres jugar?</h2>
+<p class="sub">Selecciona el modo para trabajar con los seis prismas regulares.</p>
+<div class="mode-choices">
+<button type="button" class="mode-choice" data-mode="prismas-original"><strong>🧩 Original</strong><span>El juego de siempre, sin modificaciones.</span><em>Explorar el juego original</em></button>
+<button type="button" class="mode-choice" data-mode="prismas-practica"><strong>✏️ Práctica</strong><span>Ejercicios libres, respuestas y desarrollos paso a paso. Sin registro de evaluación.</span><em>Practicar sin nota</em></button>
+<button type="button" class="mode-choice" data-mode="prismas-evaluacion"><strong>📋 Evaluación</strong><span>Trabajo individual o grupal, cuatro cálculos por persona y guardado automático.</span><em>Comenzar o continuar</em></button>
+</div></section><div id="frames"></div></section>
 <script>
-const DATA=[{"id": "operatoria", "title": "Operatoria combinada", "desc": "Practica cálculos con enteros, fracciones y decimales, en modo libre o selección múltiple.", "meta": "5 bloques · Niveles 0–8 · Aciertos", "emoji": "🧮"}, {"id": "prismas", "title": "Prismas y redes", "desc": "Gira cuerpos geométricos y calcula área total y volumen, con soluciones paso a paso.", "meta": "Prismas regulares · Geometría", "emoji": "📐"}, {"id": "despeja", "title": "Despeja la X", "desc": "Transforma ambos miembros de una ecuación, deshaz pasos y resuelve desafíos.", "meta": "36 niveles · Estrellas acumuladas", "emoji": "⚖️"}, {"id": "sistemas", "title": "Sistemas de ecuaciones", "desc": "Combina ecuaciones mediante reducción y descubre soluciones paso a paso.", "meta": "5 niveles · Álgebra", "emoji": "🔢"}];
-const GAMES={"operatoria":"juegos/operatoria.html","prismas":"juegos/prismas.html?v=5bb60cb2","despeja":"juegos/despeja.html","sistemas":"juegos/sistemas.html"};
+const DATA=[{"id": "operatoria", "title": "Operatoria combinada", "desc": "Practica cálculos con enteros, fracciones y decimales, en modo libre o selección múltiple.", "meta": "5 bloques · Niveles 0–8 · Aciertos", "emoji": "🧮"}, {"id": "prismas", "title": "Prismas y redes", "desc": "Elige Original, Práctica o Evaluación. Gira prismas y explora sus redes.", "meta": "Prismas regulares · Geometría", "emoji": "📐"}, {"id": "despeja", "title": "Despeja la X", "desc": "Transforma ambos miembros de una ecuación, deshaz pasos y resuelve desafíos.", "meta": "36 niveles · Estrellas acumuladas", "emoji": "⚖️"}, {"id": "sistemas", "title": "Sistemas de ecuaciones", "desc": "Combina ecuaciones mediante reducción y descubre soluciones paso a paso.", "meta": "5 niveles · Álgebra", "emoji": "🔢"}];
+const GAMES={"operatoria":"juegos/operatoria.html","prismas-original":"juegos/prismas.html?v=5bb60cb2","prismas-practica":"juegos/prismas-practica.html?v=practica-1","prismas-evaluacion":"juegos/prismas-evaluacion.html?v=evaluacion-1","despeja":"juegos/despeja.html","sistemas":"juegos/sistemas.html"};
 const $=id=>document.getElementById(id);
 const cards=$('cards');const frames=$('frames');
 for(const game of DATA){const card=document.createElement('article');card.className='card';const icon=document.createElement('div');icon.className='icon';icon.textContent=game.emoji;const title=document.createElement('h3');title.textContent=game.title;const desc=document.createElement('p');desc.textContent=game.desc;const meta=document.createElement('div');meta.className='meta';meta.textContent=game.meta;const btn=document.createElement('button');btn.className='open';btn.textContent='Jugar';btn.addEventListener('click',()=>openGame(game.id));card.append(icon,title,desc,meta,btn);cards.appendChild(card)}
 const cache={};
-function openGame(id){let frame=cache[id];if(id==='prismas'&&frame){frame.remove();delete cache[id];frame=null}if(!frame){frame=document.createElement('iframe');frame.className='game-frame';frame.setAttribute('title',DATA.find(x=>x.id===id).title);frame.setAttribute('loading','eager');frame.src=id==='prismas'?GAMES[id]+'&recarga='+Date.now():GAMES[id];frames.appendChild(frame);cache[id]=frame;}for(const other of Object.values(cache))other.classList.remove('active');frame.classList.add('active');$('gametitle').textContent=DATA.find(x=>x.id===id).title;document.body.classList.add('playing');window.scrollTo(0,0)}
-$('back').addEventListener('click',()=>{document.body.classList.remove('playing');window.scrollTo(0,0)});
+const picker=$('prismas-mode-picker');
+const modeNames={'prismas-original':'Original','prismas-practica':'Práctica','prismas-evaluacion':'Evaluación'};
+let currentView='home';
+function showModes(){
+  for(const frame of Object.values(cache))frame.classList.remove('active');
+  picker.hidden=false;currentView='prismas-menu';
+  $('gametitle').textContent='Prismas y redes';
+  $('back').textContent='← Juegos';
+  document.body.classList.add('playing');window.scrollTo(0,0);
+}
+function openGame(id){
+  if(id==='prismas'){showModes();return}
+  picker.hidden=true;
+  let frame=cache[id];
+  if((id==='prismas-original'||id==='prismas-practica')&&frame){
+    frame.remove();delete cache[id];frame=null;
+  }
+  if(!frame){
+    frame=document.createElement('iframe');frame.className='game-frame';
+    frame.title=modeNames[id]?'Prismas y redes · '+modeNames[id]:DATA.find(x=>x.id===id).title;
+    frame.setAttribute('loading','eager');
+    frame.src=id.startsWith('prismas-')?GAMES[id]+'&recarga='+Date.now():GAMES[id];
+    frames.appendChild(frame);cache[id]=frame;
+  }
+  for(const other of Object.values(cache))other.classList.remove('active');
+  frame.classList.add('active');currentView=id;
+  $('gametitle').textContent=modeNames[id]?'Prismas · '+modeNames[id]:DATA.find(x=>x.id===id).title;
+  $('back').textContent=modeNames[id]?'← Modos':'← Juegos';
+  document.body.classList.add('playing');window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>openGame(btn.dataset.mode)));
+$('back').addEventListener('click',()=>{
+  if(modeNames[currentView]){showModes();return}
+  currentView='home';document.body.classList.remove('playing');window.scrollTo(0,0);
+});
 </script></body></html>
