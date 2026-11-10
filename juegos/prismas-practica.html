@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Prismas y redes · Modo práctica</title>
+<style>
+:root{color-scheme:light;--bg:#edf2f2;--ink:#162b34;--sub:#526874;--line:#cbdada;--paper:#fff;--navy:#153a45;--teal:#087b74;--teal2:#d6f3ed;--gold:#f1b353;--blue:#398bc3;--shadow:0 8px 32px #122e3514}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 0,#d8f4ed 0%,transparent 36%),var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif}main{max-width:1170px;margin:auto;padding:21px 16px 46px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:16px}h1{margin:2px 0 4px;font-size:clamp(25px,3.6vw,36px);letter-spacing:-.9px}p{margin:0}.eyebrow{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#07756b}.intro{color:var(--sub);font-size:14px;max-width:700px}.btn{border:0;cursor:pointer;font-weight:800;font-size:14px;min-height:44px;padding:12px 18px;border-radius:12px;touch-action:manipulation}.btn:focus-visible,input:focus-visible{outline:3px solid #f2b94b;outline-offset:3px}.btn-primary{background:var(--teal);color:white;box-shadow:0 4px 0 #075e59}.btn-primary:active{transform:translateY(2px);box-shadow:0 2px 0 #075e59}.btn-neutral{background:#fff;border:1px solid var(--line);color:var(--ink)}.challenge{background:var(--navy);color:#effff9;border-radius:16px;padding:13px 18px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.challenge strong{font-size:17px}.challenge small{color:#bce1db;font-size:12px}.icons{font-size:18px}.columns,.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.figure{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}.figure header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px 0}.figure h2{margin:0;font-size:19px}.hint{font-size:12px;color:var(--sub)}.figure svg{width:100%;height:clamp(205px,31vw,315px);display:block;overflow:visible}.figure .shape-caption{font-size:12px;color:var(--sub);text-align:center;padding:0 12px 14px;min-height:34px}.svg-text{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round;font-size:17px;font-weight:800;fill:#124a50}.svg-annot{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;font-weight:800;fill:#173944;paint-order:stroke;stroke:#faffff;stroke-width:5px;stroke-linejoin:round}.measure-line{stroke:#f8ae45;stroke-width:3.8;stroke-linecap:round;fill:none}.ap-line{stroke:#9e63c2;stroke-width:3;stroke-dasharray:6 5;fill:none}.data{background:white;border:1px solid var(--line);border-radius:16px;margin:14px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.data .cell{text-align:center;padding:8px;background:#f3f8f7;border-radius:11px}.data small{display:block;color:var(--sub);font-size:12px}.data strong{font-variant-numeric:tabular-nums;font-size:clamp(17px,2.8vw,24px)}.data .code{font-family:Georgia,serif;font-style:italic;color:var(--teal)}.note{font-size:12px;color:var(--sub);margin:0 2px 14px}.work-grid{align-items:stretch}.work-label{margin:0 0 9px;font-size:18px;color:var(--ink)}.flip-wrap{perspective:1400px;min-width:0}.flip-inner{height:340px;transition:transform .72s cubic-bezier(.19,.75,.19,1);transform-style:preserve-3d;position:relative}.flip-wrap.revealed .flip-inner{transform:rotateY(180deg)}.face{backface-visibility:hidden;-webkit-backface-visibility:hidden;position:absolute;inset:0;background:white;border:1px solid var(--line);border-radius:17px;padding:17px 18px;box-shadow:var(--shadow);overflow:auto}.face.back{transform:rotateY(180deg);border:2px solid #5dbda8;background:linear-gradient(150deg,#f6fffc,#fff 80%)}.face .ttl{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:11px}.math{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.6;color:var(--ink)}.math small{font:12px system-ui;color:var(--sub)}.math-line{display:block;margin:7px 0;line-height:1.7}.math-line sub,.steps sub{font-size:.66em;line-height:0;vertical-align:sub}.frac{display:inline-flex;vertical-align:middle;align-items:center;flex-direction:column;line-height:1.1;text-align:center;font-family:Georgia,serif;margin:0 3px}.frac .num{border-bottom:1.5px solid currentColor;padding:0 4px 3px;white-space:nowrap}.frac .den{padding-top:3px}.formula-list{display:grid;gap:5px}.form-label{font-size:13px;margin-top:14px;display:block;color:var(--sub);font-weight:700}.answer-row{display:flex;align-items:center;gap:7px;margin-top:7px}.answer{width:100%;max-width:220px;min-width:0;padding:10px 12px;font:700 18px system-ui;border:1.5px solid #bad0d1;border-radius:10px;background:#f7faf9;color:var(--ink)}.unit{font-size:14px;font-weight:800;color:var(--sub)}.answer-tip{font-size:12px;color:var(--sub);margin-top:10px}.steps{counter-reset:step;display:grid;gap:10px}.step{display:flex;gap:10px;align-items:start;font-size:16px;line-height:1.45;font-family:Georgia,serif}.step:before{counter-increment:step;content:counter(step);font:800 12px system-ui;color:#0a685e;background:#dcf6ef;padding:5px 9px;border-radius:8px;flex:none}.step .m{flex:1;overflow-wrap:anywhere}.step b{color:#045e57}.result{font-weight:800;font-size:20px;color:#06675e;padding:10px 12px;border-radius:10px;background:#e0f7ef;margin-top:13px}.feedback{font-size:12px;font-weight:700;margin-top:8px}.feedback.good{color:#04774b}.feedback.bad{color:#ae432e}.feedback.none{color:var(--sub)}.actions{display:flex;flex-direction:column;gap:9px;align-items:center;margin:18px auto 2px}.actions .btn{min-width:min(100%,360px);font-size:16px}.actions small{text-align:center;color:var(--sub);font-size:12px;max-width:650px}.legend{margin-top:17px;display:flex;gap:17px;flex-wrap:wrap;color:var(--sub);font-size:12px}.legend i{display:inline-block;width:13px;height:4px;vertical-align:middle;margin-right:5px;border-radius:4px}.foot{color:var(--sub);font-size:12px;margin-top:13px}
+@media(max-width:700px){main{padding:15px 11px 35px}.columns,.work-grid{grid-template-columns:1fr}.figure svg{height:280px}.flip-inner{height:335px}.figure h2{font-size:18px}.top .btn{width:100%}.face{padding:15px}.work-grid{gap:14px}.work-label{margin-top:2px}.data{margin:12px 0}.data .cell{padding:8px 4px}.note{margin-bottom:14px}}
+@media(max-width:380px){.figure svg{height:235px}.math{font-size:18px}.step{font-size:15px}.flip-inner{height:345px}}
+@media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+@media print{body{background:white}.btn,.actions{display:none}.flip-inner{transform:none!important}.face{position:relative}.face.front{display:none}.face.back{transform:none;border:1px solid #aaa}.flip-inner{height:auto}.work-grid{grid-template-columns:1fr 1fr}}
+
+/* Distribución 2–1–2: dos representaciones, franja de datos y dos cálculos. */
+.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "volume area";gap:14px;align-items:stretch}
+.prism-figure{grid-area:prism}.net-figure{grid-area:net}.data-wrap{grid-area:data;min-width:0}.volume-work{grid-area:volume;min-width:0}.area-work{grid-area:area;min-width:0}
+.lab-grid .figure{display:flex;flex-direction:column;min-width:0}
+.lab-grid .figure svg{width:100%;height:clamp(205px,27vw,315px);flex-shrink:0}
+#solid{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#solid.dragging{cursor:grabbing}#solid:focus{outline:none}#solid:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.reset-view{align-self:center;min-height:35px;margin:0 auto 13px;padding:5px 12px;font:700 12px system-ui;border:1px solid var(--line);border-radius:9px;color:var(--teal);background:var(--paper);cursor:pointer}
+.reset-view:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.lab-grid .data{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.data-title{font-size:16px;line-height:1.2;margin:0 0 7px;color:var(--ink)}.lab-grid .note{margin:7px 2px 0}
+.lab-grid .work-label{font-size:20px;margin:0 0 10px}
+.lab-grid .flip-inner{height:400px}.lab-grid .face{overflow:auto}
+@media(max-width:700px){
+  main{padding:12px 10px 28px}.lab-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}
+  .lab-grid .figure svg{height:195px}.figure header{padding:11px 9px 0;display:block}
+  .figure h2{font-size:17px}.figure .hint{display:block;font-size:10px;margin-top:2px}
+  .lab-grid .figure .shape-caption{font-size:10px;line-height:1.3;min-height:39px;padding:0 6px 6px}
+  .reset-view{font-size:11px;padding:4px 6px;margin-bottom:8px}
+  .lab-grid .data{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:7px}
+  .lab-grid .data .cell{padding:7px 3px}.data small{font-size:10px;line-height:1.25}.data strong{font-size:17px}
+  .data-title{font-size:15px}.lab-grid .note{font-size:10px;margin:5px 2px 0}
+  .lab-grid .work-label{font-size:17px;margin:1px 0 7px}
+  .lab-grid .flip-inner{height:355px}.lab-grid .face{padding:10px 9px;border-radius:12px}
+  .face .ttl{font-size:10px;line-height:1.3;letter-spacing:.3px;margin-bottom:10px}
+  .math{font-size:15px;line-height:1.4}.math-line{line-height:1.5;margin:8px 0}
+  .math small{font-size:11px;line-height:1.3;display:block}
+  .form-label{font-size:12px;margin-top:11px}.answer-row{gap:3px}.answer{font-size:15px;padding:8px 5px;min-width:0}
+  .unit{font-size:12px}.answer-tip{font-size:11px;line-height:1.4}
+  .steps{gap:7px}.step{gap:4px;font-size:13px;line-height:1.4}
+  .step:before{font-size:10px;padding:3px 5px}.step .m{overflow-wrap:anywhere}
+  .result{font-size:15px;padding:8px 5px;overflow-wrap:anywhere}.feedback{font-size:11px}
+  .frac{margin:0 1px}.frac .num{padding:0 2px 2px}.frac .den{padding-top:2px}
+}
+@media(max-width:360px){.lab-grid{gap:7px}.lab-grid .flip-inner{height:415px}.math{font-size:14px}.step{font-size:12px}.lab-grid .figure svg{height:175px}.lab-grid .data .cell{padding:5px 2px}}
+/* Desarrollos en vertical: fórmula, sustitución y resultado. */
+.calc-chain{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.calc-line{width:100%;line-height:1.5;overflow-wrap:normal;word-break:normal}
+.calc-line.final{color:#075f55;font-weight:700}
+.lab-grid .flip-inner{height:478px}
+.lab-grid .steps{gap:12px}
+.lab-grid .step{padding:0 0 10px;border-bottom:1px solid #dce9e5}
+.lab-grid .step:last-child{border:0;padding-bottom:0}
+@media(max-width:700px){
+ .lab-grid .flip-inner{height:465px}
+ .lab-grid .steps{gap:12px}
+ .lab-grid .step{font-size:12.3px;gap:4px;padding-bottom:10px}
+ .calc-line{line-height:1.5;letter-spacing:-.12px}
+ .lab-grid .face.back{padding:10px 8px}
+ .result{margin-top:12px}
+}
+@media(max-width:360px){
+ .lab-grid .flip-inner{height:520px}
+ .lab-grid .step{font-size:11.5px}
+}
+@media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+
+
+/* Reparación móvil: gráficos y tarjetas contenidos en su columna. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+main{width:auto;max-width:1170px;min-width:0;box-sizing:border-box;overflow-x:hidden}
+.lab-grid,.lab-grid > *, .figure,.flip-wrap,.data-wrap,.volume-work,.area-work{min-width:0;max-width:100%}
+.lab-grid{width:100%}
+.lab-grid .data{width:100%;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.lab-grid .data .cell{min-width:0;overflow-wrap:anywhere}
+.lab-grid .figure svg{max-width:100%}
+.flip-inner,.face{max-width:100%;min-width:0}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><div><div class="eyebrow">Matemática · Laboratorio de geometría</div><h1>Prismas y sus redes · Práctica</h1><p class="intro">Observa el prisma y su red. Calcula el volumen y el área total en tu cuaderno; después voltea las tarjetas para comprobar tus procedimientos.</p></div><button class="btn btn-primary" id="new" type="button">🎲 Otro prisma</button></div>
+<section aria-live="polite" class="challenge"><div><strong id="name">Prisma hexagonal regular</strong><br/><small id="details">6 lados en cada base · 8 caras</small></div><span class="icons">▱ ▥ ◇</span></section>
+<div class="lab-grid"><section class="figure prism-figure"><header><h2>Prisma</h2><span class="hint">↔ Arrastra para girar</span></header><svg aria-label="Prisma rotatorio: lado naranja en la base superior y bordes visibles del perímetro inferior en rojo. Arrastra con dedo o mouse; también puedes usar las teclas de flecha." id="solid" role="img" tabindex="0" viewbox="0 0 500 330"></svg><div class="shape-caption">Gira el prisma sin cambiar sus medidas.</div><button class="reset-view" id="reset-view" type="button">⟲ Vista inicial</button></section><section class="figure net-figure"><header><h2>Red plana</h2><span class="hint">Desarrollo plano</span></header><svg aria-label="Red plana del prisma: lado naranja de una base y perímetro rojo en el borde inferior de la banda de caras laterales" id="net" role="img" viewbox="0 0 530 330"></svg><div class="shape-caption">Dos bases iguales y una cara rectangular por cada lado de la base.</div></section><section aria-label="Medidas del prisma" class="data-wrap"><h2 class="data-title">Datos del prisma</h2><section aria-label="Datos del prisma" class="data"><div class="cell"><small>Lado de la base (<span class="code">l</span>)</small><strong id="side">—</strong></div><div class="cell"><small>Apotema (<span class="code">a</span>)</small><strong id="ap">—</strong></div><div class="cell"><small>Altura (<span class="code">h</span>)</small><strong id="height">—</strong></div></section><p class="note">Bases regulares. La apotema se aproxima a una décima (0,1 cm) y todos los cálculos usan el valor mostrado.</p></section><section class="volume-work"><h2 class="work-label">Volumen</h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner">
+<div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = A<sub>b</sub> · h</div><div class="math-line">A<sub>b</sub> = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span></div><div class="math-line">P = n · l</div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"/><span class="unit">cm³</span></div><p class="answer-tip">Usa los datos del prisma. Puedes resolver primero en tu cuaderno.</p></div>
+<div class="face back"><div class="ttl">Solución desarrollada · Volumen</div><div class="steps" id="steps-volume"></div><div class="result" id="result-volume"></div><div class="feedback" id="feedback-volume"></div></div>
+</div></div></section><section class="area-work"><h2 class="work-label">Área total</h2><div class="flip-wrap" id="flip-area"><div class="flip-inner">
+<div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line" style="font-weight:700;font-size:1.12em">A<sub>T</sub> = P · a + P · h</div><div class="math-line" style="font-weight:700">P = n · l</div><div class="math-line"><small>n: número de lados de la base</small></div><div class="math-line"><small>l: medida del lado de la base</small></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"/><span class="unit">cm²</span></div><p class="answer-tip">Recuerda incluir las dos bases y todas las caras laterales.</p></div>
+<div class="face back"><div class="ttl">Solución desarrollada · Área total</div><div class="steps" id="steps-area"></div><div class="result" id="result-area"></div><div class="feedback" id="feedback-area"></div></div>
+</div></div></section></div>
+
+
+
+<div class="actions"><button aria-pressed="false" class="btn btn-primary" id="reveal" type="button">🔄 Mostrar resultados</button><small aria-live="polite" id="status">Al pulsar, las tarjetas mostrarán el desarrollo vertical: fórmula, sustitución y resultado.</small></div>
+<div class="legend"><span><i style="background:#f2ac42"></i> Lado y altura</span><span><i style="background:#d62839"></i> Perímetro (P) de la otra base</span><span><i style="background:#9d5dbc"></i> Apotema (centro hasta un lado de la base)</span><span><i style="background:#398bc3"></i> Caras laterales</span></div>
+<p class="foot">Este juego funciona sin internet y no envía respuestas ni datos personales a ningún servidor.</p>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
+const names={3:'triangular',4:'cuadrangular',5:'pentagonal',6:'hexagonal',7:'heptagonal',8:'octagonal'};
+let task=null, revealed=false, lastN=null;
+let angle=0.55,tilt=31*Math.PI/180,drag=null;
+const round2=x=>Math.round((x+Number.EPSILON)*100)/100;
+const round1=x=>Math.round((x+Number.EPSILON)*10)/10;
+const fmt=x=>new Intl.NumberFormat('es-CL',{maximumFractionDigits:2,minimumFractionDigits:0}).format(round2(x));
+const fmt1=x=>new Intl.NumberFormat('es-CL',{minimumFractionDigits:1,maximumFractionDigits:1}).format(round1(x));
+const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function el(parent,tag,attrs={},value){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(value!==undefined)e.textContent=String(value);parent.appendChild(e);return e}
+function resetSVG(s){s.replaceChildren()}
+function ptstr(pts){return pts.map(p=>p.map(v=>v.toFixed(2)).join(',')).join(' ')}
+function avg(pts){return [pts.reduce((a,b)=>a+b[0],0)/pts.length,pts.reduce((a,b)=>a+b[1],0)/pts.length]}
+function line(parent,a,b,cls,other={}){return el(parent,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],class:cls,...other})}
+function dot(parent,p,color='#9e63c2'){el(parent,'circle',{cx:p[0],cy:p[1],r:4.5,fill:color,stroke:'#fff','stroke-width':1.5})}
+function annotate(parent,at,label,cls='svg-annot',anchor='middle'){el(parent,'text',{x:at[0],y:at[1],class:cls,'text-anchor':anchor},label)}
+// Sólido ortográfico: una sola escala durante la rotación, sin deformar lados ni altura.
+// Todas las coordenadas 3D se construyen en CENTÍMETROS: la red usa exactamente la misma proporción l:h.
+function renderSolid(){
+ const {n,l,h}=task,svg=$('solid');resetSVG(svg);
+ const radius=l/(2*Math.sin(Math.PI/n));
+ const vertices=Array.from({length:n},(_,i)=>{
+  const t=-Math.PI/2+2*Math.PI*i/n;return [radius*Math.cos(t),radius*Math.sin(t)];
+ });
+ // Escala FIJA para todas las orientaciones. Evita que el cuerpo crezca, se aplaste o "salte" al girar.
+ const scale=Math.min(220/radius,138/Math.hypot(radius,h/2));
+ const C=Math.cos(angle),S=Math.sin(angle),E=Math.sin(tilt),Q=Math.cos(tilt);
+ function project(x,y,z){
+  return [250+scale*(C*x-S*y),165+scale*((S*x+C*y)*E-(z-h/2)*Q)];
+ }
+ const bottom=vertices.map(v=>project(v[0],v[1],0));
+ const top=vertices.map(v=>project(v[0],v[1],h));
+ const visible=[];
+ for(let i=0;i<n;i++){
+  const j=(i+1)%n, mx=(vertices[i][0]+vertices[j][0])/2,my=(vertices[i][1]+vertices[j][1])/2;
+  const toward=S*mx+C*my; // profundidad real de la normal exterior respecto al observador
+  if(toward>1e-7)visible.push({i,j,toward});
+ }
+ visible.sort((a,b)=>a.toward-b.toward);
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
+ for(const f of visible){
+  el(svg,'polygon',{points:ptstr([bottom[f.i],bottom[f.j],top[f.j],top[f.i]]),fill:wallColors[f.i],stroke:'#286e92','stroke-width':2.6,'stroke-linejoin':'round'});
+ }
+ // La base superior es la misma figura regular que aparece dos veces en la red.
+ el(svg,'polygon',{points:ptstr(top),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.8,'stroke-linejoin':'round'});
+ // Solo las aristas visibles del contorno de la base inferior, es decir,
+ // los bordes inferiores de los rectángulos laterales que miran al observador.
+ // Mismo grosor visual que la línea naranja del lado y la altura.
+ const perimeter=el(svg,'g',{'pointer-events':'none','aria-label':'Perímetro visible de la base inferior (rojo)'});
+ for(const f of visible){
+  line(perimeter,bottom[f.i],bottom[f.j],'',{
+   'stroke':'#d62839','stroke-width':3.8,'stroke-linecap':'round'
+  });
+ }
+ const edge=visible.reduce((best,f)=>!best||f.toward>best.toward?f:best,null)||{i:0,j:1};
+ const mid=[(top[edge.i][0]+top[edge.j][0])/2,(top[edge.i][1]+top[edge.j][1])/2];
+ const center=project(0,0,h);
+ line(svg,top[edge.i],top[edge.j],'measure-line');
+ dot(svg,top[edge.i],'#f6aa34');dot(svg,top[edge.j],'#f6aa34');
+ const lPos=[mid[0],mid[1]+(mid[1]<center[1]?-11:18)];
+ annotate(svg,lPos,'l','svg-text');
+ line(svg,center,mid,'ap-line');dot(svg,center);
+ annotate(svg,[(center[0]+mid[0])/2+11,(center[1]+mid[1])/2-8],'a','svg-annot','start');
+ const sideX=top[edge.j][0]>top[edge.i][0]?edge.j:edge.i;
+ line(svg,bottom[sideX],top[sideX],'measure-line');
+ annotate(svg,[top[sideX][0]+(top[sideX][0]>250?13:-13),(top[sideX][1]+bottom[sideX][1])/2+5],'h','svg-text',top[sideX][0]>250?'start':'end');
+}
+// Construye un polígono REGULAR de n lados, todos de longitud w,
+// pegado a un lado real de un rectángulo de la red.
+function polyOnEdge(x,y,w,up){
+ const pts=[[x,y],[x+w,y]];
+ let px=x+w,py=y;
+ const turn=(up?-1:1)*2*Math.PI/task.n;
+ for(let i=1;i<task.n-1;i++){
+  px+=w*Math.cos(turn*i);
+  py+=w*Math.sin(turn*i);
+  pts.push([px,py]);
+ }
+ return pts;
+}
+function renderNet(){
+ const {n,l,h}=task,svg=$('net');resetSVG(svg);
+ // No limitar ni deformar H: exactamente h/l veces el ancho de una cara.
+ const W=74,H=W*h/l,attached=Math.floor((n-1)/2),xA=attached*W;
+ const upper=polyOnEdge(xA,0,W,true),lower=polyOnEdge(xA,H,W,false);
+ const pts=[[0,0],[n*W,H],...upper,...lower],xx=pts.map(q=>q[0]),yy=pts.map(q=>q[1]);
+ const minX=Math.min(...xx),maxX=Math.max(...xx),minY=Math.min(...yy),maxY=Math.max(...yy);
+ const sc=Math.min(485/(maxX-minX+35),282/(maxY-minY+35));
+ const tx=265-(minX+maxX)*sc/2,ty=165-(minY+maxY)*sc/2;
+ const g=el(svg,'g',{transform:`translate(${tx} ${ty}) scale(${sc})`});
+ const wallColors=['#77c4e5','#67b5dc','#8ccce4','#6bbfd6','#8cc8e5','#65b3d8','#76c1e2','#70b7d4'];
+ // Todas las caras laterales son rectángulos l × h, sin excepciones.
+ for(let i=0;i<n;i++){
+  const x=i*W;
+  el(g,'polygon',{points:ptstr([[x,0],[x+W,0],[x+W,H],[x,H]]),fill:wallColors[i],stroke:'#286e92','stroke-width':2.4,'stroke-linejoin':'round'});
+ }
+ // Ambas bases son polígonos regulares idénticos; la inferior se distinguirá en rojo.
+ el(g,'polygon',{points:ptstr(upper),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.7,'stroke-linejoin':'round'});
+ el(g,'polygon',{points:ptstr(lower),fill:'#bce9d7',stroke:'#1c8079','stroke-width':2.7,'stroke-linejoin':'round'});
+ // Aristas de plegado: unión entre rectángulos y entre bases y cara lateral.
+ const folds=el(g,'g',{'pointer-events':'none'});
+ for(let i=1;i<n;i++)line(folds,[i*W,0],[i*W,H],'',{stroke:'#fff','stroke-width':1.7,'stroke-dasharray':'5 4'});
+ line(folds,[xA,0],[xA+W,0],'',{stroke:'#fff','stroke-width':2,'stroke-dasharray':'5 4'});
+ line(folds,[xA,H],[xA+W,H],'',{stroke:'#fff','stroke-width':2,'stroke-dasharray':'5 4'});
+ // Apotema del polígono superior: del centro al punto medio del lado asociado.
+ const mid=[xA+W/2,0],center=avg(upper);
+ line(g,[xA,0],[xA+W,0],'measure-line');line(g,center,mid,'ap-line');dot(g,center);
+ annotate(g,[mid[0]-W*.3,mid[1]+16],'l','svg-annot');
+ annotate(g,[(center[0]+mid[0])/2+W*.14,(center[1]+mid[1])/2],'a','svg-annot','start');
+ // La altura del prisma coincide con la altura de cada rectángulo lateral.
+ const x=0;line(g,[x,0],[x,H],'measure-line');
+ annotate(g,[x-8,H/2+5],'h','svg-annot','end');
+ // La banda de n rectángulos se pliega alrededor de la base inferior.
+ // Sus n bordes inferiores, uno por lado, forman juntos el perímetro P = n · l.
+ // Dibujamos esa longitud extendida EN los rectángulos, no rodeando la base verde.
+ // El leve desplazamiento hacia el interior evita tapar el contorno de la base.
+ const yP=H-2.2;
+ const perimetroRed=el(g,'g',{'pointer-events':'none','aria-label':'Perímetro rojo desarrollado sobre los bordes inferiores de las caras laterales'});
+ for(let i=0;i<n;i++){
+  line(perimetroRed,[i*W,yP],[(i+1)*W,yP],'',{
+   'stroke':'#d62839','stroke-width':3.8,'stroke-linecap':'butt'
+  });
+ }
+}
+function numericAnswer(s){s=s.trim().replace(/\s/g,'');if(!s)return null;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if(/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)){s=s.replace(/\./g,'')}if(!/^[-+]?(?:\d+\.?\d*|\.\d+)$/.test(s))return NaN;return Number(s)}
+function feedback(id,expected){const raw=$(id).value,ans=numericAnswer(raw);const out=$('feedback-'+(id==='input-volume'?'volume':'area'));out.className='feedback';if(ans===null){out.classList.add('none');out.textContent='Puedes escribir tu resultado antes de revelar la solución.';return}if(!Number.isFinite(ans)){out.classList.add('bad');out.textContent='Revisa el número ingresado (usa coma o punto decimal).';return}const ok=Math.abs(ans-expected)<=.051;out.classList.add(ok?'good':'bad');out.textContent=ok?'✓ ¡Coincide con el resultado!':'↻ No coincide todavía. Compara tus pasos con el desarrollo.';}
+// Cada paso presenta fórmula → reemplazo → resultado, en líneas separadas.
+function step(lines){return '<div class="step"><div class="m calc-chain">'+lines.map((line,i)=>'<div class="calc-line'+(i===lines.length-1?' final':'')+'">'+line+'</div>').join('')+'</div></div>'}
+function frac(numerator,denominator){return '<span class="frac"><span class="num">'+numerator+'</span><span class="den">'+denominator+'</span></span>'}
+function renderSolution(){const {n,l,h,ap,P,Ab,Al,At,V}=task;
+ $('steps-volume').innerHTML=[
+  step(['P = n · l','P = '+n+' · '+fmt(l),'P = <b>'+fmt(P)+' cm</b>']),
+  step(['A<sub>b</sub> = '+frac('P · a','2'),'A<sub>b</sub> = '+frac(fmt(P)+' · '+fmt1(ap),'2'),'A<sub>b</sub> = <b>'+fmt(Ab)+' cm²</b>']),
+  step(['V = A<sub>b</sub> · h','V = '+fmt(Ab)+' · '+fmt(h),'V = <b>'+fmt(V)+' cm³</b>'])
+ ].join('');
+ $('result-volume').innerHTML='V = '+fmt(V)+' cm³';
+ $('steps-area').innerHTML=[
+  step(['P = n · l','P = '+n+' · '+fmt(l),'P = <b>'+fmt(P)+' cm</b>']),
+  step(['A<sub>T</sub> = P · a + P · h','A<sub>T</sub> = '+fmt(P)+' · '+fmt1(ap)+' + '+fmt(P)+' · '+fmt(h),'A<sub>T</sub> = '+fmt(P*ap)+' + '+fmt(Al)]),
+  step(['A<sub>T</sub> = <b>'+fmt(At)+' cm²</b>'])
+ ].join('');
+ $('result-area').innerHTML='A<sub>T</sub> = '+fmt(At)+' cm²';
+ feedback('input-volume',V);feedback('input-area',At);
+}
+
+// Rotación real mediante eventos de puntero: mouse, dedo o lápiz táctil.
+const solid=$('solid');
+function initialView(){angle=(task?.n===3?38:task?.n===4?28:24)*Math.PI/180;tilt=31*Math.PI/180;}
+solid.addEventListener('pointerdown',ev=>{
+ if(ev.pointerType==='mouse'&&ev.button!==0)return;
+ drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY};
+ try{solid.setPointerCapture(ev.pointerId)}catch(_){}
+ solid.classList.add('dragging');
+});
+solid.addEventListener('pointermove',ev=>{
+ if(!drag||ev.pointerId!==drag.id)return;
+ const dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;
+ drag.x=ev.clientX;drag.y=ev.clientY;
+ angle+=dx*0.014;
+ tilt=Math.max(0.30,Math.min(1.00,tilt+dy*0.008));
+ if(task)renderSolid();
+});
+function release(ev){if(!drag||drag.id!==ev.pointerId)return;drag=null;solid.classList.remove('dragging')}
+solid.addEventListener('pointerup',release);
+solid.addEventListener('pointercancel',release);
+solid.addEventListener('lostpointercapture',()=>{drag=null;solid.classList.remove('dragging')});
+solid.addEventListener('keydown',ev=>{
+ const amount=Math.PI/18;
+ if(ev.key==='ArrowLeft')angle-=amount;
+ else if(ev.key==='ArrowRight')angle+=amount;
+ else if(ev.key==='ArrowUp')tilt=Math.min(1.00,tilt+0.10);
+ else if(ev.key==='ArrowDown')tilt=Math.max(0.30,tilt-0.10);
+ else if(ev.key==='Home')initialView();
+ else return;
+ ev.preventDefault();if(task)renderSolid();
+});
+$('reset-view').addEventListener('click',()=>{initialView();renderSolid()});
+
+function choose(){let opts=[3,4,5,6,7,8].filter(n=>n!==lastN);let n=opts[Math.floor(Math.random()*opts.length)];lastN=n;const sides=[4,6,8,10,12],l=sides[Math.floor(Math.random()*sides.length)],h=4+Math.floor(Math.random()*9),ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);task={n,l,h,ap,P,Ab,Al,At,V};revealed=false;$('flip-volume').classList.remove('revealed');$('flip-area').classList.remove('revealed');$('reveal').textContent='🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed','false');$('input-volume').value='';$('input-area').value='';$('status').textContent='Resuelve en tu cuaderno y después muestra los resultados y sus tres pasos.';$('name').textContent='Prisma '+names[n]+' regular';$('details').textContent=n+' lados por base · '+(n+2)+' caras · '+(3*n)+' aristas';$('side').textContent=fmt(l)+' cm';$('ap').textContent=fmt1(ap)+' cm';$('height').textContent=fmt(h)+' cm';initialView();renderSolid();renderNet();renderSolution()}
+$('reveal').addEventListener('click',()=>{revealed=!revealed;if(revealed)renderSolution();for(const name of ['volume','area'])$('flip-'+name).classList.toggle('revealed',revealed);$('reveal').textContent=revealed?'↩ Ocultar resultados':'🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed',String(revealed));$('status').textContent=revealed?'Compara tu desarrollo con cada reemplazo. Puedes ocultarlo y volver a intentarlo.':'Resuelve nuevamente, o genera otro prisma.'});$('new').addEventListener('click',()=>choose());choose();
+})();
+</script>
+</body>
+</html>
