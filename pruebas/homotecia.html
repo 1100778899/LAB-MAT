@@ -12,7 +12,7 @@
 header{border-radius:20px;background:linear-gradient(120deg,#143d35,#0d6b5b);padding:18px 22px;color:white}header .eyebrow{font-size:10px;font-weight:850;letter-spacing:1.3px;color:#bce7d5}header h1{font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.7px;margin:5px 0}header p{font-size:13px;color:#d4e9df;margin:5px 0 0}header .stage{display:inline-block;font-size:11px;border:1px solid #7ab5a5;background:#1e675b;padding:5px 10px;border-radius:10px;margin-top:8px}
 .modebar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px;background:white;padding:10px;border:1px solid var(--line);border-radius:16px}.mode-btn{border:1px solid #dce9e3;background:#f6faf8;color:#41675a;min-height:49px;border-radius:11px;font-size:13px;font-weight:800;padding:7px 5px}.mode-btn.active{background:#126b5c;color:white;border-color:#126b5c}
 main{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,.8fr);gap:13px;margin-top:13px}.left,.right{min-width:0}.right{display:flex;flex-direction:column;gap:12px}.pane{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 19px #163c3010}.task-intro{padding:15px 17px;margin-bottom:12px}.task-intro h2{font-size:18px;margin:3px 0}.task-intro p{font-size:12px;color:var(--muted);margin:6px 0 0}.task-top{display:flex;justify-content:space-between;gap:7px;align-items:center}.task-num{font-size:11px;font-weight:800;border-radius:9px;background:#e4f6ed;color:#195f51;padding:5px 8px;white-space:nowrap}
-.visual{padding:13px}.visual-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-bottom:9px}.visual h2{font-size:17px;letter-spacing:-.2px;margin:0}.legend{font-size:11px;display:flex;flex-wrap:wrap;gap:9px;color:var(--muted);font-weight:700}.disc{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:3px;background:var(--blue)}.disc.orange{background:var(--orange)}.canvas{border:1px solid #dceae3;border-radius:14px;background:#fff;overflow:hidden}#scene{width:100%;display:block;aspect-ratio:1.63;touch-action:pan-y;user-select:none}.seg-label{font:850 17px system-ui;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}.point-label{font:850 17px system-ui;paint-order:stroke;stroke:white;stroke-width:4px;stroke-linejoin:round}.handle{cursor:grab;touch-action:none}.handle:active{cursor:grabbing}.handle:hover{filter:drop-shadow(0 0 3px #10736166)}.visual-note{font-size:11px;color:#56736a;margin:8px 3px 2px}.micro-key{display:flex;flex-wrap:wrap;gap:12px;margin:9px 2px 0;font-size:11px;font-weight:700;color:#5d756d}.micro-key i{display:inline-block;width:19px;height:4px;margin-right:4px;vertical-align:middle;border-radius:4px;background:var(--mint)}.micro-key .violet{background:var(--violet)}.micro-key .sage{background:var(--sage)}
+.visual{padding:13px}.visual-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-bottom:9px}.visual h2{font-size:17px;letter-spacing:-.2px;margin:0}.legend{font-size:11px;display:flex;flex-wrap:wrap;gap:9px;color:var(--muted);font-weight:700}.disc{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:3px;background:var(--blue)}.disc.orange{background:var(--orange)}.canvas{border:1px solid #dceae3;border-radius:14px;background:#fff;overflow:hidden}#scene{width:100%;display:block;aspect-ratio:1.63;touch-action:pan-y;user-select:none}body.exploring #scene{touch-action:none}.seg-label{font:850 17px system-ui;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}.point-label{font:850 17px system-ui;paint-order:stroke;stroke:white;stroke-width:4px;stroke-linejoin:round}.handle{cursor:grab;touch-action:none}.handle:active{cursor:grabbing}.handle:hover{filter:drop-shadow(0 0 3px #10736166)}.visual-note{font-size:11px;color:#56736a;margin:8px 3px 2px}.micro-key{display:flex;flex-wrap:wrap;gap:12px;margin:9px 2px 0;font-size:11px;font-weight:700;color:#5d756d}.micro-key i{display:inline-block;width:19px;height:4px;margin-right:4px;vertical-align:middle;border-radius:4px;background:var(--mint)}.micro-key .violet{background:var(--violet)}.micro-key .sage{background:var(--sage)}
 .controls{margin-top:12px;padding:15px}.controls h2{margin:0 0 9px;font-size:16px}.scale-control{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:9px}.scale-control label{font-size:13px;font-weight:800}.factor-input{width:75px;border:2px solid #badbd0;border-radius:10px;padding:6px 8px;color:#0d554a;font-size:17px;font-weight:850;text-align:center;background:#f2faf6}.factor-note{font-size:11px;color:#667f73}input[type=range]{width:100%;accent-color:#0b8972;cursor:pointer}.scale-edges{display:flex;justify-content:space-between;font-size:10px;font-weight:750;color:#628276}.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.preset{border-radius:9px;border:1px solid #d1e4da;padding:5px 10px;background:#f8fbf8;color:#276051;font-size:12px;font-weight:800}.options{border-top:1px solid #e3eee9;padding-top:12px;margin-top:12px;display:flex;flex-wrap:wrap;gap:13px;font-size:12px;color:#416a5e}.options label{display:inline-flex;align-items:center;gap:5px}.options input{accent-color:#168469}.inline-edit{display:inline-flex;align-items:center;gap:6px;flex-wrap:nowrap}.slash-btn{border:1px solid #b9d7ca;background:#f4faf7;color:#215f50;border-radius:8px;padding:6px 9px;font-weight:850;min-width:40px}.slash-btn.small{padding:6px 8px;min-width:34px;font-size:13px}.reset-points{margin-top:11px;border:1px solid #bed6cb;color:#1e6857;background:#f3faf6;padding:7px 11px;border-radius:9px;font-weight:700;font-size:12px}.status{font-size:11px;color:#4f7466;min-height:18px;margin-top:8px}
 .readouts{padding:16px}.readouts h2{margin:0 0 5px;font-size:17px}.desc{font-size:12px;color:var(--muted);margin:0 0 9px}.ratio-heading{font-size:12px;font-weight:800;background:#eaf6ef;color:#256753;padding:7px 10px;border-radius:9px}.readout-split,.known-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}.readout-card,.known-col{border:1px solid #d9e9e0;border-radius:12px;background:#f9fcfa;padding:9px;min-width:0}.readout-head,.known-title{font-size:11px;font-weight:850;margin-bottom:7px;white-space:normal}.readout-head .disc{width:8px;height:8px}.pair,.known-row{display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:38px;border-top:1px solid #e4ede8;font-size:12px}.pair span,.known-row span{color:#527369}.pair strong,.known-row strong{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}.formula{padding:15px 16px;border-radius:16px;color:#e8fff5;background:#173c36}.formula .eyebrow{font-size:10px;font-weight:800;letter-spacing:1px;color:#a9e1cd}.formula p{font-size:12px;margin:10px 0 3px;color:#c7e6da}.frac-wrap{display:flex;flex-direction:column;gap:7px;margin:10px 0 0}.frac-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:14px;font-weight:750}.fraction{display:inline-grid;grid-template-rows:auto auto;justify-items:center;vertical-align:middle;font:700 13px Cambria,Georgia,serif;line-height:1.25}.fraction .num{border-bottom:1.5px solid currentColor;display:block;padding:0 4px 2px}.fraction .den{display:block;padding:2px 4px 0}.formula .fraction{font-size:14px}
 .challenge{padding:15px;margin-top:12px}.challenge h2{font-size:17px;margin:0 0 9px}.given-box{background:#f0f8f3;border:1px solid #d8e9df;padding:11px;border-radius:12px}.known-k{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0 0 9px;padding:8px 9px;background:#e2f5ea;color:#175a4d;border-radius:10px;font-size:13px;font-weight:900}.known-k strong{font-size:15px}.missing-input{width:64px;min-width:0;background:white;border:1.7px solid #a9cbbc;border-radius:8px;padding:7px 4px;text-align:center;color:#17483c;font-size:15px;font-weight:850}.missing-input.good{border-color:#1b8b63;background:#eaf8ef}.missing-input.bad{border-color:#c35e52;background:#fff1ee}.known-row{min-height:44px}.known-row .known-value{font-size:13px}.known-row .dash{color:#9aaea5}.prompt-note{font-size:11px;color:#60776e;margin:9px 1px 0}.btn-main{width:100%;min-height:46px;border:none;border-radius:10px;background:#13745f;color:white;font-weight:850;padding:10px;margin-top:11px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.actions button{flex:1 1 120px;padding:10px 8px;border-radius:10px;background:#f3f9f6;border:1px solid #bddbd0;color:#295f50;font-weight:750}.feedback{border-radius:10px;padding:12px;font-size:12px;white-space:pre-line;line-height:1.65;margin-top:10px}.feedback.ok{background:#e3f7eb;color:#0c6045}.feedback.warn{background:#fff4de;color:#755423}.worked{margin-top:10px;border:1px solid #d9e8df;background:#fbfdfb;border-radius:10px;padding:12px}.worked div{padding:6px 0;border-top:1px solid #e4eee8;font-size:13px;overflow-wrap:anywhere}.worked div:first-child{border:0}.progress{font-size:11px;color:#627a6e;margin-top:10px}.activity-guide{padding:16px}.activity-guide h2{margin:0 0 7px;font-size:16px}.activity-guide p{font-size:12px;color:#5e7468;margin:8px 0}.guide-math{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font:700 13px Cambria,Georgia,serif}.activity-guide .fraction{font-size:14px}.guide-note{margin-top:11px!important;padding:10px;border-radius:10px;background:#eff7f2}.bottom{text-align:center;font-size:11px;color:#71867b;margin:18px auto}
@@ -21,14 +21,14 @@ main{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,.8fr);gap:
 .guide-equations{display:grid;gap:8px;margin:10px 0}.guide-equations .guide-math{border:1px solid #dbeae2;background:#f7fbf8;border-radius:9px;padding:10px;min-height:40px;font-family:Cambria,Georgia,serif;font-size:14px;line-height:1.45}.slash-btn{touch-action:manipulation;min-width:34px;min-height:36px}.inline-edit{display:inline-flex;align-items:center;gap:4px}.label-on-figure{pointer-events:none}#scene [data-drag="original"]{cursor:grab}#scene [data-drag="copy"]{cursor:grab}
 </style>
 </head>
-<body>
+<body class="exploring">
 <div class="shell">
 <header><div class="eyebrow">LAB-MAT · LABORATORIO MATEMÁTICO</div><h1>Homotecia en movimiento 🐱</h1><p>Explora relaciones, descubre el factor y practica con un gato original y su copia proporcional.</p><span class="stage">🧪 EN CONSTRUCCIÓN · VERSIÓN DE PRUEBA</span></header>
 <nav class="modebar" aria-label="Modalidades de homotecia"><button class="mode-btn active" data-mode="explore" aria-pressed="true">◎ Explorar</button><button class="mode-btn" data-mode="apply" aria-pressed="false">1 · Aplicar k</button><button class="mode-btn" data-mode="find" aria-pressed="false">2 · Encontrar k</button><button class="mode-btn" data-mode="transfer" aria-pressed="false">3 · Hallar k y medida</button></nav>
 <main><div class="left">
 <section class="pane task-intro" id="task-intro" hidden><div class="task-top"><div><small id="task-category">ACTIVIDAD 1</small><h2 id="task-heading">Aplicar k</h2></div><span class="task-num" id="question-index">Desafío 1</span></div><p id="task-text"></p></section>
-<section class="pane visual"><div class="visual-head"><h2 id="diagram-title">Gato original y copia</h2><div class="legend"><span><i class="disc"></i> Original</span><span><i class="disc orange"></i> Copia</span></div></div><div class="canvas"><svg id="scene" viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Homotecia de un gatito y tres medidas correspondientes"></svg></div><div class="micro-key"><span><i></i> AB</span><span><i class="violet"></i> CD</span><span><i class="sage"></i> OS</span></div><p class="visual-note" id="visual-note">Arrastra el original azul, O o S por separado. La copia sigue la homotecia y puede quedar fuera de la pantalla.</p></section>
-<section class="pane controls" id="explore-controls"><h2>Experimenta con el factor</h2><div class="scale-control"><label for="k-edit">Factor k =</label><span class="inline-edit"><input class="factor-input" id="k-edit" type="text" inputmode="decimal" value="1,5" aria-label="Escribir factor de homotecia"><button class="slash-btn" id="k-edit-slash" type="button">/</button></span><span class="factor-note">Escribe 0,75 o 3/4</span></div><label for="factor" style="font-size:12px;color:var(--muted)">Desliza para reducir o ampliar</label><input type="range" id="factor" min="0.25" max="4" step="0.05" value="1.5"><div class="scale-edges"><span>0,25 · reducción</span><span>1 · igual</span><span>4 · ampliación</span></div><div class="presets"><button class="preset" data-k="0.5">0,5</button><button class="preset" data-k="0.75">0,75</button><button class="preset" data-k="1">1</button><button class="preset" data-k="1.5">1,5</button><button class="preset" data-k="2">2</button><button class="preset" data-k="3">3</button></div><div class="options"><label><input id="toggle-rays" type="checkbox" checked> Rayos desde O</label><label><input id="toggle-measures" type="checkbox" checked> Ver medidas</label><label><input id="toggle-os" type="checkbox" checked> Mostrar OS</label></div><button class="reset-points" id="reset-points">Restablecer posiciones</button><div class="status" id="explore-status" aria-live="polite"></div></section>
+<section class="pane visual"><div class="visual-head"><h2 id="diagram-title">Gato original y copia</h2><div class="legend"><span><i class="disc"></i> Original</span><span><i class="disc orange"></i> Copia</span></div></div><div class="canvas"><svg id="scene" viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Homotecia de un gatito y tres medidas correspondientes"></svg></div><div class="micro-key"><span><i></i> AB</span><span><i class="violet"></i> CD</span><span><i class="sage"></i> OS (segmento opcional)</span></div><p class="visual-note" id="visual-note">Arrastra el gato azul, O o S por separado. Con dos dedos puedes desplazar y ampliar el lienzo. La copia puede quedar fuera de pantalla.</p></section>
+<section class="pane controls" id="explore-controls"><h2>Experimenta con el factor</h2><div class="scale-control"><label for="k-edit">Factor k =</label><span class="inline-edit"><input class="factor-input" id="k-edit" type="text" inputmode="decimal" value="1,5" aria-label="Escribir factor de homotecia"><button class="slash-btn" id="k-edit-slash" type="button">/</button></span><span class="factor-note">Escribe 0,75 o 3/4</span></div><label for="factor" style="font-size:12px;color:var(--muted)">Desliza para reducir o ampliar</label><input type="range" id="factor" min="0.25" max="3.05" step="0.05" value="1.5"><div class="scale-edges"><span>0,25 · reducción</span><span>1 · igual</span><span>3,05 · ampliación</span></div><div class="presets"><button class="preset" data-k="0.5">0,5</button><button class="preset" data-k="0.75">0,75</button><button class="preset" data-k="1">1</button><button class="preset" data-k="1.5">1,5</button><button class="preset" data-k="2">2</button><button class="preset" data-k="3">3</button></div><div class="options"><label><input id="toggle-rays" type="checkbox" checked> Rayos desde O</label><label><input id="toggle-measures" type="checkbox" checked> Ver medidas</label><label><input id="toggle-os" type="checkbox" checked> Mostrar segmento OS</label></div><button class="reset-points" id="reset-points">Restablecer posiciones y zoom</button><div class="status" id="explore-status" aria-live="polite"></div></section>
 <section class="pane challenge" id="challenge-panel" hidden><h2>Compara y completa las medidas</h2><form id="task-form" novalidate><div class="given-box"><div class="known-k" id="known-k"></div><div class="known-sections"><div class="known-col"><div class="known-title">🔵 Figura original</div><div id="task-original"></div></div><div class="known-col"><div class="known-title">🟠 Copia</div><div id="task-copy"></div></div></div><p class="prompt-note">Cada fila representa medidas correspondientes. Resuelve primero en tu cuaderno.</p></div><button class="btn-main" id="check" type="submit">Comprobar respuestas</button></form><div class="feedback" id="feedback" aria-live="polite" hidden></div><div class="worked" id="worked" hidden></div><div class="actions"><button id="solution" type="button">Ver desarrollo</button><button id="another" type="button">↻ Otro desafío</button></div><div class="progress" id="progress">Aciertos: 0 · Comprobaciones: 0</div></section>
 </div><aside class="right"><section class="pane readouts" id="explore-readouts"><h2>Medidas correspondientes</h2><p class="desc">Mueve el original azul, O o S. También puedes arrastrar la copia: las figuras se mantienen homotéticas. La copia puede salir de la pantalla.</p><div class="ratio-heading" id="explore-kind">Factor k = 1,5 · Ampliación</div><div class="readout-split"><div class="readout-card"><div class="readout-head"><i class="disc"></i> Original</div><div class="pair"><span>AB</span><strong id="orig-AB"></strong></div><div class="pair"><span>CD</span><strong id="orig-CD"></strong></div><div class="pair"><span>OS</span><strong id="orig-OS"></strong></div></div><div class="readout-card"><div class="readout-head"><i class="disc orange"></i> Copia</div><div class="pair"><span>A′B′</span><strong id="copy-AB"></strong></div><div class="pair"><span>C′D′</span><strong id="copy-CD"></strong></div><div class="pair"><span>OS′</span><strong id="copy-OS"></strong></div></div></div></section><section class="formula" id="explore-formula"><div class="eyebrow">UNA MISMA RAZÓN</div><div class="frac-wrap" id="ratio-display"></div><p>Una sola transformación conserva la misma proporción entre todos estos pares de medidas.</p></section><section class="pane activity-guide" id="activity-guide" hidden><h2>Estrategia matemática</h2><p id="guide-text"></p><div class="guide-equations"><div class="guide-math"><span>Medida de la copia = medida original × k</span></div><div class="guide-math"><span>Medida de la copia = k × medida original</span></div><div class="guide-math"><span>k =</span><span class="fraction"><span class="num">medida de la copia</span><span class="den">medida original</span></span></div></div><p class="guide-note">📓 Usa la misma razón en todas las medidas correspondientes. Si no encuentras un error, consulta al profesor mostrando tu desarrollo.</p></section></aside></main><footer class="bottom">LAB-MAT · Prototipo de Homotecia. Sin registrar nombres ni datos personales. Prototipo en construcción.</footer></div>
 <script>
@@ -53,7 +53,7 @@ function frac(v){for(let d=1;d<=20;d++){let n=Math.round(v*d);if(Math.abs(n/d-v)
 const factorText=v=>{const f=frac(v);return f&&f[1]>1?`${f[0]}/${f[1]}`:fmt(v)};
 const fracHTML=v=>{const f=frac(v);return f&&f[1]>1?`<span class="fraction"><span class="num">${f[0]}</span><span class="den">${f[1]}</span></span>`:fmt(v)};
 function parseNumber(v){const t=String(v).trim().replace(/\s/g,'').replace(',','.');if(!t)return NaN;const m=t.match(/^(\d+)\/(\d+)$/);if(m)return +m[2]>0?+m[1]/+m[2]:NaN;return /^\d*\.?\d+$/.test(t)?Number(t):NaN}
-let k=1.5,mode='explore',task=null,taskIndex=0,showRays=true,showMeasures=true,showOS=true,dragTarget=null,dragOffset={x:0,y:0};
+let k=1.5,mode='explore',task=null,taskIndex=0,showRays=true,showMeasures=true,showOS=true,dragTarget=null,dragOffset={x:0,y:0},cameraBox=null;const touchPoints=new Map();let gesture=null;
 let exploreUnit='cm';const catOutline=catPath.match(/^<path d="([^"]+)"/)[1];
 const stats={apply:{wins:0,tries:0},find:{wins:0,tries:0},transfer:{wins:0,tries:0}};
 const dot=(p,col,rad=4)=>`<circle cx="${p.x}" cy="${p.y}" r="${rad}" fill="white" stroke="${col}" stroke-width="2.6"/>`;
@@ -64,21 +64,24 @@ function measureBadge(p,t,col,dx=0,dy=0){let width=Math.max(36,t.length*10+12);r
 function scene(){
  const p={};for(let key of ['A','B','C','D'])p[key]=abs(GEOM[key]);p.S=S;
  const q={};for(let key of ['A','B','C','D'])q[key]=transformed(p[key]);q.S=transformed(S);
- const visibleOS=mode!=='explore'||showOS;
+ const active=mode==='explore'?new Set(['AB','CD','OS']):mode==='find'&&stats.find.wins>=5?new Set(['AB','CD','OS']):new Set(PAIRS.filter(([a,b])=>task&&(task.givens.includes(a)||task.givens.includes(b)||task.answers.includes(a)||task.answers.includes(b))).map(p=>p[0]));
+ const visibleOS=active.has('OS')&&(mode!=='explore'||showOS);
+ const visibleS=active.has('OS');
  let svg='<rect x="-5000" y="-5000" width="11000" height="11000" fill="white"/>';
- if(showRays){for(const v of ['A','C']){svg+=line(O,q[v],'#aabdb4',1.8,'stroke-dasharray="6 7" opacity=".85"')} if(visibleOS) svg+=line(O,q.S,'#aabdb4',1.8,'stroke-dasharray="6 7" opacity=".85"')}
+ if(showRays){for(const [seg,v] of [['AB','A'],['CD','C']]){if(active.has(seg))svg+=line(O,q[v],'#aabdb4',1.8,'stroke-dasharray="6 7" opacity=".85"')} if(visibleOS) svg+=line(O,q.S,'#aabdb4',1.8,'stroke-dasharray="6 7" opacity=".85"')}
  svg+=`<g transform="translate(${ORIGIN.x} ${ORIGIN.y}) scale(${UNIT} ${-UNIT})" fill="#80b7df" fill-opacity=".52" stroke="#367bb4" stroke-width=".1">${catPath}</g>`;
  svg+=`<g transform="translate(${O.x} ${O.y}) scale(${k}) translate(${-O.x} ${-O.y})"><g transform="translate(${ORIGIN.x} ${ORIGIN.y}) scale(${UNIT} ${-UNIT})" fill="#f2ac78" fill-opacity=".58" stroke="#cd6b2c" stroke-width=".1">${catPath}</g></g>`;
- for(const [a,b,col] of [['A','B','#159da4'],['C','D','#9659ce']]){svg+=line(p[a],p[b],col,5.2)+line(q[a],q[b],col,5.2)}
+ for(const [seg,a,b,col] of [['AB','A','B','#159da4'],['CD','C','D','#9659ce']]){if(active.has(seg))svg+=line(p[a],p[b],col,5.2)+line(q[a],q[b],col,5.2)}
  if(visibleOS) svg+=line(O,S,'#698d71',4)+line(O,q.S,'#698d71',4.5,'stroke-dasharray="3 5"');
- for(const key of ['A','B','C','D']){svg+=dot(p[key],'#3475a6',4.5)+dot(q[key],'#d7793c',4.5)}
- if(visibleOS) svg+=dot(S,'#668a68',7.5)+dot(q.S,'#d7793c',7.5);
+ for(const [seg,keys] of [['AB',['A','B']],['CD',['C','D']]]){if(active.has(seg))for(const key of keys){svg+=dot(p[key],'#3475a6',4.5)+dot(q[key],'#d7793c',4.5)}}
+ if(visibleS) svg+=dot(S,'#668a68',7.5)+dot(q.S,'#d7793c',7.5);
  svg+=dot(O,'#0b654e',7);
- svg+=label(p.A,'A','#245c92',-20,-12)+label(p.B,'B','#245c92',8,18)+label(p.C,'C','#245c92',-16,18)+label(p.D,'D','#245c92',8,-12);
- if(Math.abs(k-1)>0.08){svg+=label(q.A,'A′','#b96a2d',8,-10)+label(q.B,'B′','#b96a2d',8,20)+label(q.C,'C′','#b96a2d',-23,19)+label(q.D,'D′','#b96a2d',9,-12)}
+ if(active.has('AB'))svg+=label(p.A,'A','#245c92',-20,-12)+label(p.B,'B','#245c92',8,18);
+ if(active.has('CD'))svg+=label(p.C,'C','#245c92',-16,18)+label(p.D,'D','#245c92',8,-12);
+ if(Math.abs(k-1)>0.08){if(active.has('AB'))svg+=label(q.A,'A′','#b96a2d',8,-10)+label(q.B,'B′','#b96a2d',8,20);if(active.has('CD'))svg+=label(q.C,'C′','#b96a2d',-23,19)+label(q.D,'D′','#b96a2d',9,-12)}
  // Colocar las etiquetas fuera de los segmentos. Se prueban posiciones alternativas
  // para evitar superposición entre nombres, vértices y distancias al centro.
- const occupied=[...Object.values(p),...Object.values(q),O].filter(Boolean).map(z=>({x:z.x-14,y:z.y-17,w:28,h:32}));
+ const occupied=[O,...(active.has('AB')?[p.A,p.B,q.A,q.B]:[]),...(active.has('CD')?[p.C,p.D,q.C,q.D]:[]),...(visibleS?[S,q.S]:[])].map(z=>({x:z.x-14,y:z.y-17,w:28,h:32}));
  function intersects(a,b){return a.x<b.x+b.w+5 && a.x+a.w+5>b.x && a.y<b.y+b.h+5 && a.y+a.h+5>b.y}
  function smartBadge(a,b,name,color,side){
     const center=mid(a,b),vx=b.x-a.x,vy=b.y-a.y,n=Math.max(1,Math.hypot(vx,vy));
@@ -95,34 +98,33 @@ function scene(){
  }
  // Los segmentos de las figuras tienen la misma orientación; la etiqueta
  // original aparece preferentemente a un lado y la de la copia al contrario.
- svg+=smartBadge(p.A,p.B,'AB','#148f96',1);
- svg+=smartBadge(q.A,q.B,'A′B′','#148f96',-1);
- svg+=smartBadge(p.C,p.D,'CD','#8d4dbd',-1);
- svg+=smartBadge(q.C,q.D,'C′D′','#8d4dbd',1);
+ if(active.has('AB')){svg+=smartBadge(p.A,p.B,'AB','#148f96',1);svg+=smartBadge(q.A,q.B,'A′B′','#148f96',-1)}
+ if(active.has('CD')){svg+=smartBadge(p.C,p.D,'CD','#8d4dbd',-1);svg+=smartBadge(q.C,q.D,'C′D′','#8d4dbd',1)}
  if(visibleOS){svg+=smartBadge(O,S,'OS','#607f67',1);svg+=smartBadge(O,q.S,'OS′','#607f67',-1)}
  svg+=label(O,'O','#0e5c45',-19,29);
- if(visibleOS){ if(Math.abs(k-1)>0.07){svg+=label(S,'S','#507c54',-18,-9)+label(q.S,'S′','#b86d2a',9,-9)} else svg+=label(S,'S = S′','#507c54',10,-10); }
+ if(visibleS){ if(Math.abs(k-1)>0.07){svg+=label(S,'S','#507c54',-18,-9)+label(q.S,'S′','#b86d2a',9,-9)} else svg+=label(S,'S = S′','#507c54',10,-10); }
  if(mode==='explore'){
    if(Math.abs(k-1)>1e-8) svg+=`<g transform="translate(${O.x} ${O.y}) scale(${k}) translate(${-O.x} ${-O.y})"><g transform="translate(${ORIGIN.x} ${ORIGIN.y}) scale(${UNIT} ${-UNIT})"><path class="handle" data-drag="copy" d="${catOutline}" fill="transparent" stroke="none" pointer-events="fill"/></g></g>`;
    svg+=`<g transform="translate(${ORIGIN.x} ${ORIGIN.y}) scale(${UNIT} ${-UNIT})"><path class="handle" data-drag="original" d="${catOutline}" fill="transparent" stroke="none" pointer-events="fill"/></g>`;
    svg+=`<circle class="handle" data-drag="O" cx="${O.x}" cy="${O.y}" r="24" fill="transparent" stroke="transparent"/>`;
-   if(visibleOS) svg+=`<circle class="handle" data-drag="S" cx="${S.x}" cy="${S.y}" r="24" fill="transparent" stroke="transparent"/>`;
+   svg+=`<circle class="handle" data-drag="S" cx="${S.x}" cy="${S.y}" r="24" fill="transparent" stroke="transparent"/>`;
  }
- const coordinates=mode==='explore'?[p.A,p.B,p.C,p.D,O,...(showOS?[S]:[])]:[...Object.values(p),...Object.values(q),O,S,q.S];
+ const coordinates=mode==='explore'?[p.A,p.B,p.C,p.D,O,S]:[O,...(active.has('AB')?[p.A,p.B,q.A,q.B]:[]),...(active.has('CD')?[p.C,p.D,q.C,q.D]:[]),...(visibleS?[S,q.S]:[])];
  if(mode==='explore'){for(const x of [5.9,14.9])for(const y of [0,8.2])coordinates.push(abs({x,y}));}
  else{for(const f of [x=>x,x=>transformed(x)])for(const x of [5.9,14.9])for(const y of [0,8.2])coordinates.push(f(abs({x,y})));}
  let minX=Math.min(...coordinates.map(t=>t.x))-73,maxX=Math.max(...coordinates.map(t=>t.x))+78;
  let minY=Math.min(...coordinates.map(t=>t.y))-67,maxY=Math.max(...coordinates.map(t=>t.y))+85;
  let w=Math.max(265,maxX-minX),h=Math.max(190,maxY-minY),ratio=mode==='explore'?1.55:1.5;
  if(w/h<ratio){const need=h*ratio-w;minX-=need/2;w+=need}else{const need=w/ratio-h;minY-=need/2;h+=need}
- if(!dragTarget)$('scene').setAttribute('viewBox',[minX,minY,w,h].map(x=>x.toFixed(2)).join(' '));
+ const bounds=mode==='explore'&&cameraBox?cameraBox:{x:minX,y:minY,w,h};
+ if(!dragTarget||cameraBox)$('scene').setAttribute('viewBox',[bounds.x,bounds.y,bounds.w,bounds.h].map(x=>x.toFixed(2)).join(' '));
  $('scene').innerHTML=svg;
  $('scene').setAttribute('aria-label',`Homotecia con centro O. Segmentos AB y CD y distancia OS. Factor ${fmt(k)}. Original azul y copia naranja.`);
 }
 function exploreLength(key){if(key==='OS')return dist(O,S);return BASE[key]}
 function length(key){if(key==='k')return k;const orig=PRIME[key]||key;const value=task?BASE[orig]*task.unit:exploreLength(orig);return value*(PRIME[key]?k:1)}
 function updateExplore(){
- $('k-edit').value=fmt(k);$('factor').value=String(Math.min(4,Math.max(.25,k)));
+ $('k-edit').value=fmt(k);$('factor').value=String(Math.min(3.05,Math.max(.25,k)));
  const kind=k<1?'reducción':Math.abs(k-1)<.0001?'mismo tamaño':'ampliación';
  $('explore-kind').textContent=`k = ${factorText(k)} · ${kind}`;
  for(const key of ['AB','CD','OS']){
@@ -131,11 +133,11 @@ function updateExplore(){
    $('copy-'+key).textContent=visible?fmt(length(PAIRS.find(p=>p[0]===key)[1]))+' '+exploreUnit:'—';
  }
  const pairs=[['AB','APBP'],['CD','CPDP'],['OS','OSP']];
- $(`ratio-display`).innerHTML=showMeasures?pairs.filter(([a])=>showOS||a!=='OS').map(([a,b])=>length(a)<1e-8?`<div class="frac-line">${SYMBOLS[a]} = 0: esta razón no se puede calcular (división por cero).</div>`:`<div class="frac-line"><span class="fraction"><span class="num">${SYMBOLS[b]}</span><span class="den">${SYMBOLS[a]}</span></span><span>=</span><span class="fraction"><span class="num">${fmt(length(b))}</span><span class="den">${fmt(length(a))}</span></span><span>=</span><span>${fracHTML(k)}</span></div>`).join(''):'Ocultaste las medidas.';
+ $(`ratio-display`).innerHTML=showMeasures?pairs.filter(([a])=>showOS||a!=='OS').map(([a,b])=>length(a)<1e-8?`<div class="frac-line">${SYMBOLS[a]} = 0: esta razón no se puede calcular (división por cero).</div>`:`<div class="frac-line"><span class="fraction"><span class="num">${SYMBOLS[b]}</span><span class="den">${SYMBOLS[a]}</span></span><span>=</span><span class="fraction"><span class="num">${fmt(length(b))}</span><span class="den">${fmt(length(a))}</span></span><span>=</span><span>${fracHTML(k)}</span><span>= k</span></div>`).join(''):'Ocultaste las medidas.';
  scene();
 }
-function resetExplore(){ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};S={x:DEFAULT_ORIGIN.x+UNIT*GEOM.S.x,y:DEFAULT_ORIGIN.y-UNIT*GEOM.S.y};updateExplore()}
-function setK(v){if(!Number.isFinite(v)||v<.25||v>4){$('explore-status').textContent='Escribe un factor entre 0,25 y 4, como 3/4 o 1,5.';$('k-edit').value=fmt(k);return} k=v;$('explore-status').textContent='Factor actualizado: k = '+factorText(k);updateExplore()}
+function resetExplore(){cameraBox=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};S={x:DEFAULT_ORIGIN.x+UNIT*GEOM.S.x,y:DEFAULT_ORIGIN.y-UNIT*GEOM.S.y};updateExplore()}
+function setK(v){if(!Number.isFinite(v)||v<.25||v>3.05){$('explore-status').textContent='Escribe un factor entre 0,25 y 3,05, como 3/4 o 1,5.';$('k-edit').value=fmt(k);return} k=v;$('explore-status').textContent='Factor actualizado: k = '+factorText(k);updateExplore()}
 $('factor').addEventListener('input',e=>setK(Number(e.target.value)));
 $('k-edit').addEventListener('change',e=>setK(parseNumber(e.target.value)));
 $('k-edit').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.target.blur()}});
@@ -145,37 +147,58 @@ $('toggle-measures').addEventListener('change',e=>{showMeasures=e.target.checked
 $('toggle-os').addEventListener('change',e=>{showOS=e.target.checked;updateExplore()});
 $('k-edit-slash').addEventListener('click',()=>{const el=$('k-edit');const start=el.selectionStart??el.value.length,end=el.selectionEnd??el.value.length;el.value=el.value.slice(0,start)+'/'+el.value.slice(end);el.focus();const pos=start+1;el.setSelectionRange(pos,pos)});
 $('reset-points').addEventListener('click',()=>{dragTarget=null;resetExplore();$('explore-status').textContent='Posiciones restablecidas; vuelven el original, O y S a su lugar inicial.'});
-// Convertir los gestos táctiles a coordenadas SVG sin interferir con el desplazamiento del resto de la página.
+// Puntos y figura: un dedo para arrastrar; dos dedos para mover y ampliar el lienzo.
 function eventToSVG(evt){const svg=$('scene'),pt=svg.createSVGPoint();pt.x=evt.clientX;pt.y=evt.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse())}
+function getBox(){const b=$('scene').viewBox.baseVal;return {x:b.x,y:b.y,w:b.width,h:b.height}}
+function getGesture(){const a=[...touchPoints.values()].slice(0,2);if(a.length!==2)return null;return {mid:{x:(a[0].x+a[1].x)/2,y:(a[0].y+a[1].y)/2},dist:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)}}
+function beginPinch(){const pts=getGesture();if(!pts)return;dragTarget=null;const box=getBox();gesture={mid:pts.mid,dist:Math.max(1,pts.dist),box,anchor:eventToSVG({clientX:pts.mid.x,clientY:pts.mid.y})};cameraBox={...box}}
+function panZoom(){if(!gesture)return;const g=getGesture();if(!g)return;const svg=$('scene'),rect=svg.getBoundingClientRect();const b=gesture.box,a=gesture.anchor;const ratio=Math.max(.075,Math.min(15,gesture.dist/Math.max(1,g.dist)));const w=Math.min(4500,Math.max(75,b.w*ratio)),h=w*(b.h/b.w);
+ const fx=(a.x-b.x)/b.w,fy=(a.y-b.y)/b.h;const dx=g.mid.x-gesture.mid.x,dy=g.mid.y-gesture.mid.y;
+ cameraBox={x:a.x-fx*w-dx*w/Math.max(1,rect.width),y:a.y-fy*h-dy*h/Math.max(1,rect.height),w,h};
+ svg.setAttribute('viewBox',[cameraBox.x,cameraBox.y,cameraBox.w,cameraBox.h].join(' '));
+}
+function startDrag(which,evt){if(which==='copy'&&Math.abs(k-1)<1e-8){$('explore-status').textContent='Con k = 1, la copia coincide con el original.';return}
+ dragTarget=which;const pt=eventToSVG(evt),anchor=which==='O'?O:which==='S'?S:which==='original'?abs(GEOM.A):transformed(abs(GEOM.A));dragOffset={x:pt.x-anchor.x,y:pt.y-anchor.y};}
 $('scene').addEventListener('pointerdown',evt=>{
- const handle=evt.target.closest('[data-drag]');if(mode!=='explore'||!handle)return;
- const which=handle.dataset.drag;
- if(which==='copy'&&Math.abs(k-1)<1e-8){$('explore-status').textContent='Con k = 1 la copia coincide con el original. Cambia k para desplazarla.';return}
- dragTarget=which;
- const pt=eventToSVG(evt);
- const anchor=which==='O'?O:which==='S'?S:which==='original'?abs(GEOM.A):transformed(abs(GEOM.A));
- dragOffset={x:pt.x-anchor.x,y:pt.y-anchor.y};
- $('scene').setPointerCapture(evt.pointerId);evt.preventDefault();
+ if(mode!=='explore')return;
+ const handle=evt.target.closest('[data-drag]');
+ if(evt.pointerType==='touch'){
+  touchPoints.set(evt.pointerId,{x:evt.clientX,y:evt.clientY});
+  $('scene').setPointerCapture(evt.pointerId);
+  if(touchPoints.size>=2){beginPinch();evt.preventDefault();return;}
+  if(handle)startDrag(handle.dataset.drag,evt);
+  evt.preventDefault();return;
+ }
+ if(!handle)return;startDrag(handle.dataset.drag,evt);$('scene').setPointerCapture(evt.pointerId);evt.preventDefault();
 });
 $('scene').addEventListener('pointermove',evt=>{
- if(!dragTarget)return;
+ if(mode!=='explore')return;
+ if(touchPoints.has(evt.pointerId)){
+  touchPoints.set(evt.pointerId,{x:evt.clientX,y:evt.clientY});
+  if(touchPoints.size>=2){if(!gesture)beginPinch();panZoom();evt.preventDefault();return;}
+ }
+ if(!dragTarget||gesture)return;
  const pt=eventToSVG(evt),newPos={x:pt.x-dragOffset.x,y:pt.y-dragOffset.y};
  if(dragTarget==='O')O=newPos;
  else if(dragTarget==='S')S=newPos;
- else if(dragTarget==='original'){ORIGIN={x:newPos.x-UNIT*GEOM.A.x,y:newPos.y+UNIT*GEOM.A.y};}
- else if(dragTarget==='copy'&&Math.abs(k-1)>1e-8){
-   const a={x:O.x+(newPos.x-O.x)/k,y:O.y+(newPos.y-O.y)/k};ORIGIN={x:a.x-UNIT*GEOM.A.x,y:a.y+UNIT*GEOM.A.y};
- }
+ else if(dragTarget==='original')ORIGIN={x:newPos.x-UNIT*GEOM.A.x,y:newPos.y+UNIT*GEOM.A.y};
+ else if(dragTarget==='copy'&&Math.abs(k-1)>1e-8){const a={x:O.x+(newPos.x-O.x)/k,y:O.y+(newPos.y-O.y)/k};ORIGIN={x:a.x-UNIT*GEOM.A.x,y:a.y+UNIT*GEOM.A.y}}
  updateExplore();evt.preventDefault();
 });
-function finishDrag(){if(!dragTarget)return;dragTarget=null;updateExplore()}
-for(const type of ['pointerup','pointercancel','lostpointercapture'])$('scene').addEventListener(type,finishDrag);
+function endPointer(evt){touchPoints.delete(evt.pointerId);if(touchPoints.size<2)gesture=null;if(dragTarget){dragTarget=null;updateExplore()}}
+for(const type of ['pointerup','pointercancel','lostpointercapture'])$('scene').addEventListener(type,endPointer);
+$('scene').addEventListener('wheel',evt=>{
+ if(mode!=='explore')return;evt.preventDefault();const b=getBox(),a=eventToSVG(evt),scale=evt.deltaY>0?1.15:1/1.15;
+ const w=Math.min(4500,Math.max(75,b.w*scale)),h=w*b.h/b.w;
+ cameraBox={x:a.x-(a.x-b.x)*w/b.w,y:a.y-(a.y-b.y)*h/b.h,w,h};
+ $('scene').setAttribute('viewBox',[cameraBox.x,cameraBox.y,cameraBox.w,cameraBox.h].join(' '));
+},{passive:false});
 // Actividades con longitudes enteras en original y copia.
 function buildTask(kind){
  const factor=pick([.5,.75,.8,1,1.25,1.5,2,2.5,3]);const f=frac(factor)||[1,1];
  const unit=f[1]*pick([1,2,3]);const all=[...PAIRS];let givens=[],answers=[];
  if(kind==='apply'){
-  const one=pick(all.slice(0,2)),two=pick([all[2],pick(all.slice(0,2).filter(x=>x!==one))]);
+  const one=pick(all),two=pick(all.filter(x=>x!==one));
   givens=[one[0],two[0],'k'];answers=[one[1],two[1]];
  }else if(kind==='find'){
   const pair=pick(all);givens=[pair[0],pair[1]];answers=['k'];
@@ -191,7 +214,7 @@ function updateTask(){
  $('task-category').textContent={apply:'ACTIVIDAD 1',find:'ACTIVIDAD 2',transfer:'ACTIVIDAD 3'}[mode];
  $('task-heading').textContent={apply:'Aplicar el factor k',find:'Encontrar el factor k',transfer:'Encontrar k y hallar otra medida'}[mode];
  $('question-index').textContent='Desafío '+taskIndex;
- $('task-text').textContent={apply:'Conoces el factor de homotecia y dos medidas originales. Calcula las correspondientes de la copia.',find:'Compara una medida original con la correspondiente de la copia y determina k.',transfer:'Calcula k a partir de dos medidas correspondientes. Después úsalo para hallar otra medida de la copia.'}[mode];
+ $('task-text').textContent={apply:'Conoces k y dos de las tres medidas originales (AB, CD y OS). Calcula las dos medidas correspondientes de la copia.',find:stats.find.wins>=5?'Calcula k con la única pareja de medidas indicada. Las otras referencias del dibujo muestran la misma proporcionalidad.':'Compara una sola medida original con su correspondiente en la copia y determina k.',transfer:'Calcula k a partir de una pareja de medidas. Después úsalo para hallar otra medida en la copia.'}[mode];
  const original=$('task-original'),copy=$('task-copy');original.replaceChildren();copy.replaceChildren();
  const factor=$('known-k');factor.replaceChildren();let label=document.createElement('span');label.textContent='Factor k =';factor.append(label);
  if(task.answers.includes('k')){const wrap=document.createElement('span');wrap.className='inline-edit';wrap.append(inputFor('k'));const btn=document.createElement('button');btn.type='button';btn.className='slash-btn small';btn.textContent='/';btn.addEventListener('click',()=>{const el=$('answer-k');if(!el)return;const start=el.selectionStart??el.value.length,end=el.selectionEnd??el.value.length;el.value=el.value.slice(0,start)+'/'+el.value.slice(end);el.focus();const pos=start+1;el.setSelectionRange(pos,pos)});wrap.append(btn);factor.append(wrap);}else{const strong=document.createElement('strong');strong.textContent=factorText(k);factor.append(strong)}
@@ -202,11 +225,11 @@ function updateTask(){
   }
  }
  $('feedback').hidden=true;$('worked').hidden=true;$('worked').replaceChildren();$('check').disabled=false;$('check').textContent='Comprobar respuestas';$('solution').textContent='Ver desarrollo';updateProgress();scene();
- $('visual-note').textContent='Observa los segmentos AB y CD y la distancia OS. Compara los datos de la figura original y su copia.';
+ $('visual-note').textContent=mode==='find'&&stats.find.wins>=5?'Las referencias adicionales aparecen para observar la homotecia; solo el par indicado permite calcular k.':'Mira solamente las medidas señaladas en este desafío y sus correspondientes en la copia.';
  $('guide-text').textContent={apply:'Multiplica la medida original por el factor k.',find:'Divide una medida de la copia por la medida original correspondiente.',transfer:'Primero encuentra k; luego multiplica otra medida original por ese factor.'}[mode];
 }
 function inputFor(key){const el=document.createElement('input');el.id='answer-'+key;el.className='missing-input';el.placeholder='?';el.type='text';el.inputMode='decimal';el.autocomplete='off';el.setAttribute('aria-label','Completa '+SYMBOLS[key]);el.addEventListener('input',()=>el.classList.remove('good','bad'));return el}
-function nextTask(){ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};S={x:DEFAULT_ORIGIN.x+UNIT*GEOM.S.x,y:DEFAULT_ORIGIN.y-UNIT*GEOM.S.y};task=buildTask(mode);taskIndex++;k=task.k;updateTask()}
+function nextTask(){cameraBox=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};S={x:DEFAULT_ORIGIN.x+UNIT*GEOM.S.x,y:DEFAULT_ORIGIN.y-UNIT*GEOM.S.y};task=buildTask(mode);taskIndex++;k=task.k;updateTask()}
 function updateProgress(){$('progress').textContent=`Aciertos: ${stats[mode].wins} · Comprobaciones: ${stats[mode].tries}`}
 $('task-form').addEventListener('submit',evt=>{
  evt.preventDefault();if(!task||task.solved||task.revealed)return;
@@ -215,7 +238,7 @@ $('task-form').addEventListener('submit',evt=>{
  stats[mode].tries++;task.tries++;
  let good=0;const misses=[];
  for(const a of entered){const correct=Math.abs(parseNumber(a.el.value)-a.expected)<.011;a.el.classList.toggle('good',correct);a.el.classList.toggle('bad',!correct);if(correct)good++;else misses.push(a.key)}
- if(good===entered.length){task.solved=true;stats[mode].wins++;entered.forEach(a=>a.el.disabled=true);$('check').disabled=true;$('check').textContent='✓ Desafío correcto';showFeedback('¡Muy bien! Reconociste las medidas correspondientes y aplicaste la proporcionalidad.',true);$('solution').textContent='Ver desarrollo de comprobación'}
+ if(good===entered.length){task.solved=true;stats[mode].wins++;if(mode==='find'&&stats.find.wins===5){$('task-text').textContent='¡Cinco desafíos correctos! En el dibujo aparecen otras dos referencias de proporcionalidad. Sigue calculando k con la pareja indicada.';}entered.forEach(a=>a.el.disabled=true);$('check').disabled=true;$('check').textContent='✓ Desafío correcto';showFeedback('¡Muy bien! Reconociste las medidas correspondientes y aplicaste la proporcionalidad.',true);$('solution').textContent='Ver desarrollo de comprobación'}
  else{
   const txt=misses.map(key=>{if(key==='k'){const pair=PAIRS.find(p=>task.givens.includes(p[0])&&task.givens.includes(p[1]));return 'k incorrecto. ¿Dividiste '+SYMBOLS[pair[1]]+' entre '+SYMBOLS[pair[0]]+'? ¿Hiciste esa división?'}
    const orig=PRIME[key];return SYMBOLS[key]+' incorrecto. La medida de la copia se obtiene multiplicando '+SYMBOLS[orig]+' por el factor k. ¿Hiciste '+SYMBOLS[orig]+' × k?'});
@@ -229,7 +252,7 @@ $('solution').addEventListener('click',()=>{
  for(const key of task.answers){const d=document.createElement('div');if(key==='k'){const pair=PAIRS.find(p=>task.givens.includes(p[0])&&task.givens.includes(p[1]));d.textContent='k = '+fmt(length(pair[1]))+' ÷ '+fmt(length(pair[0]))+' = '+factorText(k)}else{const orig=PRIME[key];d.textContent=SYMBOLS[key]+' = '+fmt(length(orig))+' × '+factorText(k)+' = '+fmt(length(key))+' '+task.measureUnit}out.append(d)}
 });
 $('another').addEventListener('click',()=>{if(!task)return;const work=task.answers.some(key=>$('answer-'+key)?.value.trim());if(work&&!task.solved&&!task.revealed&&!confirm('¿Generar otro desafío? Se perderán las respuestas escritas de este ejercicio.'))return;nextTask()});
-function switchMode(next){if(mode===next)return;mode=next;document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const exploring=next==='explore';$('task-intro').hidden=exploring;$('explore-controls').hidden=!exploring;$('explore-readouts').hidden=!exploring;$('explore-formula').hidden=!exploring;$('challenge-panel').hidden=exploring;$('activity-guide').hidden=exploring;if(exploring){task=null;k=1.5;resetExplore();$('visual-note').textContent='Arrastra el original azul, O o S por separado. La copia sigue la homotecia y puede quedar fuera de la pantalla.'}else nextTask()}
+function switchMode(next){if(mode===next)return;mode=next;cameraBox=null;document.body.classList.toggle('exploring',mode==='explore');document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const exploring=next==='explore';$('task-intro').hidden=exploring;$('explore-controls').hidden=!exploring;$('explore-readouts').hidden=!exploring;$('explore-formula').hidden=!exploring;$('challenge-panel').hidden=exploring;$('activity-guide').hidden=exploring;if(exploring){task=null;k=1.5;resetExplore();$('visual-note').textContent='Arrastra el gato azul, O o S por separado. Con dos dedos puedes desplazar y ampliar el lienzo. La copia puede quedar fuera de pantalla.'}else nextTask()}
 document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{if(mode!=='explore'&&task&&!task.solved&&!task.revealed&&task.answers.some(key=>$('answer-'+key)?.value.trim())&&!confirm('¿Cambiar de actividad? Se perderán las respuestas que estás escribiendo.'))return;switchMode(btn.dataset.mode)}));
 updateExplore();
 })();
