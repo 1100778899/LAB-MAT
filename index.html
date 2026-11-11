@@ -20,11 +20,19 @@ h2{font-size:20px;letter-spacing:-.35px;margin:0 0 6px}.sub{color:var(--muted);f
 .mode-choice em{font-size:12px;color:var(--teal);font-style:normal;font-weight:800;margin-top:auto}
 #prismas-mode-picker[hidden]{display:none!important}
 @media(max-width:650px){#prismas-mode-picker{padding:20px 12px 32px}.mode-choices{grid-template-columns:1fr;gap:10px;margin-top:16px}.mode-choice{min-height:112px;padding:16px;gap:5px}.mode-choice strong{font-size:18px}}
+
+/* Acceso diferenciado a prototipos; no afecta los juegos publicados. */
+.beta-zone{margin-top:28px;padding:19px 20px;background:#f9fcfa;border:1px dashed #9ec7b7;border-radius:17px}
+.beta-zone h2{font-size:17px;margin:0 0 7px}.beta-zone p{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 11px}
+.beta-open{display:inline-block;padding:10px 14px;border-radius:10px;background:#e0f1e9;color:#125e4c;font-weight:850;font-size:13px;text-decoration:none;border:1px solid #b8dacc}
+.beta-open:hover{background:#d3e9df}
+@media(max-width:650px){.beta-zone{margin-top:20px;padding:15px}}
 </style></head><body>
 <main id="home">
 <section class="top"><div class="eyebrow" style="color:#90dfc4">Exploración matemática</div><h1>Laboratorio Matemático</h1><p>Elige un juego, experimenta y revisa tus procedimientos. Puedes cambiar de actividad cuando quieras.</p><span class="pill">4 juegos · Acceso libre · Sin internet</span></section>
 <h2>Elige tu juego</h2><p class="sub">Todos están disponibles desde el comienzo. Sigue las indicaciones de tu profesor o explora libremente.</p>
 <div class="cards" id="cards"></div>
+<section class="beta-zone" aria-labelledby="beta-heading"><h2 id="beta-heading">🧪 En construcción</h2><p>Aquí probamos juegos que todavía estamos desarrollando. El acceso requiere una clave sencilla.</p><a class="beta-open" href="pruebas/">Entrar al laboratorio de pruebas</a></section>
 <p class="foot">Este laboratorio funciona en el dispositivo. No envía nombres ni resultados a un servidor.</p>
 </main>
 <section id="player" aria-label="Juego seleccionado"><div id="gamebar"><button type="button" id="back">← Juegos</button><span id="gametitle"></span></div><section id="prismas-mode-picker" aria-label="Modalidades de Prismas y redes" hidden>
