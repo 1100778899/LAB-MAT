@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#123c34"><meta name="robots" content="noindex,nofollow"><title>Pirámide de operatorias · LAB-MAT</title>
+<style>
+:root{--bg:#eef5f1;--white:#fff;--ink:#19382f;--muted:#647e71;--green:#126c5b;--dark:#123d34;--line:#d2e4dc;--mint:#dff4e9;--orange:#dd8a31;--violet:#6e5bb1}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 5% 0%,#d9f0e5,transparent 35%),var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ebb546;outline-offset:2px}[hidden]{display:none!important}button:disabled{opacity:.42;cursor:not-allowed}.shell{max-width:930px;margin:auto;padding:12px 12px 44px}.hero{background:linear-gradient(125deg,#143c34,#116452);color:#fff;border-radius:20px;padding:19px 22px}.topline{display:flex;justify-content:space-between;align-items:center;gap:10px}.eyebrow{font-weight:900;font-size:10px;letter-spacing:1.35px;color:#a5ebcc}.back{color:#d5f7e7;background:#225a4b;border:1px solid #559784;border-radius:9px;padding:7px 11px;min-height:40px;font-size:12px;font-weight:750}.hero h1{font-size:clamp(23px,4vw,34px);letter-spacing:-.7px;margin:9px 0 5px;line-height:1.16}.hero p{margin:0;font-size:13px;color:#d5eee1}.stage-tag{font-weight:800;font-size:10px;display:inline-block;margin-top:10px;padding:4px 8px;border-radius:8px;background:#205f50}.tabs{margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}.tab{border:1px solid #cfe2d8;border-radius:12px;background:#fff;min-height:47px;color:#386d59;font-weight:850}.tab.active{background:var(--green);color:#fff;border-color:var(--green)}.card{border:1px solid var(--line);border-radius:17px;background:var(--white);padding:15px;margin:10px 0;box-shadow:0 5px 18px #173c3010}.heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.heading h2{font-size:17px;letter-spacing:-.2px;margin:0}.muted{color:var(--muted);font-size:12px}.help{margin:6px 0 10px;color:var(--muted);font-size:12px}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field label{display:block;font-size:12px;font-weight:800;color:#365d4e;margin-bottom:4px}.field select{display:block;width:100%;height:44px;border:1px solid #c5dcd0;background:#f9fcfa;color:var(--ink);border-radius:10px;padding:0 9px}.mission-head{padding:13px;background:#ecf6f0;border:1px solid #cde6d8;border-radius:12px}.mission-head strong{display:block;font-size:16px}.mission-head p{margin:6px 0 0;font-size:12px;color:#4b6a59}.mission-no{font-size:10px;font-weight:900;letter-spacing:.8px;color:#0b715c}.actionrow{display:flex;flex-wrap:wrap;gap:8px;margin:11px 0 0}.actionrow button{flex:1 1 112px;border:1px solid #b9d9c9;background:#f3faf6;color:#185949;border-radius:10px;min-height:43px;padding:8px 12px;font-weight:800;font-size:12px}.actionrow .emph{background:var(--green);color:#fff;border-color:var(--green)}.pyramid-head{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:4px}.pyramid{height:340px;position:relative;width:100%;--n:4;isolation:isolate;overflow:hidden;border-radius:12px;background:linear-gradient(180deg,#fcfefc,#f5faf7);border:1px solid #e3eee6}.edges{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}.edges line{stroke:#96b7a8;stroke-width:2;vector-effect:non-scaling-stroke;opacity:.8}.bubble{position:absolute;transform:translate(-50%,-50%);min-width:0;width:min(76px,calc(100% / var(--n) - 6px));height:48px;background:#fff;border:2px solid #adcfc0;color:#194b3b;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:clamp(11px,2.3vw,18px);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 3px 10px #20433312;animation:emerge .2s ease-out}.bubble.base{border-color:#589f8d;background:#e9f8ef}.bubble.final{border:2px solid #c3822f;background:#fff0cf;color:#7b4d0b}.bubble.pending{opacity:.35;border-style:dashed}.bubble input{width:100%;min-width:0;height:100%;text-align:center;background:transparent;color:#114f40;border:0;outline:none;padding:1px 3px;font-weight:850;font-size:inherit}.bubble input:focus{background:#fff8e6}.bubble input:disabled{color:#326657;opacity:1}.operator{position:absolute;transform:translate(-50%,-50%);width:min(62px,calc(100% / var(--n) - 5px));min-width:34px;height:43px;border:1.6px dashed #88b8a1;border-radius:12px;background:#e5f5eb;color:#166b56;font-size:22px;font-weight:900;box-shadow:0 3px 10px #19463716;touch-action:manipulation}.operator.set{background:#176f5c;color:#fff;border:2px solid #176f5c}.operator.invalid{background:#ffe6df;border:2px solid #c45a46;color:#9b3020}.operator:active{transform:translate(-50%,-50%) scale(.95)}.row-label{position:absolute;left:5px;font-size:9px;color:#829c8e;font-weight:800}.progress{background:#eff8f3;color:#346955;font-size:12px;border-radius:9px;padding:9px 11px;margin:10px 0 0}.result{padding:13px;border-radius:12px;background:#f1f6f2;border:1px solid #d5e6db}.result h3{margin:0;font-size:16px}.result .answer{font-size:clamp(22px,5vw,36px);font-weight:900;color:#15644f;overflow-wrap:anywhere;margin:2px 0}.result p{margin:6px 0;font-size:12px;color:#466e5e}.result.success{background:#e7f8ed;border-color:#91d7b0}.result.notice{background:#fff6e7;border-color:#eed5a2}.steps{display:grid;gap:6px;margin:10px 0}.step{background:#f7fbf8;border:1px solid #e0eee6;border-radius:10px;padding:8px 10px;display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;font-size:13px}.step small{font-size:10px;color:#6d8b7c;font-weight:800}.step strong{font-variant-numeric:tabular-nums}.prompt{background:#f4f1fb;border:1px solid #e3dafa;color:#54418d;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:700;margin:9px 0}.hint{background:#fff8e9;border:1px solid #eedab9;padding:10px;border-radius:9px;font-size:12px;color:#785b23}.subline{font-size:11px;color:#6e8778}.dialog{position:fixed;inset:0;z-index:50;background:#102e2899;display:flex;align-items:flex-end;justify-content:center;padding:12px}.tray{width:min(550px,100%);background:#fff;border-radius:20px 20px 16px 16px;padding:18px 16px;box-shadow:0 10px 40px #132e2a55}.tray h2{font-size:19px;margin:0}.tray p{color:#5a776a;font-size:13px;margin:5px 0 15px}.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.choice{min-height:66px;border:1.5px solid #a7d5bd;border-radius:12px;background:#eaf8f0;color:#145d4c;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:26px;font-weight:900}.choice small{font-size:10px;color:#3c7561;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-weight:800}.choice:disabled{background:#f3f3f3}.dialog-actions{display:flex;gap:9px;margin-top:14px}.dialog-actions button{flex:1;min-height:42px;border:1px solid #c0dacf;background:#fff;color:#176151;border-radius:10px;font-weight:800}.ft{text-align:center;color:#7b9486;font-size:11px;margin:20px 0}@keyframes emerge{from{opacity:.15;scale:.96}to{opacity:1;scale:1}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}@media(max-width:480px){.shell{padding:8px 8px 28px}.hero{padding:15px;border-radius:16px}.hero h1{font-size:23px}.card{padding:11px;border-radius:14px}.controls{gap:7px}.field select{font-size:12px;padding:0 6px}.pyramid{margin-top:6px}.bubble{height:45px;border-radius:9px;font-size:clamp(10px,3.3vw,16px)}.operator{height:42px;border-radius:10px}.choices{gap:6px}.choice{font-size:25px;min-height:65px}.step{font-size:12px}.heading h2{font-size:16px}}
+</style></head>
+<body>
+<div class="shell">
+<header class="hero"><div class="topline"><span class="eyebrow">LAB-MAT · Experimento matemático</span><button type="button" class="back" data-action="menu">← Menú</button></div><h1>🧮 Pirámide de operatorias</h1><p>Una operación puede transformar todo lo que viene después. Elige, observa y cambia de estrategia.</p><span class="stage-tag">🧪 PROTOTIPO EN CONSTRUCCIÓN</span></header>
+<nav class="tabs" aria-label="Modo de juego"><button class="tab active" id="tab-explore" type="button" data-action="mode" data-mode="explore">🔎 Explorar</button><button class="tab" id="tab-challenge" type="button" data-action="mode" data-mode="challenge">🎯 Desafíos</button></nav>
+<section class="card" id="settings"></section>
+<section class="card"><div class="pyramid-head"><div class="heading"><h2>Tu pirámide invertida</h2></div><small class="muted" id="row-count">4 números</small></div><p class="help">Toca un <strong>+</strong> entre dos números para elegir la operación. Puedes tocarlo de nuevo y cambiarla. Cada número puede usarse en dos parejas vecinas.</p><div class="pyramid" id="pyramid" role="group" aria-label="Pirámide matemática interactiva"></div><div class="progress" id="progress" aria-live="polite"></div><div class="actionrow"><button type="button" data-action="undo" id="undo">↶ Deshacer</button><button type="button" data-action="reset">↻ Reiniciar operaciones</button><button type="button" data-action="new" id="new">🎲 Nuevos números</button></div></section>
+<section class="card"><div class="heading"><h2>🔬 Observa tu estrategia</h2></div><div id="outcome" style="margin-top:10px" aria-live="polite"></div><div id="steps" class="steps"></div><div id="reflection"></div></section><div class="ft">LAB-MAT · Sin cuentas, publicidad ni envío de respuestas a servidores.</div>
+</div>
+<div class="dialog" id="dialog" hidden role="dialog" aria-modal="true" aria-labelledby="dialog-title"><div class="tray"><h2 id="dialog-title">Elige una operación</h2><p id="dialog-prompt"></p><div class="choices" id="choices"></div><div class="dialog-actions"><button type="button" data-action="clear">Borrar operación</button><button type="button" data-action="close">Cerrar</button></div></div></div>
+<script>
+(function(){'use strict';
+var SYMBOLS=['+','−','×','÷'];
+function gcd(a,b){a=a<0n?-a:a;b=b<0n?-b:b;while(b){var z=a%b;a=b;b=z}return a||1n}
+function rational(a,b){if(b===0n)return null;if(b<0n){a=-a;b=-b}var g=gcd(a,b);return{n:a/g,d:b/g}}
+function read(s){s=String(s).replace(/\s/g,'').replace(',','.');if(s.length>16)return null;var f=s.match(/^([+-]?\d+)\/([+-]?\d+)$/);if(f)return rational(BigInt(f[1]),BigInt(f[2]));var m=s.match(/^([+-]?)(\d*)(?:\.(\d+))?$/);if(!m||(!m[2]&&!m[3]))return null;var digits=(m[2]||'0')+(m[3]||'');var sign=m[1]==='-'?-1n:1n;return rational(sign*BigInt(digits),10n**BigInt((m[3]||'').length))}
+function calc(a,b,op){if(!a||!b||!op)return null;if(op==='+')return rational(a.n*b.d+b.n*a.d,a.d*b.d);if(op==='−')return rational(a.n*b.d-b.n*a.d,a.d*b.d);if(op==='×')return rational(a.n*b.n,a.d*b.d);if(op==='÷')return b.n===0n?null:rational(a.n*b.d,a.d*b.n);return null}
+function eq(a,b){return!!a&&!!b&&a.n===b.n&&a.d===b.d}
+function cmp(a,b){var z=a.n*b.d-b.n*a.d;return z>0n?1:z<0n?-1:0}
+function raw(v){return v?v.n.toString()+(v.d===1n?'':'/'+v.d.toString()):'—'}
+function fmt(v){if(!v)return'—';if(v.d===1n)return v.n.toString();if(state.tier==='decimal'){var d=v.d,k=0;while(d%2n===0n){d/=2n;k++}while(d%5n===0n){d/=5n;k++}if(d===1n&&k<=4){var sign=v.n<0n?'-':'';var n=v.n<0n?-v.n:v.n;var scale=10n**BigInt(k);var z=(n*scale/v.d).toString().padStart(k+1,'0');if(k)return sign+(z.slice(0,-k)+','+z.slice(-k)).replace(/,0+$/,'');return sign+z}}return raw(v)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function emptyOps(n){return Array.from({length:n-1},function(_,r){return Array(n-r-1).fill(null)})}
+var seeds={natural:['2','5','3','4','2','6'],integer:['-2','5','-3','4','-1','6'],fraction:['1/2','3/4','2/3','5/2','1/3','4/5'],decimal:['1,5','2,4','0,5','3,2','1,25','2,5']};
+var missions=[
+{title:'Construye el número 24',desc:'Usa los números dados para llegar exactamente a 24.',kind:'target',nums:['2','2','3'],target:'24',hint:'Busca una manera de formar dos resultados que, al multiplicarse, den 24.'},
+{title:'Cruza el cero',desc:'Consigue un resultado final menor que cero.',kind:'negative',nums:['3','5','1'],hint:'En la resta, cambiar el orden puede producir un número negativo.'},
+{title:'Divide para avanzar',desc:'Termina la pirámide utilizando al menos una división válida.',kind:'division',nums:['8','2','2'],hint:'Prueba qué ocurre si divides el número de la izquierda por el de la derecha.'},
+{title:'El máximo posible',desc:'Busca el mayor resultado final que pueda obtenerse con estos tres números y las cuatro operaciones. Se consideran fracciones.',kind:'maximum',nums:['2','3','4'],hint:'Una multiplicación no siempre es la mejor primera decisión. Compara combinaciones completas.'},
+{title:'Dos caminos, una meta',desc:'Guarda una pirámide completa y luego consigue el mismo resultado con otra secuencia de operaciones.',kind:'duplicate',nums:['2','2','2'],hint:'Dos operaciones diferentes pueden producir resultados iguales con ciertos números.'}
+];
+function evaluate(nums,ops){var rows=[nums.map(read)],bad=[];for(var r=0;r<nums.length-1;r++){var out=[];for(var i=0;i<nums.length-r-1;i++){var a=rows[r][i],b=rows[r][i+1],op=ops[r][i];if(a&&b&&op==='÷'&&b.n===0n)bad.push([r,i]);out.push(calc(a,b,op))}rows.push(out)}return{rows:rows,errors:bad,final:rows[rows.length-1][0],complete:ops.every(function(x){return x.every(Boolean)})}}
+function bestFor(nums){var a=nums.map(read);var best=null;var byValue={};var total=0;for(var i=0;i<4;i++)for(var j=0;j<4;j++)for(var k=0;k<4;k++){var left=calc(a[0],a[1],SYMBOLS[i]),right=calc(a[1],a[2],SYMBOLS[j]);var v=calc(left,right,SYMBOLS[k]);if(!v)continue;total++;var key=raw(v);if(!byValue[key])byValue[key]=[];byValue[key].push(SYMBOLS[i]+SYMBOLS[j]+SYMBOLS[k]);if(!best||cmp(v,best)>0)best=v}return{best:best,byValue:byValue,total:total}}
+var verified=missions.map(function(m){var test=bestFor(m.nums);if(m.kind==='target'&&!test.byValue[m.target])throw Error('Misión 24 sin solución');if(m.kind==='negative'&&!Object.keys(test.byValue).some(function(x){return read(x).n<0n}))throw Error('Misión negativos imposible');if(m.kind==='division'&&!Object.values(test.byValue).some(function(a){return a.some(function(s){return s.includes('÷')})}))throw Error('Misión división imposible');if(m.kind==='duplicate'&&!Object.values(test.byValue).some(function(a){return a.length>1}))throw Error('Misión duplicados imposible');return test});
+var state={mode:'explore',tier:'natural',count:4,base:seeds.natural.slice(0,4),ops:emptyOps(4),mission:0,saved:null,best:null,hint:false,reflection:0};
+var undoStack=[],active=null;
+var $=function(id){return document.getElementById(id)};
+function snapshot(){return JSON.stringify({mode:state.mode,tier:state.tier,count:state.count,base:state.base,ops:state.ops,mission:state.mission,saved:state.saved,best:state.best,hint:state.hint,reflection:state.reflection})}
+function remember(){undoStack.push(snapshot());if(undoStack.length>70)undoStack.shift()}
+function applyMission(index){state.mode='challenge';state.mission=index;state.tier='natural';state.count=3;state.base=missions[index].nums.slice();state.ops=emptyOps(3);state.saved=null;state.best=null;state.hint=false;state.reflection=0;active=null}
+function resetToExplore(){state.mode='explore';state.tier='natural';state.count=4;state.base=seeds.natural.slice(0,4);state.ops=emptyOps(4);state.saved=null;state.hint=false;state.reflection=0;active=null}
+function missionDone(v){if(!v.final||!v.complete||v.errors.length)return false;var m=missions[state.mission];if(m.kind==='target')return eq(v.final,read(m.target));if(m.kind==='negative')return v.final.n<0n;if(m.kind==='division')return state.ops.some(function(row){return row.includes('÷')});if(m.kind==='maximum')return eq(v.final,verified[state.mission].best);if(m.kind==='duplicate')return!!state.saved&&state.saved.signature!==signature()&&state.saved.value===raw(v.final);return false}
+function signature(){return state.ops.map(function(row){return row.map(function(v){return v||'_' }).join('')}).join('|')}
+function fresh(){var n=state.count;var x=[];for(var i=0;i<n;i++){if(state.tier==='natural')x.push(String(1+Math.floor(Math.random()*9)));if(state.tier==='integer')x.push(String(Math.floor(Math.random()*19)-9));if(state.tier==='fraction')x.push((1+Math.floor(Math.random()*8))+'/'+(2+Math.floor(Math.random()*7)));if(state.tier==='decimal')x.push(String((2+Math.floor(Math.random()*70))/10).replace('.',','))}return x}
+function renderSettings(){
+ if(state.mode==='explore'){
+ $('settings').innerHTML='<div class="heading"><h2>Configura el experimento</h2></div><p class="help">Modifica los números superiores; los resultados inferiores se recalculan automáticamente.</p><div class="controls"><div class="field"><label for="tier">Tipo de números</label><select id="tier"><option value="natural">Naturales</option><option value="integer">Enteros negativos y positivos</option><option value="fraction">Fracciones</option><option value="decimal">Decimales</option></select></div><div class="field"><label for="count">Números de la primera fila</label><select id="count"><option value="3">3 números</option><option value="4">4 números</option><option value="5">5 números</option><option value="6">6 números</option></select></div></div><p class="subline">Acepta 2,5 · -3 · 3/4. En cada pareja se opera de izquierda a derecha.</p>';
+ $('tier').value=state.tier;$('count').value=String(state.count);
+ }else{
+ var m=missions[state.mission];
+ $('settings').innerHTML='<div class="heading"><h2>Misiones matemáticas</h2></div><p class="help">Cada misión está comprobada para asegurar que al menos una solución existe.</p><div class="field"><label for="mission-select">Selecciona un desafío</label><select id="mission-select">'+missions.map(function(x,i){return '<option value="'+i+'">Desafío '+(i+1)+' · '+esc(x.title)+'</option>'}).join('')+'</select></div><div class="mission-head" style="margin-top:10px"><span class="mission-no">DESAFÍO '+(state.mission+1)+' DE 5</span><strong>'+esc(m.title)+'</strong><p>'+esc(m.desc)+'</p></div><div class="actionrow"><button data-action="hint" type="button">💡 '+(state.hint?'Ocultar pista':'Pista para pensar')+'</button><button data-action="nextMission" type="button">Siguiente desafío →</button></div>'+(state.hint?'<div class="hint" style="margin-top:10px">'+esc(m.hint)+'</div>':'');
+ $('mission-select').value=String(state.mission);
+ }
+ $('tab-explore').classList.toggle('active',state.mode==='explore');$('tab-challenge').classList.toggle('active',state.mode==='challenge');
+ $('tab-explore').setAttribute('aria-pressed',String(state.mode==='explore'));$('tab-challenge').setAttribute('aria-pressed',String(state.mode==='challenge'));
+ $('new').textContent=state.mode==='explore'?'🎲 Nuevos números':'↺ Volver a empezar';
+ $('undo').disabled=undoStack.length===0;
+}
+function renderPyramid(v){
+ var n=state.count,STEP=104,Y=36,H=(n-1)*STEP+80;var s='<svg class="edges" viewBox="0 0 1000 '+H+'" preserveAspectRatio="none" aria-hidden="true">';
+ function x(r,i){return (i+r/2+.5)*1000/n}
+ for(var r=0;r<n-1;r++)for(var i=0;i<n-r-1;i++){s+='<line x1="'+x(r,i)+'" y1="'+(Y+r*STEP+23)+'" x2="'+x(r+1,i)+'" y2="'+(Y+(r+1)*STEP-23)+'"/><line x1="'+x(r,i+1)+'" y1="'+(Y+r*STEP+23)+'" x2="'+x(r+1,i)+'" y2="'+(Y+(r+1)*STEP-23)+'"/>'}
+ s+='</svg>';
+ for(var row=0;row<n;row++){
+ s+='<span class="row-label" style="top:'+(Y+row*STEP-29)+'px">F'+(row+1)+'</span>';
+ for(var j=0;j<n-row;j++){
+  var cx=(j+row/2+.5)*100/n;var vy=Y+row*STEP;var val=v.rows[row][j];var cls='bubble '+(row===0?'base':row===n-1&&val?'final':val?'':'pending');
+  if(row===0){
+    var disabled=state.mode==='challenge'?' disabled aria-readonly="true"':'';
+    s+='<div class="'+cls+'" style="left:'+cx+'%;top:'+vy+'px"><input aria-label="Número inicial '+(j+1)+'" data-base="'+j+'" type="text" inputmode="text" spellcheck="false" maxlength="16" value="'+esc(state.base[j])+'"'+disabled+'></div>';
+  }else s+='<div class="'+cls+'" title="'+esc(raw(val))+'" style="left:'+cx+'%;top:'+vy+'px">'+esc(fmt(val))+'</div>';
+ }
+ if(row<n-1)for(var k=0;k<n-row-1;k++){
+  var a=v.rows[row][k],b=v.rows[row][k+1],op=state.ops[row][k];var err=!!(a&&b&&op==='÷'&&b.n===0n);var cxop=(k+(row+1)/2+.5)*100/n;var enabled=!!(a&&b);
+  s+='<button class="operator '+(err?'invalid':op?'set':'')+'" data-action="slot" data-r="'+row+'" data-i="'+k+'" style="left:'+cxop+'%;top:'+(Y+row*STEP+52)+'px" type="button" aria-label="Fila '+(row+1)+', pareja '+(k+1)+', operación '+(op||'sin elegir')+'" '+(!enabled?'disabled':'')+'>'+(op||'+')+'</button>';
+ }
+ }
+ var p=$('pyramid');p.style.height=H+'px';p.style.setProperty('--n',n);p.innerHTML=s;
+ $('row-count').textContent=n+' números · '+(n-1)+' niveles de operaciones';
+ var chosen=state.ops.flat().filter(Boolean).length,total=n*(n-1)/2;
+ $('progress').textContent='Operaciones seleccionadas: '+chosen+' de '+total+(v.errors.length?' · ⚠ Hay una división por cero: cambia esa operación.':v.complete&&v.final?' · ¡Pirámide completa!':' · Completa las parejas para avanzar a la siguiente fila.');
+}
+function renderOutcome(v){
+ var o=$('outcome'),steps=$('steps'),refl=$('reflection'),done=!!v.final&&v.complete&&!v.errors.length;
+ if(done){
+  var win=state.mode==='challenge'&&missionDone(v);var cls=state.mode==='challenge'?(win?'success':'notice'):'';
+  var desc=state.mode==='explore'?'Prueba cambiar una operación anterior: los resultados dependientes se actualizarán.':win?'¡Misión cumplida! Revisa el camino y busca otra estrategia.':'Aún no cumples la condición. El resultado es válido: prueba otra estrategia.';
+  if(state.mode==='challenge'&&missions[state.mission].kind==='maximum'){
+   if(!state.best||cmp(v.final,read(state.best))>0)state.best=raw(v.final);
+   desc+=(win?' Has encontrado el máximo matemáticamente verificado.':' Tu mejor marca en esta misión: '+fmt(read(state.best))+'.');
+  }
+  if(state.mode==='challenge'&&missions[state.mission].kind==='duplicate'){
+   if(!state.saved)desc+=' Guarda este resultado como primer camino.';
+   else desc+=' Primer camino: '+fmt(read(state.saved.value))+'; el nuevo debe ser igual, con operaciones distintas.';
+  }
+  o.innerHTML='<div class="result '+cls+'"><h3>Resultado final</h3><div class="answer">'+esc(fmt(v.final))+'</div><p>'+esc(desc)+'</p></div>';
+  var extra='';
+  if(state.mode==='challenge'&&missions[state.mission].kind==='duplicate'){
+   extra='<div class="actionrow"><button type="button" data-action="save" class="emph">📌 Guardar camino actual</button></div>';
+   if(state.saved)extra+='<p class="subline">Camino guardado: '+esc(state.saved.signature)+' → '+esc(fmt(read(state.saved.value)))+'</p>';
+  }
+  if(state.mode==='challenge'&&win&&state.mission<4)extra+='<div class="actionrow"><button type="button" class="emph" data-action="nextMission">Continuar al siguiente desafío →</button></div>';
+  var reflections=['¿Qué operación produjo el cambio más grande? Explica tu criterio.','¿Podrías llegar al mismo resultado usando otras operaciones?','¿Qué ocurriría si modificaras una operación de la primera fila?','¿En qué momento el orden de los números cambió el resultado?'];
+  refl.innerHTML=extra+'<div class="prompt">💭 '+reflections[state.reflection%reflections.length]+'</div><div class="actionrow"><button type="button" data-action="reflect">Otra pregunta para investigar</button></div>';
+ }else{
+  var error=v.errors.length?'Hay una división entre cero. Identifica dónde aparece y modifica esa decisión.':state.base.some(function(t){return !read(t)})?'Revisa los números iniciales: usa enteros, decimales o fracciones válidas.':'Selecciona una operación entre cada pareja para generar la fila siguiente.';
+  o.innerHTML='<div class="result"><h3>En construcción...</h3><p>'+esc(error)+'</p></div>';
+  refl.innerHTML='<p class="subline">Recuerda: cada número interior participa en dos operaciones distintas con sus vecinos.</p>';
+ }
+ var content='';
+ for(var r=0;r<state.count-1;r++)for(var i=0;i<state.count-r-1;i++){
+ var a=v.rows[r][i],b=v.rows[r][i+1],op=state.ops[r][i],c=v.rows[r+1][i];
+ if(a&&b&&op)content+='<div class="step"><small>Fila '+(r+1)+' · pareja '+(i+1)+'</small><strong>'+esc(fmt(a))+' '+op+' '+esc(fmt(b))+' = '+(c?esc(fmt(c)):'⚠ Indefinido')+'</strong></div>';
+ }
+ steps.innerHTML=content||'<p class="muted">Tus operaciones aparecerán aquí con su desarrollo.</p>';
+}
+function render(){var v=evaluate(state.base,state.ops);renderSettings();renderPyramid(v);renderOutcome(v)}
+function showSlot(r,i){var v=evaluate(state.base,state.ops);var a=v.rows[r][i],b=v.rows[r][i+1];if(!a||!b)return;active={r:r,i:i};$('dialog-prompt').textContent='Fila '+(r+1)+': '+fmt(a)+' ¿? '+fmt(b)+' · Orden: izquierda → derecha';
+ $('choices').innerHTML=SYMBOLS.map(function(op){var z=calc(a,b,op);return '<button class="choice" type="button" data-action="op" data-op="'+op+'" '+(!z?'disabled title="No se puede dividir por cero"':'')+'><span>'+op+'</span><small>'+(z?esc(fmt(z)):'÷ 0 no permitido')+'</small></button>'}).join('');
+ $('dialog').hidden=false;$('choices').querySelector('button:not(:disabled)').focus();
+}
+function close(){active=null;$('dialog').hidden=true}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-action]');if(!b)return;var action=b.dataset.action;
+ if(action==='menu'){if(window.parent!==window){window.parent.postMessage('labmat-volver-menu',location.origin)}else location.href='./';return}
+ if(action==='close'){close();return}
+ if(action==='slot'){showSlot(Number(b.dataset.r),Number(b.dataset.i));return}
+ if(action==='op'||action==='clear'){if(!active)return;remember();state.ops[active.r][active.i]=action==='clear'?null:b.dataset.op;close();render();return}
+ if(action==='undo'){if(!undoStack.length)return;var data=JSON.parse(undoStack.pop());Object.assign(state,data);close();render();return}
+ if(action==='reset'){remember();state.ops=emptyOps(state.count);state.saved=null;state.best=null;close();render();return}
+ if(action==='new'){remember();if(state.mode==='explore')state.base=fresh();else{state.base=missions[state.mission].nums.slice();state.saved=null;state.best=null}state.ops=emptyOps(state.count);close();render();return}
+ if(action==='mode'){if(b.dataset.mode===state.mode)return;remember();if(b.dataset.mode==='challenge')applyMission(0);else resetToExplore();render();return}
+ if(action==='nextMission'){if(state.mode!=='challenge')return;remember();applyMission((state.mission+1)%missions.length);render();return}
+ if(action==='hint'){state.hint=!state.hint;renderSettings();return}
+ if(action==='reflect'){state.reflection++;renderOutcome(evaluate(state.base,state.ops));return}
+ if(action==='save'){var v=evaluate(state.base,state.ops);if(v.final&&v.complete){remember();state.saved={value:raw(v.final),signature:signature()};render()}return}
+});
+document.addEventListener('change',function(e){var t=e.target;
+ if(t.id==='tier'){remember();state.tier=t.value;state.base=seeds[state.tier].slice(0,state.count);state.ops=emptyOps(state.count);render()}
+ if(t.id==='count'){remember();state.count=Number(t.value);state.base=seeds[state.tier].slice(0,state.count);state.ops=emptyOps(state.count);render()}
+ if(t.id==='mission-select'){remember();applyMission(Number(t.value));render()}
+ if(t.hasAttribute('data-base')&&state.mode==='explore'){var i=Number(t.dataset.base),rawValue=t.value.trim();if(rawValue!==state.base[i]){remember();state.base[i]=rawValue;render()}}
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('dialog').hidden)close();if(e.key==='Enter'&&e.target.matches('input[data-base]'))e.target.blur()});
+render();
+})();
+</script></body></html>
