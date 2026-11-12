@@ -37,7 +37,14 @@ main{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,.8fr);gap:
 const $=id=>document.getElementById(id);
 const DEFAULT_ORIGIN={x:86,y:595},UNIT=19.5;
 let ORIGIN={...DEFAULT_ORIGIN};
-const GEOM={A:{x:6,y:8},B:{x:10,y:8},C:{x:6,y:0},D:{x:10.38,y:0}}; // Puntos en el contorno del gato.
+// A y B sobre el contorno superior (AB = 3); C sobre el costado y D sobre la base (CD = 5).
+// AB es oblicuo y poco inclinado; CD es una diagonal pronunciada.
+const GEOM={
+ A:{x:6,y:8},
+ B:{x:8.928930602841165,y:7.350873260648983},
+ C:{x:5.971011591151699,y:4.5},
+ D:{x:8.150461062922036,y:0}
+};
 const DEFAULT_O={x:86,y:595};let O={...DEFAULT_O};
 function abs(p){return {x:ORIGIN.x+UNIT*p.x,y:ORIGIN.y-UNIT*p.y}}
 function transformed(p){return{x:O.x+k*(p.x-O.x),y:O.y+k*(p.y-O.y)}}
@@ -54,7 +61,7 @@ function frac(v){for(let d=1;d<=20;d++){let n=Math.round(v*d);if(Math.abs(n/d-v)
 const factorText=v=>{const f=frac(v);return f&&f[1]>1?`${f[0]}/${f[1]}`:fmt(v)};
 const fracHTML=v=>{const f=frac(v);return f&&f[1]>1?`<span class="fraction"><span class="num">${f[0]}</span><span class="den">${f[1]}</span></span>`:fmt(v)};
 function parseNumber(v){const t=String(v).trim().replace(/\s/g,'').replace(',','.');if(!t)return NaN;const m=t.match(/^(\d+)\/(\d+)$/);if(m)return +m[2]>0?+m[1]/+m[2]:NaN;return /^\d*\.?\d+$/.test(t)?Number(t):NaN}
-let k=1.5,mode='explore',task=null,taskIndex=0,showRays=true,showMeasures=true,showCopy=false,dragTarget=null,dragOffset={x:0,y:0},cameraBox=null;const touchPoints=new Map();let gesture=null;
+let k=1.5,mode='explore',task=null,taskIndex=0,showRays=true,showMeasures=true,showCopy=false,dragTarget=null,dragOffset={x:0,y:0},cameraBox=null,exploreFrame=null;const touchPoints=new Map();let gesture=null;
 let exploreUnit='cm';const catOutline=catPath.match(/^<path d="([^"]+)"/)[1];
 const stats={apply:{wins:0,tries:0},find:{wins:0,tries:0},transfer:{wins:0,tries:0}};
 const dot=(p,col,rad=4)=>`<circle cx="${p.x}" cy="${p.y}" r="${rad}" fill="white" stroke="${col}" stroke-width="2.6"/>`;
@@ -111,14 +118,18 @@ function scene(){
    svg+=`<circle class="handle" data-drag="O" cx="${O.x}" cy="${O.y}" r="24" fill="transparent" stroke="transparent"/>`;
 
  }
- const coordinates=[O,...Object.values(p),...(hasCopy?Object.values(q):[])];
- for(const x of [5.9,14.9])for(const y of [0,8.2]){const z=abs({x,y});coordinates.push(z);if(hasCopy)coordinates.push(transformed(z))}
+ // En Explorar, la copia jamás participa en el cálculo del encuadre.
+ const coordinates=[O,...Object.values(p),...(mode==='explore'?[]:Object.values(q))];
+ for(const x of [5.9,14.9])for(const y of [0,8.2]){const z=abs({x,y});coordinates.push(z);if(mode!=='explore')coordinates.push(transformed(z))}
 
  let minX=Math.min(...coordinates.map(t=>t.x))-73,maxX=Math.max(...coordinates.map(t=>t.x))+78;
  let minY=Math.min(...coordinates.map(t=>t.y))-67,maxY=Math.max(...coordinates.map(t=>t.y))+85;
  let w=Math.max(265,maxX-minX),h=Math.max(190,maxY-minY),ratio=mode==='explore'?1.55:1.5;
  if(w/h<ratio){const need=h*ratio-w;minX-=need/2;w+=need}else{const need=w/ratio-h;minY-=need/2;h+=need}
- const bounds=mode==='explore'&&cameraBox?cameraBox:{x:minX,y:minY,w,h};
+ // Conservar el mismo viewBox tras pulsar Aplicar/Ocultar y tras cambiar k.
+ // El usuario puede desplazar o ampliar el lienzo con gestos sin perder ese encuadre.
+ if(mode==='explore'&&!exploreFrame)exploreFrame={x:minX,y:minY,w,h};
+ const bounds=mode==='explore'?(cameraBox||exploreFrame):{x:minX,y:minY,w,h};
  if(!dragTarget||cameraBox)$('scene').setAttribute('viewBox',[bounds.x,bounds.y,bounds.w,bounds.h].map(x=>x.toFixed(2)).join(' '));
  $('scene').innerHTML=svg;
  $('scene').setAttribute('aria-label',`Gato con centro O y puntos A, B, C y D. k = ${fmt(k)}. ${hasCopy?'Original azul y copia naranja':'Solo gato original azul'}.`);
@@ -135,7 +146,7 @@ function updateExplore(){
  $('ratio-display').innerHTML=!showMeasures?'Medidas ocultas.':!showCopy?'Aplica la homotecia para comparar las razones entre el original y la copia.':PAIRS.map(([a,b])=>length(a)<1e-8?`<div class="frac-line">${SYMBOLS[a]} = 0: no es posible calcular esta razón.</div>`:`<div class="frac-line"><span class="fraction"><span class="num">${SYMBOLS[b]}</span><span class="den">${SYMBOLS[a]}</span></span><span>=</span><span class="fraction"><span class="num">${fmt(length(b))}</span><span class="den">${fmt(length(a))}</span></span><span>≈ ${fracHTML(k)} = k</span></div>`).join('');
  scene();
 }
-function resetExplore(){cameraBox=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};updateExplore()}
+function resetExplore(){cameraBox=null;exploreFrame=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};updateExplore()}
 function setK(v){if(!Number.isFinite(v)||v<.25||v>3.05){$('explore-status').textContent='Escribe un factor entre 0,25 y 3,05, como 3/4 o 1,5.';$('k-edit').value=fmt(k);return} k=v;$('explore-status').textContent='Factor actualizado: k = '+factorText(k);updateExplore()}
 $('factor').addEventListener('input',e=>setK(Number(e.target.value)));
 $('k-edit').addEventListener('change',e=>setK(parseNumber(e.target.value)));
@@ -143,7 +154,7 @@ $('k-edit').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault(
 document.querySelectorAll('[data-k]').forEach(btn=>btn.addEventListener('click',()=>setK(Number(btn.dataset.k))));
 $('toggle-rays').addEventListener('change',e=>{showRays=e.target.checked;updateExplore()});
 $('toggle-measures').addEventListener('change',e=>{showMeasures=e.target.checked;updateExplore()});
-$('toggle-copy').addEventListener('click',()=>{showCopy=!showCopy;cameraBox=null;$('explore-status').textContent=showCopy?'Homotecia aplicada: compara las medidas.':'Homotecia oculta: observa la figura original.';updateExplore()});
+$('toggle-copy').addEventListener('click',()=>{showCopy=!showCopy;$('explore-status').textContent=showCopy?'Homotecia aplicada: compara las medidas. La copia puede quedar fuera del lienzo.':'Homotecia oculta: observa la figura original.';updateExplore()});
 $('k-edit-slash').addEventListener('click',()=>{const el=$('k-edit');const start=el.selectionStart??el.value.length,end=el.selectionEnd??el.value.length;el.value=el.value.slice(0,start)+'/'+el.value.slice(end);el.focus();const pos=start+1;el.setSelectionRange(pos,pos)});
 $('reset-points').addEventListener('click',()=>{dragTarget=null;resetExplore();$('explore-status').textContent='Posiciones restablecidas: el gato original y O vuelven a su lugar inicial.'});
 // Puntos y figura: un dedo para arrastrar; dos dedos para mover y ampliar el lienzo.
@@ -195,7 +206,8 @@ $('scene').addEventListener('wheel',evt=>{
 // Actividades con longitudes enteras en original y copia.
 function buildTask(kind){
  const factor=pick([.5,.75,.8,1,1.25,1.5,2,2.5,3]);const f=frac(factor)||[1,1];
- const unit=f[1]*pick([1,2,3]);const all=[...PAIRS];let givens=[],answers=[];
+ // Para los ejercicios iniciales se priorizan longitudes enteras (AB=3, CD=5, OA=10).
+ const unit=f[1]*pick([1,2,3]);const all=PAIRS.filter(([a])=>Math.abs(BASE[a]-Math.round(BASE[a]))<1e-8);let givens=[],answers=[];
  if(kind==='apply'){
   const one=pick(all),two=pick(all.filter(x=>x!==one));
   givens=[one[0],two[0],'k'];answers=[one[1],two[1]];
@@ -228,7 +240,7 @@ function updateTask(){
  $('guide-text').textContent={apply:'Multiplica la medida original por el factor k.',find:'Divide una medida de la copia por la medida original correspondiente.',transfer:'Primero encuentra k; luego multiplica otra medida original por ese factor.'}[mode];
 }
 function inputFor(key){const el=document.createElement('input');el.id='answer-'+key;el.className='missing-input';el.placeholder='?';el.type='text';el.inputMode='decimal';el.autocomplete='off';el.setAttribute('aria-label','Completa '+SYMBOLS[key]);el.addEventListener('input',()=>el.classList.remove('good','bad'));return el}
-function nextTask(){cameraBox=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};task=buildTask(mode);taskIndex++;k=task.k;updateTask()}
+function nextTask(){cameraBox=null;exploreFrame=null;ORIGIN={...DEFAULT_ORIGIN};O={...DEFAULT_O};task=buildTask(mode);taskIndex++;k=task.k;updateTask()}
 function updateProgress(){$('progress').textContent=`Aciertos: ${stats[mode].wins} · Comprobaciones: ${stats[mode].tries}`}
 $('task-form').addEventListener('submit',evt=>{
  evt.preventDefault();if(!task||task.solved||task.revealed)return;
@@ -251,7 +263,7 @@ $('solution').addEventListener('click',()=>{
  for(const key of task.answers){const d=document.createElement('div');if(key==='k'){const pair=PAIRS.find(p=>task.givens.includes(p[0])&&task.givens.includes(p[1]));d.textContent='k = '+fmt(length(pair[1]))+' ÷ '+fmt(length(pair[0]))+' = '+factorText(k)}else{const orig=PRIME[key];d.textContent=SYMBOLS[key]+' = '+fmt(length(orig))+' × '+factorText(k)+' = '+fmt(length(key))+' '+task.measureUnit}out.append(d)}
 });
 $('another').addEventListener('click',()=>{if(!task)return;const work=task.answers.some(key=>$('answer-'+key)?.value.trim());if(work&&!task.solved&&!task.revealed&&!confirm('¿Generar otro desafío? Se perderán las respuestas escritas de este ejercicio.'))return;nextTask()});
-function switchMode(next){if(mode===next)return;mode=next;cameraBox=null;document.body.classList.toggle('exploring',mode==='explore');document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const exploring=next==='explore';$('task-intro').hidden=exploring;$('explore-controls').hidden=!exploring;$('explore-readouts').hidden=!exploring;$('explore-formula').hidden=!exploring;$('challenge-panel').hidden=exploring;$('activity-guide').hidden=exploring;if(exploring){task=null;k=1.5;showCopy=false;resetExplore();$('visual-note').textContent='Arrastra el gato original o el centro O. Aplica la homotecia para ver su copia. Con dos dedos puedes mover y ampliar el lienzo.'}else nextTask()}
+function switchMode(next){if(mode===next)return;mode=next;cameraBox=null;exploreFrame=null;document.body.classList.toggle('exploring',mode==='explore');document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const exploring=next==='explore';$('task-intro').hidden=exploring;$('explore-controls').hidden=!exploring;$('explore-readouts').hidden=!exploring;$('explore-formula').hidden=!exploring;$('challenge-panel').hidden=exploring;$('activity-guide').hidden=exploring;if(exploring){task=null;k=1.5;showCopy=false;resetExplore();$('visual-note').textContent='Arrastra el gato original o el centro O. Aplica la homotecia para ver su copia. Con dos dedos puedes mover y ampliar el lienzo.'}else nextTask()}
 document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{if(mode!=='explore'&&task&&!task.solved&&!task.revealed&&task.answers.some(key=>$('answer-'+key)?.value.trim())&&!confirm('¿Cambiar de actividad? Se perderán las respuestas que estás escribiendo.'))return;switchMode(btn.dataset.mode)}));
 updateExplore();
 })();
