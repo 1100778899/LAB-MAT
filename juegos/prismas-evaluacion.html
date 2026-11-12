@@ -15,7 +15,7 @@
 @media(max-width:380px){.figure svg{height:235px}.math{font-size:18px}.step{font-size:15px}.flip-inner{height:345px}}
 @media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
 @media print{body{background:white}.btn,.actions{display:none}.flip-inner{transform:none!important}.face{position:relative}.face.front{display:none}.face.back{transform:none;border:1px solid #aaa}.flip-inner{height:auto}.work-grid{grid-template-columns:1fr 1fr}}
-.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "volume area";gap:14px;align-items:stretch}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "perimeter perimeter" "volume area";gap:14px;align-items:stretch}
 .prism-figure{grid-area:prism}.net-figure{grid-area:net}.data-wrap{grid-area:data;min-width:0}.volume-work{grid-area:volume;min-width:0}.area-work{grid-area:area;min-width:0}.lab-grid .figure{display:flex;flex-direction:column;min-width:0}.lab-grid .figure svg{width:100%;height:clamp(205px,27vw,315px);flex-shrink:0}#solid{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}#solid.dragging{cursor:grabbing}#solid:focus{outline:none}#solid:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}.reset-view{align-self:center;min-height:35px;margin:0 auto 13px;padding:5px 12px;font:700 12px system-ui;border:1px solid var(--line);border-radius:9px;color:var(--teal);background:var(--paper);cursor:pointer}.reset-view:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.lab-grid .data{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.data-title{font-size:16px;line-height:1.2;margin:0 0 7px;color:var(--ink)}.lab-grid .note{margin:7px 2px 0}.lab-grid .work-label{font-size:20px;margin:0 0 10px}.lab-grid .flip-inner{height:400px}.lab-grid .face{overflow:auto}
 @media(max-width:700px){main{padding:12px 10px 28px}.lab-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}.lab-grid .figure svg{height:195px}.figure header{padding:11px 9px 0;display:block}.figure h2{font-size:17px}.figure .hint{display:block;font-size:10px;margin-top:2px}.lab-grid .figure .shape-caption{font-size:10px;line-height:1.3;min-height:39px;padding:0 6px 6px}.reset-view{font-size:11px;padding:4px 6px;margin-bottom:8px}.lab-grid .data{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:7px}.lab-grid .data .cell{padding:7px 3px}.data small{font-size:10px;line-height:1.25}.data strong{font-size:17px}.data-title{font-size:15px}.lab-grid .note{font-size:10px;margin:5px 2px 0}.lab-grid .work-label{font-size:17px;margin:1px 0 7px}.lab-grid .flip-inner{height:355px}.lab-grid .face{padding:10px 9px;border-radius:12px}.face .ttl{font-size:10px;line-height:1.3;letter-spacing:.3px;margin-bottom:10px}.math{font-size:15px;line-height:1.4}.math-line{line-height:1.5;margin:8px 0}.math small{font-size:11px;line-height:1.3;display:block}.form-label{font-size:12px;margin-top:11px}.answer-row{gap:3px}.answer{font-size:15px;padding:8px 5px;min-width:0}.unit{font-size:12px}.answer-tip{font-size:11px;line-height:1.4}.steps{gap:7px}.step{gap:4px;font-size:13px;line-height:1.4}.step:before{font-size:10px;padding:3px 5px}.step .m{overflow-wrap:anywhere}.result{font-size:15px;padding:8px 5px;overflow-wrap:anywhere}.feedback{font-size:11px}.frac{margin:0 1px}.frac .num{padding:0 2px 2px}.frac .den{padding-top:2px}}
 @media(max-width:360px){.lab-grid{gap:7px}.lab-grid .flip-inner{height:415px}.math{font-size:14px}.step{font-size:12px}.lab-grid .figure svg{height:175px}.lab-grid .data .cell{padding:5px 2px}}
@@ -29,6 +29,19 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}main{width:auto;max-width:
 @media(max-width:700px){.panel{padding:11px;border-radius:12px}.panel h2{font-size:17px}.field-row{gap:8px}.toolbar{gap:7px}.field{font-size:14px;padding:8px;min-height:42px}.progress-grid{grid-template-columns:1fr 1fr;gap:6px}.progress-person{padding:7px}.progress-person b{font-size:11px}.checks{font-size:10px;gap:3px}.check{padding:4px}.menu .btn{flex:1 1 auto}.top .btn{width:auto}.evidence{grid-template-columns:1fr}.evidence-card{padding:8px}.finished h2{font-size:21px}.finish-instructions{font-size:13px}.response-feedback{padding:9px}.name-grid{grid-template-columns:1fr}}
 @media(max-width:340px){.progress-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr 1fr}}
 @media print{#setup,#evaluation,#confirm-dialog,.session-actions,#continue-screen{display:none!important}#finished{display:block!important}.evidence{grid-template-columns:repeat(2,1fr)}.evidence-card{break-inside:avoid}}
+
+/* Primer paso común: perímetro de la base; sin cambiar anchos ni gráficos existentes. */
+.lab-grid .perimeter-work{grid-area:perimeter;min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow)}
+.perimeter-work h2{margin:0 0 5px;font-size:18px}
+.perimeter-formula{font:700 18px/1.45 Georgia,serif}
+.perimeter-entry{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}
+.perimeter-entry label{font-size:13px;font-weight:750}
+.perimeter-entry .answer{width:132px;max-width:100%;font-size:16px}
+.perimeter-entry .btn{padding:9px 12px;font-size:13px}
+.perimeter-work .feedback{margin:6px 0 0}
+.math-line.calc-substitute{font-size:.9em;overflow-wrap:anywhere;line-height:1.6}
+.lab-grid > [hidden]{display:none!important}
+@media(max-width:700px){.lab-grid .perimeter-work{padding:10px 11px}.perimeter-work h2{font-size:16px}.perimeter-formula{font-size:16px}.perimeter-entry label{width:100%}.perimeter-entry .answer{width:94px}.perimeter-entry .btn{flex:1 1 auto}}
 </style>
 </head>
 <body>
@@ -47,8 +60,11 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}main{width:auto;max-width:
   <section class="figure prism-figure"><header><h2>Prisma</h2><span class="hint">↔ Arrastra para girar</span></header><svg id="solid" role="img" tabindex="0" viewBox="0 0 500 330" aria-label="Prisma giratorio. Arrastra con el dedo o ratón, o usa las flechas del teclado."></svg><div class="shape-caption">Gira el prisma sin cambiar sus medidas.</div><button class="reset-view" id="reset-view" type="button">⟲ Vista inicial</button></section>
   <section class="figure net-figure"><header><h2>Red plana</h2><span class="hint">Desarrollo plano</span></header><svg id="net" role="img" viewBox="0 0 530 330" aria-label="Red plana con bases regulares y caras rectangulares."></svg><div class="shape-caption">Dos bases iguales y una cara rectangular por cada lado de la base.</div></section>
   <section class="data-wrap"><h2 class="data-title">Datos del prisma</h2><section class="data" aria-label="Medidas del prisma"><div class="cell"><small>Lado de la base (<span class="code">l</span>)</small><strong id="side">—</strong></div><div class="cell"><small>Apotema (<span class="code">a</span>)</small><strong id="ap">—</strong></div><div class="cell"><small>Altura (<span class="code">h</span>)</small><strong id="height">—</strong></div></section><p class="note">Bases regulares. La apotema se aproxima a una décima (0,1 cm) y todos los cálculos usan el valor mostrado.</p></section>
-  <section class="volume-work"><h2 class="work-label">Volumen <span id="volume-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = A<sub>b</sub> · h</div><div class="math-line">A<sub>b</sub> = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span></div><div class="math-line">P = n · l</div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"><span class="unit">cm³</span></div><p class="answer-tip">Desarrolla primero tu cálculo en el cuaderno.</p><p id="inline-volume" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Volumen</div><div class="steps" id="steps-volume"></div><div class="result" id="result-volume"></div></div></div></div></section>
-  <section class="area-work"><h2 class="work-label">Área total <span id="area-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-area"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line" style="font-weight:700;font-size:1.12em">A<sub>T</sub> = P · a + P · h</div><div class="math-line" style="font-weight:700">P = n · l</div><div class="math-line"><small>n: número de lados de la base</small></div><div class="math-line"><small>l: medida del lado de la base</small></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"><span class="unit">cm²</span></div><p class="answer-tip">Recuerda las dos bases y todas las caras laterales.</p><p id="inline-area" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Área total</div><div class="steps" id="steps-area"></div><div class="result" id="result-area"></div></div></div></div></section>
+  <section class="perimeter-work" aria-label="Primer cálculo: perímetro de la base"><h2>1. Perímetro de la base</h2>
+<div class="perimeter-formula">P = n · l &nbsp;→&nbsp; P = <span id="perimeter-n">—</span> · <span id="perimeter-l">—</span></div>
+<div class="perimeter-entry"><label for="input-perimeter">¿Cuál es el perímetro de la base?</label><input id="input-perimeter" class="answer" inputmode="decimal" autocomplete="off" type="text" aria-label="Perímetro de la base"><span class="unit">cm</span><button class="btn btn-primary" type="button" id="check-perimeter">Comprobar perímetro</button></div>
+<p id="perimeter-feedback" class="feedback none" aria-live="polite">Resuelve el perímetro para continuar con área total y volumen.</p></section><section class="volume-work" hidden><h2 class="work-label">Volumen <span id="volume-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span> · h</div><div class="math-line calc-substitute" id="substitute-volume"></div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"><span class="unit">cm³</span></div><p class="answer-tip">Reemplaza el perímetro que calculaste.</p><p id="inline-volume" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Volumen</div><div class="steps" id="steps-volume"></div><div class="result" id="result-volume"></div></div></div></div></section>
+  <section class="area-work" hidden><h2 class="work-label">Área total <span id="area-needed" class="subtle"></span></h2><div class="flip-wrap" id="flip-area"><div class="flip-inner"><div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line">A<sub>T</sub> = P · a + P · h</div><div class="math-line calc-substitute" id="substitute-area"></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"><span class="unit">cm²</span></div><p class="answer-tip">Reemplaza el perímetro que calculaste.</p><p id="inline-area" class="feedback" aria-live="polite"></p></div><div class="face back"><div class="ttl">Solución desarrollada · Área total</div><div class="steps" id="steps-area"></div><div class="result" id="result-area"></div></div></div></div></section>
  </div>
  <div id="response-feedback" class="response-feedback" role="status" aria-live="polite" hidden></div>
  <div class="actions"><button id="submit-answers" class="btn btn-primary" type="button">✓ Revisar respuestas escritas</button><button id="consult-btn" class="btn btn-neutral" type="button">📖 Consultar desarrollo completo</button><button id="new" class="btn btn-neutral" type="button">🎲 Otro prisma</button><small id="status" aria-live="polite">Ingresa solo los cálculos pendientes. Puedes completar área y volumen por separado.</small></div>
@@ -82,6 +98,13 @@ function readSaved(){if(!storageOK)return null;try{
  if(s.status==='active'&&(!s.task||!groups[s.task.group]?.includes(s.task.n)))return null;
  if(!Array.isArray(s.history))s.history=[];
  if(!Number.isInteger(s.consultations))s.consultations=0;
+  // Compatibilidad con evaluaciones ya guardadas antes de añadir el perímetro.
+  if(s.status==='active'){
+   if(!s.inputs||typeof s.inputs!=='object')s.inputs={area:'',volume:''};
+   if(typeof s.inputs.perimeter!=='string')s.inputs.perimeter='';
+   if(typeof s.task.perimeterOk!=='boolean')s.task.perimeterOk=!!(s.task.credited?.area||s.task.credited?.volume||s.task.consulted);
+   if(typeof s.task.perimeterFeedback!=='string')s.task.perimeterFeedback='';
+  }
  return s;
  }catch(_){return null}}
 function showSection(id){for(const name of ['continue-screen','setup','evaluation','finished'])$(name).hidden=name!==id}
@@ -115,8 +138,8 @@ function generateTask(){let p=getPerson();
  const l=sideOptions[Math.floor(Math.random()*sideOptions.length)],h=4+Math.floor(Math.random()*9);
  lastN=n;
  const newTask=makeTask(n,l,h);
- session.task={...newTask,id:(session.counter||0)+1,group:session.group,personId:session.activePerson,consulted:false,attempted:{area:false,volume:false},credited:{area:false,volume:false}};
- session.counter=session.task.id;session.inputs={area:'',volume:''};session.feedback={area:'',volume:''};
+ session.task={...newTask,id:(session.counter||0)+1,group:session.group,personId:session.activePerson,consulted:false,perimeterOk:false,perimeterFeedback:'',attempted:{area:false,volume:false},credited:{area:false,volume:false}};
+ session.counter=session.task.id;session.inputs={perimeter:'',area:'',volume:''};session.feedback={area:'',volume:''};
  task=session.task;initialView();save();renderEvaluation();
 }
 function chooseContext(personId,group){if(!session||session.status!=='active')return;
@@ -151,7 +174,18 @@ function renderEvaluation(){if(!session||session.status!=='active')return;
  $('task-context').textContent=`${p.name} · Grupo ${session.group} · ${names[task.n]} · ${task.consulted?'Desarrollo consultado: este prisma no sirve para completar cálculos.':'Escribe tus respuestas pendientes y revisa por separado.'}`;
  $('name').textContent='Prisma '+names[task.n]+' regular';
  $('details').textContent=task.n+' lados por base · '+(task.n+2)+' caras · '+(3*task.n)+' aristas';
- $('side').textContent=fmt(task.l)+' cm';$('ap').textContent=fmt1(task.ap)+' cm';$('height').textContent=fmt(task.h)+' cm';
+ $('perimeter-n').textContent=fmt(task.n);$('perimeter-l').textContent=fmt(task.l);
+  $('input-perimeter').value=session.inputs?.perimeter||'';
+  $('input-perimeter').disabled=!!task.perimeterOk||!!task.consulted;
+  $('check-perimeter').disabled=!!task.perimeterOk||!!task.consulted;
+  $('perimeter-feedback').textContent=task.perimeterOk?'✓ Perímetro correcto: '+fmt(task.P)+' cm. Ahora calcula área total y volumen.':task.consulted?'Desarrollo consultado: este prisma es solo un ejemplo.':task.perimeterFeedback||'Resuelve el perímetro para continuar con área total y volumen.';
+  $('perimeter-feedback').className='feedback '+(task.perimeterOk?'good':task.perimeterFeedback?'bad':'none');
+  const showCalculations=!!task.perimeterOk||!!task.consulted;
+  document.querySelector('.volume-work').hidden=!showCalculations;
+  document.querySelector('.area-work').hidden=!showCalculations;
+  $('substitute-volume').innerHTML='V = '+frac(fmt(task.P)+' · '+fmt1(task.ap),'2')+' · '+fmt(task.h);
+  $('substitute-area').innerHTML='A<sub>T</sub> = '+fmt(task.P)+' · '+fmt1(task.ap)+' + '+fmt(task.P)+' · '+fmt(task.h);
+  $('side').textContent=fmt(task.l)+' cm';$('ap').textContent=fmt1(task.ap)+' cm';$('height').textContent=fmt(task.h)+' cm';
  $('flip-volume').classList.toggle('revealed',task.consulted);$('flip-area').classList.toggle('revealed',task.consulted);
  $('volume-needed').textContent=p.credits[session.group].volume?'✓ Correcto':task.attempted.volume?'· Intentado':'· Pendiente';
  $('area-needed').textContent=p.credits[session.group].area?'✓ Correcto':task.attempted.area?'· Intentado':'· Pendiente';
@@ -162,10 +196,10 @@ function renderEvaluation(){if(!session||session.status!=='active')return;
   input.setAttribute('aria-label',(kind==='area'?'Área total':'Volumen')+' para '+p.name);
   const feedback=$('inline-'+kind);feedback.textContent=session.feedback?.[kind]|| (used?'✓ Cálculo correcto registrado anteriormente.':'');feedback.className='feedback '+(used?'good':task.attempted[kind]?'bad':'none');
  }
- $('submit-answers').disabled=task.consulted||['area','volume'].every(k=>p.credits[session.group][k]||task.attempted[k]);
+ $('submit-answers').disabled=!task.perimeterOk||task.consulted||['area','volume'].every(k=>p.credits[session.group][k]||task.attempted[k]);
  $('consult-btn').disabled=task.consulted||session.consultations>=maxConsults()||!!task.credited.area||!!task.credited.volume;
  $('consult-btn').textContent=task.consulted?'📖 Desarrollo consultado':`📖 Consultar desarrollo completo (${maxConsults()-session.consultations} disponibles)`;
- $('status').textContent=task.consulted?'Este prisma es solo un ejemplo de estudio. Genera otro para seguir evaluando.':session.consultations>=maxConsults()?'Se agotaron los desarrollos disponibles. Puedes seguir intentando ejercicios sin límite.':task.credited.area||task.credited.volume?'Si ya completaste correctamente un cálculo, se conservará. Puedes resolver el otro cálculo o generar otro prisma.':'Puedes completar correctamente área total y volumen por separado; no se descuentan puntos por errores.';
+ $('status').textContent=(!task.perimeterOk&&!task.consulted)?'Primero calcula el perímetro de la base. Después podrás responder el área total y el volumen.':task.consulted?'Este prisma es solo un ejemplo de estudio. Genera otro para seguir evaluando.':session.consultations>=maxConsults()?'Se agotaron los desarrollos disponibles. Puedes seguir intentando ejercicios sin límite.':task.credited.area||task.credited.volume?'Si ya completaste correctamente un cálculo, se conservará. Puedes resolver el otro cálculo o generar otro prisma.':'Puedes completar correctamente área total y volumen por separado; no se descuentan puntos por errores.';
  $('response-feedback').hidden=true;renderSolid();renderNet();
  if(task.consulted)renderSolution();else{for(const kind of ['area','volume']){$('steps-'+kind).replaceChildren();$('result-'+kind).replaceChildren()}}
  if(session.feedback?.area||session.feedback?.volume){
@@ -174,7 +208,21 @@ function renderEvaluation(){if(!session||session.status!=='active')return;
  }
 }
 function numericAnswer(s){s=s.trim().replace(/\s/g,'');if(!s)return null;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if(/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)){s=s.replace(/\./g,'')}if(!/^[-+]?(?:\d+\.?\d*|\.\d+)$/.test(s))return NaN;return Number(s)}
-function submitAnswers(){if(!session||session.status!=='active'||task.consulted)return;
+function checkPerimeter(){
+ if(!session||session.status!=='active'||task.consulted||task.perimeterOk)return;
+ const value=numericAnswer(session.inputs?.perimeter||'');
+ if(value===null||!Number.isFinite(value))task.perimeterFeedback='Escribe un número válido para el perímetro.';
+ else if(Math.abs(value-task.P)>.011)task.perimeterFeedback='Todavía no coincide. Multiplica el número de lados de la base por la medida de cada lado.';
+ else{task.perimeterOk=true;task.perimeterFeedback='';}
+ save();renderEvaluation();
+}
+$('check-perimeter').addEventListener('click',checkPerimeter);
+$('input-perimeter').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkPerimeter()}});
+$('input-perimeter').addEventListener('input',e=>{
+ if(!session||session.status!=='active'||task.consulted||task.perimeterOk)return;
+ session.inputs.perimeter=e.target.value;task.perimeterFeedback='';save();
+});
+function submitAnswers(){if(!session||session.status!=='active'||task.consulted||!task.perimeterOk)return;
  const p=getPerson(),g=session.group;
  if(task.personId!==p.id||task.group!==g)return;
  let any=false;
@@ -228,7 +276,7 @@ function renderNameFields(){const target=$('participant-names'),saved=Array.from
 for(let i=1;i<=12;i++){const o=document.createElement('option');o.value=String(i);o.textContent=String(i);$('total-participants').appendChild(o)}
 $('total-participants').addEventListener('change',renderNameFields);
 $('setup-form').addEventListener('submit',e=>{e.preventDefault();const course=$('course').value.trim(),people=[...$('participant-names').querySelectorAll('input')].map((node,i)=>({id:'p'+(i+1),name:node.value.trim(),credits:emptyCredits()}));if(!course||people.some(x=>!x.name)){alert('Completa el curso y todos los nombres.');return}
- session={version:1,status:'active',course,people,activePerson:people[0].id,group:'A',consultations:0,history:[],counter:0,task:null,inputs:{area:'',volume:''},feedback:{area:'',volume:''},view:null};
+ session={version:1,status:'active',course,people,activePerson:people[0].id,group:'A',consultations:0,history:[],counter:0,task:null,inputs:{perimeter:'',area:'',volume:''},feedback:{area:'',volume:''},view:null};
  generateTask();window.scrollTo(0,0);
 });
 $('continue-btn').addEventListener('click',()=>{if(!session)return;if(session.status==='finished')renderFinished();else{task=session.task;lastN=task.n;angle=session.view?.angle??.55;tilt=session.view?.tilt??.54;renderEvaluation()}window.scrollTo(0,0)});
