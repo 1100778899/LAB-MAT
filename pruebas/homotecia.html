@@ -53,6 +53,8 @@ const PAIRS=[['AB','APBP'],['CD','CPDP'],['OA','OAP'],['OB','OBP'],['OC','OCP'],
 const PRIME=Object.fromEntries(PAIRS.map(([a,b])=>[b,a]));
 const SYMBOLS={AB:'AB',APBP:'A′B′',CD:'CD',CPDP:'C′D′',OA:'OA',OAP:'OA′',OB:'OB',OBP:'OB′',OC:'OC',OCP:'OC′',OD:'OD',ODP:'OD′',k:'k'};
 const BASE=Object.fromEntries(PAIRS.map(([key])=>[key,key.startsWith('O')?dist(DEFAULT_O,abs(GEOM[key[1]])):dist(abs(GEOM[key[0]]),abs(GEOM[key[1]]))]));
+// Segmentos construidos con longitudes exactas: evitar errores de coma flotante en los desafíos.
+BASE.AB=3;BASE.CD=5;
 const catPath=`<path d="M6 0 L6 3.45 C5.9 4.25 5.9 4.84 6.4 5.5 C5.7 6.05 5.75 6.95 6 8 L7.3 7.1 Q8.0 7.25 8.4 7.24 Q9.0 7.23 10 8 L10.22 5.75 Q10.55 5.08 10.2 4.68 C11.06 3.82 11.35 3.0 11.3 1.72 Q11.4 1.0 12.25 1.2 Q13.3 1.4 13.65 2.74 C13.8 3.56 14.4 3.64 14.54 3.1 C14.8 2.05 14.64 .76 13.84 .43 C12.75 -.04 11.92 0 10.38 0 L6 0 Z"/><path d="M6.4 4.3 Q7.95 3.6 10.25 4.3 L10.43 3.7 Q8.2 3.1 6.2 3.7 Z" opacity=".24"/><circle cx="7.38" cy="6.15" r=".115" fill="#18352e" stroke="none"/><circle cx="9.06" cy="6.15" r=".115" fill="#18352e" stroke="none"/><path d="M7.96 5.75 Q8.22 5.48 8.47 5.75 Q8.22 5.34 7.96 5.75" fill="#a66b70" stroke="none"/>`;
 const fmt=x=>Number(x.toFixed(2)).toLocaleString('es-CL',{maximumFractionDigits:2});
 const pick=a=>a[Math.floor(Math.random()*a.length)];
