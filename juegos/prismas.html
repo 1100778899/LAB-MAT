@@ -14,7 +14,7 @@
 @media print{body{background:white}.btn,.actions{display:none}.flip-inner{transform:none!important}.face{position:relative}.face.front{display:none}.face.back{transform:none;border:1px solid #aaa}.flip-inner{height:auto}.work-grid{grid-template-columns:1fr 1fr}}
 
 /* Distribución 2–1–2: dos representaciones, franja de datos y dos cálculos. */
-.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "volume area";gap:14px;align-items:stretch}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"prism net" "data data" "perimeter perimeter" "volume area";gap:14px;align-items:stretch}
 .prism-figure{grid-area:prism}.net-figure{grid-area:net}.data-wrap{grid-area:data;min-width:0}.volume-work{grid-area:volume;min-width:0}.area-work{grid-area:area;min-width:0}
 .lab-grid .figure{display:flex;flex-direction:column;min-width:0}
 .lab-grid .figure svg{width:100%;height:clamp(205px,27vw,315px);flex-shrink:0}
@@ -80,17 +80,33 @@ main{width:auto;max-width:1170px;min-width:0;box-sizing:border-box;overflow-x:hi
 .lab-grid .data .cell{min-width:0;overflow-wrap:anywhere}
 .lab-grid .figure svg{max-width:100%}
 .flip-inner,.face{max-width:100%;min-width:0}
+
+/* Primer paso común: perímetro de la base; sin cambiar anchos ni gráficos existentes. */
+.lab-grid .perimeter-work{grid-area:perimeter;min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow)}
+.perimeter-work h2{margin:0 0 5px;font-size:18px}
+.perimeter-formula{font:700 18px/1.45 Georgia,serif}
+.perimeter-entry{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}
+.perimeter-entry label{font-size:13px;font-weight:750}
+.perimeter-entry .answer{width:132px;max-width:100%;font-size:16px}
+.perimeter-entry .btn{padding:9px 12px;font-size:13px}
+.perimeter-work .feedback{margin:6px 0 0}
+.math-line.calc-substitute{font-size:.9em;overflow-wrap:anywhere;line-height:1.6}
+.lab-grid > [hidden]{display:none!important}
+@media(max-width:700px){.lab-grid .perimeter-work{padding:10px 11px}.perimeter-work h2{font-size:16px}.perimeter-formula{font-size:16px}.perimeter-entry label{width:100%}.perimeter-entry .answer{width:94px}.perimeter-entry .btn{flex:1 1 auto}}
 </style>
 </head>
 <body>
 <main>
 <div class="top"><div><div class="eyebrow">Matemática · Laboratorio de geometría</div><h1>Desafío: prismas y sus redes</h1><p class="intro">Observa el prisma y su red. Calcula el volumen y el área total en tu cuaderno; después voltea las tarjetas para comprobar tus procedimientos.</p></div><button class="btn btn-primary" id="new" type="button">🎲 Otro prisma</button></div>
 <section aria-live="polite" class="challenge"><div><strong id="name">Prisma hexagonal regular</strong><br/><small id="details">6 lados en cada base · 8 caras</small></div><span class="icons">▱ ▥ ◇</span></section>
-<div class="lab-grid"><section class="figure prism-figure"><header><h2>Prisma</h2><span class="hint">↔ Arrastra para girar</span></header><svg aria-label="Prisma rotatorio: lado naranja en la base superior y bordes visibles del perímetro inferior en rojo. Arrastra con dedo o mouse; también puedes usar las teclas de flecha." id="solid" role="img" tabindex="0" viewbox="0 0 500 330"></svg><div class="shape-caption">Gira el prisma sin cambiar sus medidas.</div><button class="reset-view" id="reset-view" type="button">⟲ Vista inicial</button></section><section class="figure net-figure"><header><h2>Red plana</h2><span class="hint">Desarrollo plano</span></header><svg aria-label="Red plana del prisma: lado naranja de una base y perímetro rojo en el borde inferior de la banda de caras laterales" id="net" role="img" viewbox="0 0 530 330"></svg><div class="shape-caption">Dos bases iguales y una cara rectangular por cada lado de la base.</div></section><section aria-label="Medidas del prisma" class="data-wrap"><h2 class="data-title">Datos del prisma</h2><section aria-label="Datos del prisma" class="data"><div class="cell"><small>Lado de la base (<span class="code">l</span>)</small><strong id="side">—</strong></div><div class="cell"><small>Apotema (<span class="code">a</span>)</small><strong id="ap">—</strong></div><div class="cell"><small>Altura (<span class="code">h</span>)</small><strong id="height">—</strong></div></section><p class="note">Bases regulares. La apotema se aproxima a una décima (0,1 cm) y todos los cálculos usan el valor mostrado.</p></section><section class="volume-work"><h2 class="work-label">Volumen</h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner">
-<div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = A<sub>b</sub> · h</div><div class="math-line">A<sub>b</sub> = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span></div><div class="math-line">P = n · l</div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"/><span class="unit">cm³</span></div><p class="answer-tip">Usa los datos del prisma. Puedes resolver primero en tu cuaderno.</p></div>
+<div class="lab-grid"><section class="figure prism-figure"><header><h2>Prisma</h2><span class="hint">↔ Arrastra para girar</span></header><svg aria-label="Prisma rotatorio: lado naranja en la base superior y bordes visibles del perímetro inferior en rojo. Arrastra con dedo o mouse; también puedes usar las teclas de flecha." id="solid" role="img" tabindex="0" viewbox="0 0 500 330"></svg><div class="shape-caption">Gira el prisma sin cambiar sus medidas.</div><button class="reset-view" id="reset-view" type="button">⟲ Vista inicial</button></section><section class="figure net-figure"><header><h2>Red plana</h2><span class="hint">Desarrollo plano</span></header><svg aria-label="Red plana del prisma: lado naranja de una base y perímetro rojo en el borde inferior de la banda de caras laterales" id="net" role="img" viewbox="0 0 530 330"></svg><div class="shape-caption">Dos bases iguales y una cara rectangular por cada lado de la base.</div></section><section aria-label="Medidas del prisma" class="data-wrap"><h2 class="data-title">Datos del prisma</h2><section aria-label="Datos del prisma" class="data"><div class="cell"><small>Lado de la base (<span class="code">l</span>)</small><strong id="side">—</strong></div><div class="cell"><small>Apotema (<span class="code">a</span>)</small><strong id="ap">—</strong></div><div class="cell"><small>Altura (<span class="code">h</span>)</small><strong id="height">—</strong></div></section><p class="note">Bases regulares. La apotema se aproxima a una décima (0,1 cm) y todos los cálculos usan el valor mostrado.</p></section><section class="perimeter-work" aria-label="Primer cálculo: perímetro de la base"><h2>1. Perímetro de la base</h2>
+<div class="perimeter-formula">P = n · l &nbsp;→&nbsp; P = <span id="perimeter-n">—</span> · <span id="perimeter-l">—</span></div>
+<div class="perimeter-entry"><label for="input-perimeter">¿Cuál es el perímetro de la base?</label><input id="input-perimeter" class="answer" inputmode="decimal" autocomplete="off" type="text" aria-label="Perímetro de la base"><span class="unit">cm</span><button class="btn btn-primary" type="button" id="check-perimeter">Comprobar perímetro</button></div>
+<p id="perimeter-feedback" class="feedback none" aria-live="polite">Resuelve el perímetro para continuar con área total y volumen.</p></section><section class="volume-work" hidden><h2 class="work-label">Volumen</h2><div class="flip-wrap" id="flip-volume"><div class="flip-inner">
+<div class="face front"><div class="ttl">Fórmula del volumen</div><div class="math formula-list"><div class="math-line">V = <span class="frac"><span class="num">P · a</span><span class="den">2</span></span> · h</div><div class="math-line calc-substitute" id="substitute-volume"></div></div><label class="form-label" for="input-volume">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-volume" inputmode="decimal" placeholder="Escribe el volumen" type="text"/><span class="unit">cm³</span></div><p class="answer-tip">Reemplaza el perímetro que calculaste.</p></div>
 <div class="face back"><div class="ttl">Solución desarrollada · Volumen</div><div class="steps" id="steps-volume"></div><div class="result" id="result-volume"></div><div class="feedback" id="feedback-volume"></div></div>
-</div></div></section><section class="area-work"><h2 class="work-label">Área total</h2><div class="flip-wrap" id="flip-area"><div class="flip-inner">
-<div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line" style="font-weight:700;font-size:1.12em">A<sub>T</sub> = P · a + P · h</div><div class="math-line" style="font-weight:700">P = n · l</div><div class="math-line"><small>n: número de lados de la base</small></div><div class="math-line"><small>l: medida del lado de la base</small></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"/><span class="unit">cm²</span></div><p class="answer-tip">Recuerda incluir las dos bases y todas las caras laterales.</p></div>
+</div></div></section><section class="area-work" hidden><h2 class="work-label">Área total</h2><div class="flip-wrap" id="flip-area"><div class="flip-inner">
+<div class="face front"><div class="ttl">Fórmula del área total</div><div class="math formula-list"><div class="math-line">A<sub>T</sub> = P · a + P · h</div><div class="math-line calc-substitute" id="substitute-area"></div></div><label class="form-label" for="input-area">Tu respuesta</label><div class="answer-row"><input autocomplete="off" class="answer" id="input-area" inputmode="decimal" placeholder="Escribe el área total" type="text"/><span class="unit">cm²</span></div><p class="answer-tip">Recuerda incluir las dos bases y todas las caras laterales.</p></div>
 <div class="face back"><div class="ttl">Solución desarrollada · Área total</div><div class="steps" id="steps-area"></div><div class="result" id="result-area"></div><div class="feedback" id="feedback-area"></div></div>
 </div></div></section></div>
 
@@ -104,7 +120,7 @@ main{width:auto;max-width:1170px;min-width:0;box-sizing:border-box;overflow-x:hi
 (()=>{'use strict';
 const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
 const names={3:'triangular',4:'cuadrangular',5:'pentagonal',6:'hexagonal',7:'heptagonal',8:'octagonal'};
-let task=null, revealed=false, lastN=null;
+let task=null, revealed=false, lastN=null, perimeterOk=false;
 let angle=0.55,tilt=31*Math.PI/180,drag=null;
 const round2=x=>Math.round((x+Number.EPSILON)*100)/100;
 const round1=x=>Math.round((x+Number.EPSILON)*10)/10;
@@ -228,6 +244,25 @@ function renderNet(){
 }
 function numericAnswer(s){s=s.trim().replace(/\s/g,'');if(!s)return null;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if(/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)){s=s.replace(/\./g,'')}if(!/^[-+]?(?:\d+\.?\d*|\.\d+)$/.test(s))return NaN;return Number(s)}
 function feedback(id,expected){const raw=$(id).value,ans=numericAnswer(raw);const out=$('feedback-'+(id==='input-volume'?'volume':'area'));out.className='feedback';if(ans===null){out.classList.add('none');out.textContent='Puedes escribir tu resultado antes de revelar la solución.';return}if(!Number.isFinite(ans)){out.classList.add('bad');out.textContent='Revisa el número ingresado (usa coma o punto decimal).';return}const ok=Math.abs(ans-expected)<=.051;out.classList.add(ok?'good':'bad');out.textContent=ok?'✓ ¡Coincide con el resultado!':'↻ No coincide todavía. Compara tus pasos con el desarrollo.';}
+
+function checkPerimeter(){
+ if(perimeterOk||!task)return;
+ const value=numericAnswer($('input-perimeter').value);
+ const out=$('perimeter-feedback');
+ if(value===null||!Number.isFinite(value)){
+  out.textContent='Escribe un número válido para el perímetro.';out.className='feedback bad';return;
+ }
+ if(Math.abs(value-task.P)>.011){
+  out.textContent='Todavía no coincide. Multiplica el número de lados por la medida de cada lado.';out.className='feedback bad';return;
+ }
+ perimeterOk=true;$('input-perimeter').disabled=true;$('check-perimeter').disabled=true;
+ out.className='feedback good';out.textContent='✓ Perímetro correcto: '+fmt(task.P)+' cm. Ahora calcula área total y volumen.';
+ document.querySelector('.volume-work').hidden=false;document.querySelector('.area-work').hidden=false;
+ $('reveal').disabled=false;$('status').textContent='Usa el perímetro que calculaste, reemplaza los datos y resuelve en tu cuaderno.';
+}
+$('check-perimeter').addEventListener('click',checkPerimeter);
+$('input-perimeter').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkPerimeter()}});
+$('input-perimeter').addEventListener('input',()=>{if(!perimeterOk){$('perimeter-feedback').className='feedback none';$('perimeter-feedback').textContent='Resuelve el perímetro para continuar.'}});
 // Cada paso presenta fórmula → reemplazo → resultado, en líneas separadas.
 function step(lines){return '<div class="step"><div class="m calc-chain">'+lines.map((line,i)=>'<div class="calc-line'+(i===lines.length-1?' final':'')+'">'+line+'</div>').join('')+'</div></div>'}
 function frac(numerator,denominator){return '<span class="frac"><span class="num">'+numerator+'</span><span class="den">'+denominator+'</span></span>'}
@@ -280,8 +315,15 @@ solid.addEventListener('keydown',ev=>{
 });
 $('reset-view').addEventListener('click',()=>{initialView();renderSolid()});
 
-function choose(){let opts=[3,4,5,6,7,8].filter(n=>n!==lastN);let n=opts[Math.floor(Math.random()*opts.length)];lastN=n;const sides=[4,6,8,10,12],l=sides[Math.floor(Math.random()*sides.length)],h=4+Math.floor(Math.random()*9),ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);task={n,l,h,ap,P,Ab,Al,At,V};revealed=false;$('flip-volume').classList.remove('revealed');$('flip-area').classList.remove('revealed');$('reveal').textContent='🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed','false');$('input-volume').value='';$('input-area').value='';$('status').textContent='Resuelve en tu cuaderno y después muestra los resultados y sus tres pasos.';$('name').textContent='Prisma '+names[n]+' regular';$('details').textContent=n+' lados por base · '+(n+2)+' caras · '+(3*n)+' aristas';$('side').textContent=fmt(l)+' cm';$('ap').textContent=fmt1(ap)+' cm';$('height').textContent=fmt(h)+' cm';initialView();renderSolid();renderNet();renderSolution()}
-$('reveal').addEventListener('click',()=>{revealed=!revealed;if(revealed)renderSolution();for(const name of ['volume','area'])$('flip-'+name).classList.toggle('revealed',revealed);$('reveal').textContent=revealed?'↩ Ocultar resultados':'🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed',String(revealed));$('status').textContent=revealed?'Compara tu desarrollo con cada reemplazo. Puedes ocultarlo y volver a intentarlo.':'Resuelve nuevamente, o genera otro prisma.'});$('new').addEventListener('click',()=>choose());choose();
+function choose(){perimeterOk=false;let opts=[3,4,5,6,7,8].filter(n=>n!==lastN);let n=opts[Math.floor(Math.random()*opts.length)];lastN=n;const sides=[4,6,8,10,12],l=sides[Math.floor(Math.random()*sides.length)],h=4+Math.floor(Math.random()*9),ap=round1(l/(2*Math.tan(Math.PI/n))),P=n*l,Ab=round2(P*ap/2),Al=P*h,At=round2(Al+2*Ab),V=round2(Ab*h);task={n,l,h,ap,P,Ab,Al,At,V};revealed=false;$('flip-volume').classList.remove('revealed');$('flip-area').classList.remove('revealed');$('reveal').textContent='🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed','false');$('input-volume').value='';$('input-area').value='';$('status').textContent='Resuelve en tu cuaderno y después muestra los resultados y sus tres pasos.';$('name').textContent='Prisma '+names[n]+' regular';$('details').textContent=n+' lados por base · '+(n+2)+' caras · '+(3*n)+' aristas';$('perimeter-n').textContent=fmt(n);$('perimeter-l').textContent=fmt(l);
+$('input-perimeter').value='';$('input-perimeter').disabled=false;$('check-perimeter').disabled=false;
+$('perimeter-feedback').className='feedback none';$('perimeter-feedback').textContent='Resuelve el perímetro para continuar con área total y volumen.';
+document.querySelector('.volume-work').hidden=true;document.querySelector('.area-work').hidden=true;
+$('reveal').disabled=true;
+$('substitute-volume').innerHTML='V = '+frac(fmt(P)+' · '+fmt1(ap),'2')+' · '+fmt(h);
+$('substitute-area').innerHTML='A<sub>T</sub> = '+fmt(P)+' · '+fmt1(ap)+' + '+fmt(P)+' · '+fmt(h);
+$('side').textContent=fmt(l)+' cm';$('ap').textContent=fmt1(ap)+' cm';$('height').textContent=fmt(h)+' cm';initialView();renderSolid();renderNet();renderSolution()}
+$('reveal').addEventListener('click',()=>{if(!perimeterOk)return;revealed=!revealed;if(revealed)renderSolution();for(const name of ['volume','area'])$('flip-'+name).classList.toggle('revealed',revealed);$('reveal').textContent=revealed?'↩ Ocultar resultados':'🔄 Mostrar resultados';$('reveal').setAttribute('aria-pressed',String(revealed));$('status').textContent=revealed?'Compara tu desarrollo con cada reemplazo. Puedes ocultarlo y volver a intentarlo.':'Resuelve nuevamente, o genera otro prisma.'});$('new').addEventListener('click',()=>choose());choose();
 })();
 </script>
 </body>
