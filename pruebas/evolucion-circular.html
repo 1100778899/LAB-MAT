@@ -17,7 +17,7 @@ main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:13px}
 </head>
 <body>
 <div class="shell">
-<header><div class="eyebrow">LAB-MAT · GEOMETRÍA · PROTOTIPO</div><h1>🟢 Evolución Circular</h1><p>Reconoce elementos, investiga las relaciones y calcula medidas del círculo. Cada descubrimiento abre la siguiente etapa.</p><span class="stage-tag">🧪 EN CONSTRUCCIÓN</span></header>
+<header><div class="eyebrow">LAB-MAT · GEOMETRÍA · JUEGO</div><h1>🟢 Evolución Circular</h1><p>Reconoce elementos, investiga las relaciones y calcula medidas del círculo. Cada descubrimiento abre la siguiente etapa.</p><span class="stage-tag">JUEGO DISPONIBLE</span></header>
 <nav class="progress-nav" aria-label="Etapas de evolución">
  <button class="step active" type="button" data-stage="1" aria-pressed="true"><span class="num">1</span><span><strong>Reconocer</strong><small id="step1-text">0 de 5 aciertos</small></span></button>
  <button class="step" type="button" data-stage="2" aria-pressed="false" disabled><span class="num">2</span><span><strong>Relacionar</strong><small id="step2-text">Bloqueado</small></span></button>
@@ -27,7 +27,7 @@ main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:13px}
 <section class="pane diagram-pane" aria-labelledby="diagram-title"><div class="topline"><h2 id="diagram-title">Observa el círculo</h2><span class="stage-counter" id="scene-level">Evolución 1 · 1/5</span></div><p class="caption" id="diagram-caption">Observa el elemento destacado en el dibujo.</p><div class="canvas"><svg id="circle-diagram" viewBox="0 0 460 330" role="img" aria-label="Círculo con un elemento destacado"></svg></div><p class="diagram-explain" id="diagram-explain">El contorno, la región interior, el centro y los segmentos del círculo son elementos diferentes.</p></section>
 <section class="pane work-pane"><div class="label" id="stage-label">EVOLUCIÓN 1 · IDENTIFICAR</div><h2 id="work-title">¿Qué elemento está marcado?</h2><div id="exercise"></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div><div class="actions"><button type="button" class="full" id="check">Comprobar respuesta</button><button type="button" class="full secondary" id="next" hidden>Siguiente desafío</button></div><p class="stat" id="stat">Aciertos: 0 · Responde para avanzar</p><button class="reset" type="button" id="reset">Reiniciar evolución</button></section>
 </main>
-<p class="footer">LAB-MAT · Versión inicial de prueba. Tu avance se conserva en este navegador. No se envían datos ni notas.</p>
+<p class="footer">LAB-MAT · Evolución Circular. Tu avance se conserva en este navegador. No se envían datos ni notas.</p>
 </div>
 <script>
 (()=>{'use strict';
@@ -40,8 +40,7 @@ const RULES=[
  {id:'r',q:'¿Cómo obtienes el radio a partir del diámetro?',options:['r = d / 2','r = 2 × d','r = π × d','r = d × d'],correct:0,why:'El diámetro equivale a dos radios. Por eso el radio es la mitad del diámetro.'},
  {id:'p',q:'¿Cómo calculas el perímetro conociendo el diámetro?',options:['P = π × d','P = d / π','P = π × d × d','P = 2 × d'],correct:0,why:'La longitud del contorno es π veces el diámetro.'},
  {id:'a',q:'¿Cómo calculas el área conociendo el radio?',options:['A = π × r × r','A = π × r','A = 2 × π × r','A = r × r'],correct:0,why:'Para el área se multiplica π por el radio y nuevamente por el radio.'},
- {id:'d',q:'Si conoces el radio, ¿qué relación permite hallar el diámetro?',options:['d = 2 × r','d = r / 2','d = π × r','d = r × r'],correct:0,why:'Dos radios alineados forman un diámetro.'},
- {id:'square',q:'Si duplicas el radio de un círculo, ¿qué sucede con el área?',options:['Se cuadruplica','Se duplica','Se mantiene','Se reduce a la mitad'],correct:0,why:'El radio aparece multiplicado por sí mismo: 2 × 2 = 4 veces el área anterior.'}
+ {id:'d',q:'Si conoces el radio, ¿qué relación permite hallar el diámetro?',options:['d = 2 × r','d = r / 2','d = π × r','d = r × r'],correct:0,why:'Dos radios alineados forman un diámetro.'}
 ];
 const STORE='labmat-evolucion-circular-v1';
 function initial(){return {unlocked:1,stage:1,correct:{1:0,2:0,3:0}}}
