@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#103f38"><title>Pitagorazo · LAB-MAT</title>
+<style>
+:root{--bg:#eaf2ef;--ink:#1d3b34;--muted:#61786e;--line:#d3e3db;--teal:#116d5c;--blue:#2f74a2;--gold:#edab49;--orange:#d6783f;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#d1ebe1,transparent 44%),var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #eeb343;outline-offset:3px}[hidden]{display:none!important}.shell{max-width:1050px;margin:auto;padding:18px 16px 35px}header{background:linear-gradient(110deg,#103f38,#167462);color:white;padding:23px 26px;border-radius:20px;display:flex;justify-content:space-between;gap:16px;align-items:center}header .eyebrow{letter-spacing:1.3px;color:#c4e7da;font-size:10px;font-weight:850}header h1{margin:3px 0;font-size:clamp(27px,4vw,39px);line-height:1.06;letter-spacing:-1px}header p{margin:6px 0 0;color:#d7eae2;font-size:13px;max-width:610px}.top-mark{display:grid;place-items:center;border-radius:14px;width:67px;height:67px;background:#ffffff1c;font:900 29px Georgia,serif;border:1px solid #ffffff4a;flex-shrink:0}.stage-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px}.tab{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:left;display:flex;align-items:center;gap:10px;color:#42665a}.tab.selected{background:#e2f6ec;border:2px solid var(--teal);color:#0c5549;padding:13px 7px}.tab-num{width:35px;height:35px;flex-shrink:0;border-radius:10px;background:#e7f1ee;display:grid;place-items:center;font-size:20px;font-weight:950}.tab.selected .tab-num{background:#176d5d;color:white}.tab strong{display:block;font-size:14px;line-height:1.2}.tab small{font-size:11px;line-height:1.3;display:block;margin-top:4px;color:var(--muted)}main{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.82fr);gap:14px;margin-top:14px;min-width:0}main>div{min-width:0}.pane{min-width:0;background:white;border-radius:18px;border:1px solid var(--line);box-shadow:0 7px 25px #1043320b}.diagram{padding:16px}.pane-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.pane-top h2{margin:0;font-size:18px}.badge{background:#e8f5ee;border-radius:999px;font-size:11px;padding:6px 10px;font-weight:800;color:#236b53}.plot{background:#f9fcfa;border:1px solid #e1ece6;border-radius:13px;overflow:hidden}.plot svg{width:100%;height:auto;display:block;aspect-ratio:420/300}.plot svg text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;paint-order:stroke;stroke:#fff;stroke-width:4.5px;stroke-linejoin:round;font-size:16px;font-weight:850;fill:#1f596a}.plot svg text.side{font-size:19px}.caption{font-size:12px;color:#617b71;margin:10px 4px 1px}.work{padding:18px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;color:#588271}.work h2{font-size:20px;margin:5px 0 8px;letter-spacing:-.45px}.work p{color:var(--muted);font-size:13px;line-height:1.55}.answers{display:grid;grid-template-columns:1fr;gap:9px;margin-top:17px}.option{min-height:51px;border:1.5px solid #d6e6de;background:#f7fbf9;color:#194e42;border-radius:11px;padding:10px 15px;font-size:17px;font-weight:850;text-align:left}.option:hover{border-color:#82b3a1}.option.selected{border-color:#126b5a;background:#e0f5e9}.option.good{background:#e7f7ed;border-color:#2b9765}.option.bad{border-color:#ca7865;background:#fff2ed}.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.yesno{min-height:63px;background:#f6faf8;border:1.5px solid #cfe1d8;border-radius:11px;font-weight:850;color:#2e6755;font-size:16px}.yesno.selected{border:2px solid #0c6a55;background:#def5e7}.math-box{padding:12px 15px;background:#edf7f1;border-radius:12px;margin-top:15px;font-size:15px;color:#345f51}.math-box b{font-size:21px;color:#105a50}.number-wrap{display:flex;gap:9px;align-items:center;margin-top:17px}.answer-input{flex:1;min-width:0;padding:14px;border-radius:11px;border:2px solid #adcec0;background:#fcfefc;font-size:19px;font-weight:850;color:#175c51}.unit{font-size:18px;color:#3c6f5e;font-weight:800}.btn{min-height:48px;border-radius:11px;border:0;font-weight:850;padding:12px 16px}.btn-main{background:var(--teal);color:white;flex:1}.btn-main:disabled{opacity:.55;cursor:default}.btn-minor{background:#edf4ef;border:1px solid #cbe2d5;color:#2a6d5c}.actions{margin-top:15px;display:flex;gap:9px;flex-wrap:wrap}.actions .btn{flex:1}.feedback{border-radius:11px;padding:12px 13px;margin-top:12px;font-size:13px;line-height:1.6;white-space:pre-line}.feedback.wrong{background:#fff5e3;color:#765529}.feedback.correct{background:#e5f6eb;color:#145b43}.aside-info{margin-top:14px;padding:15px 17px}.aside-info h3{font-size:15px;margin:0 0 10px}.formula{display:grid;grid-template-columns:1fr auto;align-items:center;padding:9px 0;border-top:1px solid #e6f1eb;gap:10px;font-size:13px}.formula:first-of-type{border-top:0}.formula span{color:#5f796e}.formula strong{font-family:Georgia,Cambria,serif;font-size:18px;color:#1f6253}.tip{font-size:12px;color:#60786c;line-height:1.5}.hint{margin-top:10px;font-size:12px;color:#40695d;border:1px dashed #b0d5c3;background:#f6fbf7;padding:11px;border-radius:10px}.footer{text-align:center;color:#71877d;font-size:11px;margin:20px 0}.summary{color:#376859;font-size:12px;font-weight:780;margin:11px 0 0}.small-link{color:#d4f1e5;text-decoration:underline;text-underline-offset:3px;font-size:12px;white-space:nowrap}
+@media(max-width:810px){main{display:flex;flex-direction:column}main>div{display:contents}.diagram{order:1}.work{order:2}.aside-info{order:3;margin-top:0}}
+@media(max-width:600px){.shell{padding:9px 9px 25px}header{border-radius:14px;padding:18px}header h1{font-size:28px}header p{font-size:12px}.top-mark{width:47px;height:47px;font-size:22px}.stage-tabs{gap:5px;margin-top:9px}.tab{padding:9px 5px;display:block;text-align:center;min-height:82px}.tab.selected{padding:8px 4px}.tab-num{width:30px;height:30px;margin:0 auto 5px;font-size:17px}.tab strong{font-size:12px}.tab small{font-size:10px;margin-top:4px}main{gap:9px;margin-top:9px}.pane{border-radius:13px}.diagram{padding:10px}.pane-top h2{font-size:16px}.plot svg{aspect-ratio:420/260}.work{padding:15px}.work h2{font-size:19px}.work p{font-size:12px}.option{font-size:16px;padding:10px 13px}.aside-info{padding:14px}}
+</style></head><body>
+<div class="shell">
+<header><div><div class="eyebrow">LAB-MAT · GEOMETRÍA · EN CONSTRUCCIÓN</div><h1>📐 Pitagorazo</h1><p>Observa, comprueba y encuentra medidas usando el teorema de Pitágoras.</p></div><div class="top-mark">a²+b²</div></header>
+<nav class="stage-tabs" aria-label="Juegos de Pitagorazo">
+<button class="tab selected" data-mode="relacion" aria-pressed="true"><span class="tab-num">1</span><span><strong>La relación</strong><small>¿Qué lados se elevan al cuadrado?</small></span></button>
+<button class="tab" data-mode="comprobar" aria-pressed="false"><span class="tab-num">2</span><span><strong>¿Se cumple?</strong><small>¿Es un triángulo rectángulo?</small></span></button>
+<button class="tab" data-mode="calcular" aria-pressed="false"><span class="tab-num">3</span><span><strong>Lado faltante</strong><small>Calcula una medida</small></span></button>
+</nav>
+<main>
+<div>
+<section class="pane diagram"><div class="pane-top"><h2>Observa el triángulo</h2><span class="badge" id="diagram-badge">Ángulo recto</span></div><div class="plot"><svg id="figure" viewBox="0 0 420 300" role="img" aria-label="Triángulo con letras en sus tres lados"></svg></div><p class="caption" id="diagram-caption">El cuadradito marca el ángulo de 90°.</p></section>
+<section class="pane aside-info"><h3>🧠 Estrategia para pensar</h3><div class="formula"><span>En un triángulo rectángulo</span><strong>a² + b² = c²</strong></div><div class="formula"><span>Hipotenusa</span><strong>lado más largo</strong></div><p class="tip" id="math-tip">Lo importante no es cómo se llama el lado, sino cuál está frente al ángulo recto.</p></section>
+</div>
+<section class="pane work"><div class="kicker" id="stage-kicker">JUEGO 1 · RELACIONAR</div><h2 id="challenge-title">¿Cuál es la relación correcta?</h2><p id="instruction">Identifica la hipotenusa y selecciona la igualdad que representa el teorema de Pitágoras.</p><div id="task-body"></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div><div class="actions"><button type="button" id="hint-button" class="btn btn-minor">💡 Pista</button><button type="button" id="check" class="btn btn-main">Comprobar</button><button type="button" id="next" class="btn btn-main" hidden>Otro desafío ↻</button></div><div id="hint" class="hint" hidden></div><p class="summary" id="stats-line">Aciertos: 0 · Intentos: 0</p></section>
+</main>
+<p class="footer">LAB-MAT · Pitagorazo · Juego en desarrollo. Sin cuentas ni envío de respuestas. <a href="./" class="small-link" style="color:#1b6953">Volver al laboratorio de pruebas</a></p>
+</div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),PI=Math.PI;
+const names=['p','q','s'];
+const TRIPLES=[[3,4,5],[5,12,13],[6,8,10],[7,24,25],[8,15,17],[9,12,15],[10,24,26],[12,16,20],[15,20,25],[20,21,29],[9,40,41],[11,60,61]];
+const STORE='labmat-pitagorazo-v1';
+let mode='relacion',task=null,selection=null,answered=false,lastKey='';
+let progress={relacion:{wins:0,tries:0},comprobar:{wins:0,tries:0},calcular:{wins:0,tries:0}};
+try{const stored=JSON.parse(localStorage.getItem(STORE));if(stored&&Object.keys(progress).every(k=>Number.isInteger(stored[k]?.wins)&&Number.isInteger(stored[k]?.tries)))progress=stored;}catch(e){}
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuf=a=>{const v=[...a];for(let i=v.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[v[i],v[j]]=[v[j],v[i]];}return v};
+const num=n=>Number(n.toFixed(2)).toLocaleString('es-CL',{maximumFractionDigits:2});
+const sq=t=>t+'²';
+function store(){try{localStorage.setItem(STORE,JSON.stringify(progress))}catch(e){}}
+function createTask(){
+ const labels=shuf(names), base=pick(TRIPLES),mult=pick([1,1,1,2,3]),units=pick(['cm','m']);
+ const a=base[0]*mult,b=base[1]*mult,c=base[2]*mult;
+ if(mode==='relacion'){
+  const h=labels[2],legs=labels.slice(0,2),right=sq(legs[0])+' + '+sq(legs[1])+' = '+sq(h);
+  const others=[sq(legs[0])+' + '+sq(h)+' = '+sq(legs[1]),sq(legs[1])+' + '+sq(h)+' = '+sq(legs[0]),legs[0]+' + '+legs[1]+' = '+h];
+  const choices=shuf([right,...others]);return {mode,labels,edges:[a,b,c],choices,right,units};
+ }
+ if(mode==='comprobar'){
+  const right=Math.random()<.52;let aa=a,bb=b,cc=c;
+  if(!right){
+   const changes=shuf([-2,-1,1,2,3,-3]);let next=cc+changes[0];
+   for(const change of changes){const v=cc+change;if(v>Math.max(aa,bb)&&v<aa+bb){next=v;break;}}
+   cc=next;
+  }
+  // En esta modalidad las tres medidas describen el triángulo mostrado, sin símbolo de 90 grados.
+  return {mode,labels,edges:[aa,bb,cc],right,units};
+ }
+ const missing=pick([0,0,1,1,2,2,2]),values=[a,b,c],answer=values[missing];
+ return {mode,labels,edges:values,missing,answer,units};
+}
+// A y B son los extremos de un cateto; C completa el triángulo. Para la
+// comprobación se respetan las tres longitudes reales (no se dibuja 90°).
+function geometry(t){
+ const [a,b,c]=t.edges;let raw;
+ if(t.mode==='comprobar'){
+  const x=(a*a+b*b-c*c)/(2*a);const y=Math.sqrt(Math.max(0,b*b-x*x));
+  raw=[{x:0,y:0},{x:a,y:0},{x,y:-y}];
+ }else raw=[{x:0,y:0},{x:a,y:0},{x:0,y:-b}];
+ let midx=(Math.min(...raw.map(p=>p.x))+Math.max(...raw.map(p=>p.x)))/2;
+ let midy=(Math.min(...raw.map(p=>p.y))+Math.max(...raw.map(p=>p.y)))/2;
+ const bounds={w:Math.max(...raw.map(p=>p.x))-Math.min(...raw.map(p=>p.x)),h:Math.max(...raw.map(p=>p.y))-Math.min(...raw.map(p=>p.y))};
+ const scale=Math.min(280/Math.max(bounds.w,1),185/Math.max(bounds.h,1));
+ const points=raw.map(p=>({x:210+(p.x-midx)*scale,y:145+(p.y-midy)*scale}));
+ return points;
+}
+function drawFigure(t){
+ const [A,B,C]=geometry(t),center={x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3};
+ const edges=[[A,B],[A,C],[B,C]];let svg='<rect x="0" y="0" width="420" height="300" fill="#f9fcfa"/>';
+ svg+=`<path d="M${A.x},${A.y} L${B.x},${B.y} L${C.x},${C.y}Z" fill="#dceef5" stroke="#286c90" stroke-width="4" stroke-linejoin="round"/>`;
+ if(t.mode!=='comprobar'){
+   const u={x:(B.x-A.x)/Math.hypot(B.x-A.x,B.y-A.y),y:(B.y-A.y)/Math.hypot(B.x-A.x,B.y-A.y)},v={x:(C.x-A.x)/Math.hypot(C.x-A.x,C.y-A.y),y:(C.y-A.y)/Math.hypot(C.x-A.x,C.y-A.y)};
+   const size=15;svg+=`<path d="M${A.x+u.x*size},${A.y+u.y*size} L${A.x+(u.x+v.x)*size},${A.y+(u.y+v.y)*size} L${A.x+v.x*size},${A.y+v.y*size}" fill="none" stroke="#bd7136" stroke-width="3"/>`;
+ }
+ for(let i=0;i<3;i++){
+  const [p,q]=edges[i],mid={x:(p.x+q.x)/2,y:(p.y+q.y)/2},d={x:mid.x-center.x,y:mid.y-center.y};
+  const n=Math.max(0.1,Math.hypot(d.x,d.y));const tx=mid.x+d.x/n*27,ty=mid.y+d.y/n*27;
+  const title=t.labels[i],value=t.mode==='relacion'?title:`${title} = ${t.mode==='calcular'&&t.missing===i?'?':num(t.edges[i])} ${t.units}`;
+  svg+=`<text class="side" x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle">${title===value?'': ''}${value}</text>`;
+ }
+ $('figure').innerHTML=svg;
+ const info=t.mode==='relacion'?'Triángulo rectángulo. Las letras cambian de posición en cada desafío.':t.mode==='comprobar'?'Las medidas corresponden a los lados dibujados. Comprueba si el triángulo tiene un ángulo recto.':'Triángulo rectángulo: un lado está marcado con «?». Calcula su medida.';
+ $('figure').setAttribute('aria-label',info);
+ $('diagram-caption').textContent=info;
+ $('diagram-badge').textContent=t.mode==='comprobar'?'¿Tiene 90°?':'Ángulo recto';
+}
+function render(){
+ selection=null;answered=false;$('feedback').hidden=true;$('hint').hidden=true;$('check').hidden=false;$('next').hidden=true;
+ const titles={relacion:['JUEGO 1 · IDENTIFICAR','¿Cuál es la relación correcta?','Observa el ángulo recto. Selecciona la igualdad que representa el teorema con las letras de este triángulo.'],comprobar:['JUEGO 2 · COMPROBAR','¿Se cumple Pitágoras?','Con estas tres longitudes, ¿el triángulo es rectángulo? No basta con que parezca: verifica las medidas.'],calcular:['JUEGO 3 · CALCULAR','Encuentra la medida faltante','Se conocen dos lados de un triángulo rectángulo. Calcula la longitud que falta y escribe el resultado.']};
+ const [tag,title,subtitle]=titles[mode];$('stage-kicker').textContent=tag;$('challenge-title').textContent=title;$('instruction').textContent=subtitle;
+ const t=task;drawFigure(t);
+ if(mode==='relacion'){
+  $('task-body').innerHTML='<div class="answers">'+t.choices.map((str,i)=>`<button type="button" class="option" data-option="${i}">${str}</button>`).join('')+'</div>';
+ }else if(mode==='comprobar'){
+  $('task-body').innerHTML='<div class="choice-row"><button type="button" class="yesno" data-option="yes">Sí, se cumple</button><button type="button" class="yesno" data-option="no">No se cumple</button></div>';
+ }else{
+  $('task-body').innerHTML=`<div class="math-box">${t.labels[t.missing]} = <b>?</b> ${t.units}</div><div class="number-wrap"><input id="number-answer" class="answer-input" inputmode="decimal" type="text" placeholder="Escribe la medida" autocomplete="off" aria-label="Medida faltante"><span class="unit">${t.units}</span></div>`;
+  $('number-answer').addEventListener('keydown',e=>{if(e.key==='Enter'){$('check').click()}});
+ }
+ document.querySelectorAll('[data-option]').forEach(btn=>btn.addEventListener('click',()=>{
+  if(answered)return;selection=btn.dataset.option;document.querySelectorAll('[data-option]').forEach(el=>el.classList.toggle('selected',el.dataset.option===selection));
+ }));
+ $('stats-line').textContent=`Aciertos: ${progress[mode].wins} · Intentos: ${progress[mode].tries}`;
+ $('math-tip').textContent=mode==='relacion'?'La hipotenusa está frente al ángulo de 90°. No depende de la letra usada.':mode==='comprobar'?'Para comprobar el teorema, compara los cuadrados de los dos lados menores con el del mayor.':'Si buscas la hipotenusa, sumas cuadrados; si buscas un cateto, restas cuadrados.';
+}
+function loadTask(){let next=createTask(),sig=next.mode+JSON.stringify(next.edges)+JSON.stringify(next.labels)+(next.missing??'')+(next.right??'');for(let i=0;i<5&&sig===lastKey;i++){next=createTask();sig=next.mode+JSON.stringify(next.edges)+JSON.stringify(next.labels)+(next.missing??'')+(next.right??'');}lastKey=sig;task=next;render();}
+function show(text,correct){$('feedback').hidden=false;$('feedback').className='feedback '+(correct?'correct':'wrong');$('feedback').textContent=text;}
+function check(){if(answered)return;const t=task;let good,details='';
+ if(mode==='relacion'){
+  if(selection===null){show('Selecciona una de las relaciones antes de comprobar.',false);return}
+  const selected=t.choices[Number(selection)];good=selected===t.right;
+  if(good)details='¡Correcto! La hipotenusa es '+t.labels[2]+', el lado opuesto al ángulo recto. Los cuadrados de los otros dos lados suman '+sq(t.labels[2])+'.';
+  else details='Esa igualdad no corresponde a la posición de la hipotenusa. Localiza primero el lado opuesto al ángulo de 90° e inténtalo nuevamente.';
+ }else if(mode==='comprobar'){
+  if(selection===null){show('Elige Sí o No para comprobar.',false);return}
+  good=(selection==='yes')===t.right;const [a,b,c]=t.edges;
+  const lhs=a*a+b*b,rhs=c*c,eq=t.right?'Son iguales.':'Son diferentes.';
+  details=(good?'¡Bien comprobado! ':'La conclusión no coincide con las medidas. ')+`${num(a)}² + ${num(b)}² = ${num(lhs)} y ${num(c)}² = ${num(rhs)}. ${eq} Por eso ${t.right?'sí':'no'} se cumple el teorema.`;
+ }else{
+  const raw=$('number-answer').value.trim().replace(',','.');if(!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(raw)){show('Escribe una medida numérica válida. Puedes utilizar coma o punto decimal.',false);return}
+  const entered=Number(raw);good=Math.abs(entered-t.answer)<.011;const [a,b,c]=t.edges;
+  const expected=t.missing===2?`√(${num(a)}² + ${num(b)}²)`:`√(${num(c)}² − ${num(t.missing===0?b:a)}²)`;
+  details=good?`¡Correcto! ${t.labels[t.missing]} = ${expected} = ${num(t.answer)} ${t.units}.`:`Revisa tu cálculo de ${t.labels[t.missing]}. Pregúntate si te falta la hipotenusa o un cateto. Comprueba el desarrollo y vuelve a intentarlo.`;
+ }
+ progress[mode].tries++;if(good){progress[mode].wins++;answered=true;$('check').hidden=true;$('next').hidden=false;document.querySelectorAll('[data-option]').forEach(b=>b.disabled=true);if($('number-answer'))$('number-answer').disabled=true;}
+ store();$('stats-line').textContent=`Aciertos: ${progress[mode].wins} · Intentos: ${progress[mode].tries}`;show(details,good);
+}
+$('check').addEventListener('click',check);$('next').addEventListener('click',loadTask);
+$('hint-button').addEventListener('click',()=>{const msg=mode==='relacion'?'Busca el ángulo marcado con un cuadradito. El lado que está frente a ese ángulo es la hipotenusa.':mode==='comprobar'?'Ordena las longitudes de menor a mayor. Comprueba si la suma de los cuadrados de las dos menores equivale al cuadrado de la mayor.':'La hipotenusa es el lado opuesto al ángulo recto. Para calcularla se suman los cuadrados; para hallar un cateto se resta. Al final, aplica raíz cuadrada.';$('hint').textContent=msg;$('hint').hidden=!$('hint').hidden;});
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>{const yes=x.dataset.mode===mode;x.classList.toggle('selected',yes);x.setAttribute('aria-pressed',String(yes))});loadTask();}));
+loadTask();
+})();
+</script></body></html>
