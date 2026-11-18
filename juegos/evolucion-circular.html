@@ -55,8 +55,7 @@ const EXPRESSIONS=[
 ];
 const STORE='labmat-evolucion-circular-v1';
 function initial(){return {unlocked:1,stage:1,correct:{1:0,2:0,3:0}}}
-let mode='practice';let practice=initial();let state=practice;try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&[1,2,3].includes(x.stage)&&[1,2,3].includes(x.unlocked)&&x.correct&&[1,2,3].every(i=>Number.isFinite(x.correct[i])&&x.correct[i]>=0)){evaluation=x}}catch(e){}
-let evaluation=typeof evaluation==='undefined'?initial():evaluation;
+let mode='practice';let practice=initial();let evaluation=initial();let state=practice;try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&[1,2,3].includes(x.stage)&&[1,2,3].includes(x.unlocked)&&x.correct&&[1,2,3].every(i=>Number.isFinite(x.correct[i])&&x.correct[i]>=0)){evaluation=x}}catch(e){}
 let deck1=[],deck2=[],deckExpr=[],item=null,selected=null,checked=false,measureUnit='cm',investRadius=3;
 function save(){if(mode==='evaluation')try{localStorage.setItem(STORE,JSON.stringify(evaluation))}catch(e){}}
 function goal(s){return s===1?5:10}
