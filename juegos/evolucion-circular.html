@@ -56,14 +56,14 @@ function getQuestion(){if(state.stage===1){if(!deck1.length)deck1=shuf(ELS);retu
 function circleMarkup(){
  const stage=state.stage,hi=item?.kind==='identify'?item.id:null;
  const x=230,y=165,r=stage===2?37+investRadius*8:111;
- let svg=`<rect width="460" height="330" fill="#fbfdfc"/><circle cx="${x}" cy="${y}" r="${r}" fill="${hi==='area'?'#a7d9eb':'#eaf4f9'}" stroke="${hi==='perimetro'?'#dd843c':'#5c8ba4'}" stroke-width="${hi==='perimetro'?8:2.5}"/>`;
+ let svg=`<rect width="460" height="330" fill="#fbfdfc"/><circle cx="${x}" cy="${y}" r="${r}" fill="${hi==='area'?'#d57c35':'#f0f3f2'}" fill-opacity="${hi==='area'?'.58':'1'}" stroke="${hi==='perimetro'?'#dd843c':'#9ca9a4'}" stroke-width="${hi==='perimetro'?8:2.5}"/>`;
  const line=(x1,y1,x2,y2,color,w=4)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" stroke-linecap="round"/>`;
  if(stage===1){
-   if(hi==='radio'){svg+=line(x,y,x+r*.78,y-r*.63,'#d57c35',7)+`<circle cx="${x}" cy="${y}" r="5" fill="#42677c"/>`;}
-   if(hi==='diametro'){svg+=line(x-r*.78,y+r*.63,x+r*.78,y-r*.63,'#d57c35',7)+`<circle cx="${x}" cy="${y}" r="5" fill="#42677c"/>`;}
+   if(hi==='radio'){svg+=line(x,y,x+r*.78,y-r*.63,'#d57c35',7)+`<circle cx="${x}" cy="${y}" r="5" fill="#8c9691"/>`;}
+   if(hi==='diametro'){svg+=line(x-r*.78,y+r*.63,x+r*.78,y-r*.63,'#d57c35',7)+`<circle cx="${x}" cy="${y}" r="5" fill="#8c9691"/>`;}
    if(hi==='centro'){svg+=`<circle cx="${x}" cy="${y}" r="10" fill="#d57c35" stroke="#fff" stroke-width="3"/>`;}
-   if(hi==='area')svg+=`<circle cx="${x}" cy="${y}" r="${r-3}" fill="#6db4d5" fill-opacity=".34"/>`;
-   if(hi==='perimetro')svg+=`<circle cx="${x}" cy="${y}" r="5" fill="#42677c"/>`;
+   
+   if(hi==='perimetro')svg+=`<circle cx="${x}" cy="${y}" r="5" fill="#8c9691"/>`;
  }else{
    const isDiameter=stage===3&&item.given==='d';
    svg+=line(x-r,y,x+r,y,isDiameter?'#167b78':'#d6a360',isDiameter?6:2.5);
@@ -78,7 +78,7 @@ function nav(){for(let s=1;s<=3;s++){const b=document.querySelector('[data-stage
 function choices(items,format){return '<div class="answers" role="group" aria-label="Alternativas">'+items.map((txt,i)=>'<button type="button" class="choice'+(selected===i?' selected':'')+'" data-choice="'+i+'">'+(format?' <span class="math-choice">':'')+txt+(format?'</span>':'')+'</button>').join('')+'</div>'}
 function draw(){nav();const s=state.stage,c=Math.min(state.correct[s],5);$('scene-level').textContent='Evolución '+s+' · '+(s===3?state.correct[3]+' resueltos':(c+1>5?5:c+1)+'/5');$('circle-diagram').innerHTML=circleMarkup();$('feedback').hidden=true;$('feedback').textContent='';$('check').hidden=false;$('check').disabled=false;$('next').hidden=true;
  const titles={1:['EVOLUCIÓN 1 · RECONOCER','Identifica el elemento'],2:['EVOLUCIÓN 2 · RELACIONAR','Descubre la relación'],3:['EVOLUCIÓN 3 · CALCULAR','Aplica lo aprendido']};$('stage-label').textContent=titles[s][0];$('work-title').textContent=titles[s][1];
- let html='';if(s===1){$('diagram-caption').textContent='Identifica el elemento destacado en naranja o azul.';$('diagram-explain').textContent='La región interior, el contorno y los segmentos representan conceptos diferentes.';html='<div class="question">¿Qué elemento está destacado?</div>'+choices(['Centro','Radio','Diámetro','Perímetro','Área'],false)}
+ let html='';if(s===1){$('diagram-caption').textContent='Identifica el elemento destacado en naranjo.';$('diagram-explain').textContent='La región interior, el contorno y los segmentos representan conceptos diferentes.';html='<div class="question">¿Qué elemento está destacado?</div>'+choices(['Centro','Radio','Diámetro','Perímetro','Área'],false)}
  else if(s===2){$('diagram-caption').textContent='Cambia el radio: observa qué sucede con otras medidas.';$('diagram-explain').textContent='Experimenta con el radio antes de elegir una relación matemática.';html='<div class="investigate"><div class="row"><label for="invest-radius">Radio de prueba</label><output id="invest-value">'+investRadius+' cm</output></div><input type="range" id="invest-radius" min="1" max="10" step="1" value="'+investRadius+'"><div class="observed"><div>Diámetro<strong id="obs-d">'+fmt(2*investRadius)+'</strong></div><div>Perímetro<strong id="obs-p">'+fmt(2*PI*investRadius)+'</strong></div><div>Área<strong id="obs-a">'+fmt(PI*investRadius*investRadius)+'</strong></div></div><div class="hidden-note">Valores calculados utilizando π = 3,14</div></div><div class="question">'+item.q+'</div>'+choices(item.options,true)}
  else{$('diagram-caption').textContent='Piensa qué relación conecta los datos.';$('diagram-explain').textContent='Utiliza π = 3,14. El perímetro se mide en unidades lineales y el área, en unidades cuadradas.';html='<div class="evidence"><div class="label">DATO CONOCIDO</div><strong style="font-size:24px">'+(item.given==='r'?'Radio':'Diámetro')+' = '+fmt(item.givenV)+' '+item.unit+'</strong></div><div class="question">Calcula el '+item.label+' del círculo.</div><div class="input-wrap"><input id="numeric-answer" class="measure-input" type="text" inputmode="decimal" autocomplete="off" placeholder="Tu respuesta" aria-label="Resultado del ejercicio"><span class="unit-suffix">'+item.unit+(item.target==='a'?'²':'')+'</span></div><p class="ref">Considera π = 3,14. Escribe solo el número; puedes utilizar coma o punto decimal.</p>'}
  $('exercise').innerHTML=html;$('stat').textContent='Aciertos de esta evolución: '+state.correct[s]+(s<3?' · Necesitas 5 para desbloquear la siguiente etapa.':' · Continúa practicando.');
